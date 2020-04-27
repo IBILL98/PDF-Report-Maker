@@ -98,6 +98,7 @@ public class AddEmployeeController {
         }else{
             Work = "Rater";
         }
+
         Employee employee = new Employee(Name,LastName,Username,Level,Password,Work);
         databaseHandler.addEmployee(employee);
     }

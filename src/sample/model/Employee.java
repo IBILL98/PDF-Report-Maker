@@ -6,6 +6,11 @@ public class Employee {
     private String Username;
     private String Level;
     private String Password;
+
+    public Employee(String username) {
+        Username = username;
+    }
+
     private String work;
 
     public Employee(String name, String lastName, String username, String level, String password, String work) {
