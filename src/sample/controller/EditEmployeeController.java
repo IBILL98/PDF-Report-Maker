@@ -65,6 +65,38 @@ public class EditEmployeeController {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    /* private void editEmployeeWindow(ResultSet employeeRow) throws SQLException {
         databaseHandler = new DatabaseHandler();
 
