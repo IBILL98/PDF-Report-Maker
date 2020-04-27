@@ -8,9 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Database.DatabaseHandler;
+import sample.model.Employee;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController {
@@ -33,11 +37,11 @@ public class LoginController {
     @FXML
     private JFXButton loginSignupButton;
 
-
+    private DatabaseHandler databaseHandler;
     @FXML
     void initialize() {
-        String loginText = loginUsername.getText().trim();
-        String loginPwd = loginPassword.getText().trim();
+        databaseHandler = new DatabaseHandler();
+
 
         loginSignupButton.setOnAction(actionEvent -> {
             loginSignupButton.getScene().getWindow().hide();
@@ -56,17 +60,31 @@ public class LoginController {
 
         });
 
+
+
+
         loginButton.setOnAction(actionEvent -> {
-           if(!loginPwd.equals("") && !loginPwd.equals("")){
-               loginUser(loginText,loginPwd);
-           }else{
-               System.out.println("Error Loging Users");
-           }
+            String loginText = loginUsername.getText();
+            String loginPwd = loginPassword.getText();
+
+            Employee employee = new Employee();
+            employee.setUsername(loginText);
+            employee.setPassword(loginPwd);
+
+            ResultSet employeeRow = databaseHandler.getEmployee(employee);
+            int counter = 0;
+            try {
+                while(employeeRow.next()) {
+                    counter++;
+                }
+                if (counter == 1) {
+                    System.out.println("login succefful !!!!");
+                }
+
+            }
+            catch(SQLException e){
+                e.printStackTrace();
+            }
         });
     }
-
-    private void loginUser(String userName,String password) {
-
-    }
-
 }
