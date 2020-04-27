@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.Admin;
-import sample.model.Employee;
 
 import java.io.IOException;
 import java.net.URL;

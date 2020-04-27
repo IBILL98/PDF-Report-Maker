@@ -166,6 +166,7 @@ public class DatabaseHandler extends Configs {
                 preparedStatement.setString(2,employeeRow.getString("Username"));
 
                 preparedStatement.executeUpdate();
+                done();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -175,7 +176,7 @@ public class DatabaseHandler extends Configs {
 
         } else if (result.get() == buttonTypeTwo) {
             // ... Edite LastName
-            String Name = showNewInfos(employeeRow,"LastName");
+            String LastName = showNewInfos(employeeRow,"LastName");
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" +  " WHERE "
                     +Const.EMPLOYEE_USERNAME + "=?";
 
@@ -183,10 +184,11 @@ public class DatabaseHandler extends Configs {
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
 
-                preparedStatement.setString(1,employeeRow.getString("LastName"));
+                preparedStatement.setString(1,LastName);
                 preparedStatement.setString(2,employeeRow.getString("Username"));
 
                 preparedStatement.executeUpdate();
+                done();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -196,16 +198,17 @@ public class DatabaseHandler extends Configs {
 
         } else if (result.get() == buttonTypeThree) {
             // ... user chose "Three"
-            String Name = showNewInfos(employeeRow,"Level");
+            String Level = showNewInfos(employeeRow,"Level");
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" +  " WHERE "
                     +Const.EMPLOYEE_USERNAME + "=?";
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
 
-                preparedStatement.setString(1,employeeRow.getString("Level"));
+                preparedStatement.setString(1,Level);
                 preparedStatement.setString(2,employeeRow.getString("Username"));
 
                 preparedStatement.executeUpdate();
+                done();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -215,17 +218,17 @@ public class DatabaseHandler extends Configs {
 
         } else if (result.get() == buttonTypeFour) {
             //
-            String Name = showNewInfos(employeeRow,"Password");
+            String Password = showNewInfos(employeeRow,"Password");
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_PASSWORD + "=?" +  " WHERE "
                     +Const.EMPLOYEE_USERNAME + "=?";
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
 
-                preparedStatement.setString(1,employeeRow.getString("Password"));
+                preparedStatement.setString(1,Password);
                 preparedStatement.setString(2,employeeRow.getString("Username"));
 
                 preparedStatement.executeUpdate();
-
+                done();
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -233,16 +236,17 @@ public class DatabaseHandler extends Configs {
             }
 
         } else if (result.get() == buttonTypeFive) {
-            String Name = showNewInfos(employeeRow,"Work");
+            String Work = showNewInfos(employeeRow,"Work");
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" +  " WHERE "
                     +Const.EMPLOYEE_USERNAME + "=?";
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
 
-                preparedStatement.setString(1,employeeRow.getString("Work"));
+                preparedStatement.setString(1,Work);
                 preparedStatement.setString(2,employeeRow.getString("Username"));
 
                 preparedStatement.executeUpdate();
+                done();
 
             } catch (SQLException e) {
                 e.printStackTrace();
