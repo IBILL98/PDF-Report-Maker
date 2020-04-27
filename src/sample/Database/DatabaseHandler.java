@@ -1,5 +1,6 @@
 package sample.Database;
 
+import sample.model.Admin;
 import sample.model.Employee;
 
 import java.sql.*;
@@ -16,7 +17,7 @@ public class DatabaseHandler extends Configs {
         return dbConnection;
     }
     //Add
-    public void signUpEmployee(Employee employee){
+    public void addEmployee(Employee employee){
         String insert = "INSERT INTO "+Const.EMPLOYEE_TABLE+"("+Const.EMPLOYEE_NAME+","+Const.EMPLOYEE_LASTNAME
                 +","+Const.EMPLOYEE_USERNAME+","
                 +Const.EMPLOYEE_LEVEL+","+Const.EMPLOYEE_PASSWORD+","+Const.EMPLOYEE_WORK+")"+"VALUES(?,?,?,?,?,?)";
@@ -74,6 +75,28 @@ public class DatabaseHandler extends Configs {
         return resultSet;
     }
 
+    public void addAdmin(Admin admin) {
+
+        String insert = "INSERT INTO "+Const.ADMINS_TABLE+"("+Const.ADMINS_NAME+","+Const.ADMINS_LASTNAME
+                +","+Const.ADMINS_USERNAME+","
+                +Const.ADMINS_PASSWORD+")"+"VALUES(?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+
+            preparedStatement.setString(1,admin.getName());
+            preparedStatement.setString(2,admin.getLastName());
+            preparedStatement.setString(3,admin.getUsername());
+            preparedStatement.setString(4,admin.getPassword());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     //Read

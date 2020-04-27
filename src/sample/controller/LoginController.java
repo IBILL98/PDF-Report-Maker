@@ -42,13 +42,10 @@ public class LoginController {
     @FXML
     void initialize() {
         databaseHandler = new DatabaseHandler();
-
-
         loginSignupButton.setOnAction(actionEvent -> {
             loginSignupButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/signup.fxml"));
-
             try {
                 loader.load();
             } catch (IOException e) {
@@ -58,7 +55,6 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-
         });
 
 

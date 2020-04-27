@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SignupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SignUpController">
    <children>
-      <JFXTextField fx:id="signUpName" layoutX="60.0" layoutY="204.0" prefHeight="31.0" prefWidth="270.0" text="Name" />
-      <JFXTextField fx:id="signUpLastName" layoutX="60.0" layoutY="260.0" prefHeight="31.0" prefWidth="270.0" text="LastName" />
+      <JFXTextField fx:id="signUpName" layoutX="60.0" layoutY="219.0" prefHeight="31.0" prefWidth="270.0" text="Name" />
+      <JFXTextField fx:id="signUpLastName" layoutX="60.0" layoutY="275.0" prefHeight="31.0" prefWidth="270.0" text="LastName" />
       <AnchorPane prefHeight="127.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
-      <JFXTextField fx:id="signUpUsername" layoutX="60.0" layoutY="320.0" prefHeight="31.0" prefWidth="270.0" text="Username" />
-      <JFXTextField fx:id="signUpLevel" layoutX="60.0" layoutY="379.0" prefHeight="31.0" prefWidth="270.0" text="Level" />
+      <JFXTextField fx:id="signUpUsername" layoutX="60.0" layoutY="338.0" prefHeight="31.0" prefWidth="270.0" text="Username" />
       <AnchorPane layoutY="127.0" prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #0069c0;">
          <children>
-            <Label alignment="CENTER" layoutX="340.0" prefHeight="61.0" prefWidth="120.0" text="Sign Up" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="342.0" prefHeight="61.0" prefWidth="117.0" text="Sign up" textFill="WHITE">
                <font>
                   <Font size="21.0" />
                </font>
@@ -31,14 +28,7 @@
             <Image url="@../assets/unnamed.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="signUpPassword" layoutX="60.0" layoutY="447.0" prefHeight="31.0" prefWidth="270.0" text="Password" />
-      <JFXRadioButton fx:id="signUpOperator" layoutX="60.0" layoutY="508.0" selected="true" text="Operator">
-         <toggleGroup>
-            <ToggleGroup fx:id="Group1" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="signUpRater" layoutX="158.0" layoutY="508.0" text="Rater" toggleGroup="$Group1" />
-      <JFXRadioButton fx:id="signUpApprover" layoutX="255.0" layoutY="508.0" text="Approver" toggleGroup="$Group1" />
+      <JFXTextField fx:id="signUpPassword" layoutX="60.0" layoutY="403.0" prefHeight="31.0" prefWidth="270.0" text="Password" />
       <JFXButton fx:id="signUpButton" layoutX="563.0" layoutY="385.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Sign Up" textFill="WHITE" />
    </children>
 </AnchorPane>
