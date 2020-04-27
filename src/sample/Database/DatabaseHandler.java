@@ -294,8 +294,8 @@ public class DatabaseHandler extends Configs {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
                 preparedStatement.setString(1,employee.getUsername());
 
-            preparedStatement.executeUpdate();
-            done();
+                preparedStatement.executeUpdate();
+                
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

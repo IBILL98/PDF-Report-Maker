@@ -19,6 +19,8 @@ import javax.xml.crypto.Data;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -75,7 +77,21 @@ public class DeleteEmplyeeController {
         String Username = deleteEmployeeUsername.getText();
         Employee employee = new Employee();
         employee.setUsername(Username);
-        databaseHandler.deleteEmployee(employee);
+        ResultSet employeeRow = databaseHandler.getEmployeeByUsername(employee);
+        int counter = 0;
+        try {
+            while(employeeRow.next()) {
+                counter++;
+                databaseHandler.deleteEmployee(employee);
+            }
+            if (counter == 0) {
+                Shaker UsernameShaker = new Shaker(deleteEmployeeUsername);
+                UsernameShaker.shake();
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
