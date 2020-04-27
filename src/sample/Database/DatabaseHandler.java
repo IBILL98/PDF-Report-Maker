@@ -44,6 +44,7 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(6,employee.getWork());
 
             preparedStatement.executeUpdate();
+            done();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,6 +99,7 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(4,admin.getPassword());
 
             preparedStatement.executeUpdate();
+            done();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -293,7 +295,7 @@ public class DatabaseHandler extends Configs {
                 preparedStatement.setString(1,employee.getUsername());
 
             preparedStatement.executeUpdate();
-
+            done();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
