@@ -50,13 +50,6 @@ public class DeleteEmplyeeController {
         });
 
 
-
-
-
-
-
-
-
         deleteBack.setOnMouseClicked((mouseEvent -> {
             deleteBack.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
