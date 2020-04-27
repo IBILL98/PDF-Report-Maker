@@ -53,5 +53,29 @@ public class MainController {
 
         });
 
+
+        mainDeleteAccount.setOnAction(actionEvent -> {
+            showDeleteScreen();
+        });
+
+
+        //UPDATE `my_database`.`employee` SET `Name` = 'Name', `Username` = 'bilal' WHERE (`id` = '11117') and (`Username` = 'Username');
+
+    }
+
+    private void showDeleteScreen(){
+        mainDeleteAccount.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/deleteemployee.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
