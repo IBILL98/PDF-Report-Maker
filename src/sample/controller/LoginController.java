@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Animations.Shaker;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
@@ -78,7 +79,13 @@ public class LoginController {
                     counter++;
                 }
                 if (counter == 1) {
-                    System.out.println("login succefful !!!!");
+                    showMainScreen();
+                }else{
+                    Shaker UsernameShaker = new Shaker(loginUsername);
+                    UsernameShaker.shake();
+                    Shaker PasswordShaker = new Shaker(loginPassword);
+                    PasswordShaker.shake();
+
                 }
 
             }
@@ -87,4 +94,25 @@ public class LoginController {
             }
         });
     }
+
+
+
+    private void showMainScreen(){
+            loginSignupButton.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
+
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+    }
+
+
+
 }
