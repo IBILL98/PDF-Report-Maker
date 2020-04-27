@@ -40,5 +40,10 @@
       <JFXRadioButton fx:id="addRater" layoutX="158.0" layoutY="508.0" text="Rater" toggleGroup="$Group1" />
       <JFXRadioButton fx:id="addApprover" layoutX="255.0" layoutY="508.0" text="Approver" toggleGroup="$Group1" />
       <JFXButton fx:id="addEmployeeButton" layoutX="563.0" layoutY="385.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Employee" textFill="WHITE" />
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="737.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/reply.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -30,5 +30,10 @@
       </ImageView>
       <JFXTextField fx:id="signUpPassword" layoutX="60.0" layoutY="403.0" prefHeight="31.0" prefWidth="270.0" text="Password" />
       <JFXButton fx:id="signUpButton" layoutX="563.0" layoutY="385.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Sign Up" textFill="WHITE" />
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="24.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/reply.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
