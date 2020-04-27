@@ -3,16 +3,22 @@ package sample.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import sample.Animations.Shaker;
 import sample.Database.Const;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,12 +41,29 @@ public class EditEmployeeController {
     private JPanel pane;
 
     private DatabaseHandler databaseHandler;
+    @FXML
+    private ImageView deleteBack;
 
     @FXML
     void initialize() {
         viewEmployeeBottun.setOnAction(actionEvent -> {
             searchEmployee();
             });
+        deleteBack.setOnMouseClicked((mouseEvent -> {
+            deleteBack.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
+
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }));
         }
 
     private void searchEmployee(){
@@ -65,6 +88,7 @@ public class EditEmployeeController {
             e.printStackTrace();
         }
     }
+
 
 
 
