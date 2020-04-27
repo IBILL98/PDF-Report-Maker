@@ -6,6 +6,7 @@ public class Const {
     public static final String COMPANYS_TABLE = "companies";
     public static final String CUSTOMERS_TABLE = "customers";
     public static final String EQUIPMENTS_TABLE = "equipments";
+    public static final String ADMINS_TABLE = "admins";
 
 
     //Columns Names
@@ -16,6 +17,13 @@ public class Const {
     public static final String EMPLOYEE_PASSWORD = "Password";
     public static final String EMPLOYEE_USERNAME = "Username";
     public static final String EMPLOYEE_WORK = "work";
+
+    public static final String ADMINS_NAME = "Name";
+    public static final String ADMINS_LASTNAME = "LastName";
+    public static final String ADMINS_LEVEL = "Level";
+    public static final String ADMINS_ID= "id";
+    public static final String ADMINS_PASSWORD = "Password";
+    public static final String ADMINS_USERNAME = "Username";
 
 
     public static final String CUSTOMERS_NAME = "Name";
