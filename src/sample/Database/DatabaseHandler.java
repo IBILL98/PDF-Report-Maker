@@ -265,7 +265,7 @@ public class DatabaseHandler extends Configs {
     public String showNewInfos(ResultSet employeeRow,String target) throws SQLException {
         String currentname = employeeRow.getString(target);
         JFrame frame = new JFrame();
-        Object result = JOptionPane.showInputDialog(frame, "Your current "+ currentname + " is : " + employeeRow.getString(target)+" Entere the new value");
+        Object result = JOptionPane.showInputDialog(frame, "Your current "+ target + " is : " + employeeRow.getString(target)+" Entere the new value");
         return (String) result;
     }
 
