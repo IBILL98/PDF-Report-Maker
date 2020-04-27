@@ -1,11 +1,22 @@
 package sample.Database;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import sample.model.Admin;
 import sample.model.Employee;
 
+import javax.swing.*;
+import java.awt.*;
 import java.sql.*;
+import java.util.Optional;
+
 
 public class DatabaseHandler extends Configs {
+
+    private DatabaseHandler databaseHandler;
+    private JPanel pane;
+
     Connection dbConnection;
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
 
@@ -99,9 +110,10 @@ public class DatabaseHandler extends Configs {
 
 
 
-    //Update
     public ResultSet getEmployeeByUsername(Employee employee){
+
         ResultSet resultSet = null;
+
         if(!employee.getUsername().equals("")){
             String query = "SELECT * FROM "+ Const.EMPLOYEE_TABLE + " WHERE "
                     +Const.EMPLOYEE_USERNAME + "=?";
@@ -122,11 +134,140 @@ public class DatabaseHandler extends Configs {
     }
 
 
+    //UPDATE `my_database`.`employee` SET `LastName` = 'sssss' WHERE  (`Username` = 'Username12');
+    //Update
+    public void editEmployeeWindow(ResultSet employeeRow) throws SQLException {
+        databaseHandler = new DatabaseHandler();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Select your Info");
+        alert.setHeaderText("Which Information would you like to edit");
+        alert.setContentText("when you edit you cant have your old infos back");
+
+        ButtonType buttonTypeOne = new ButtonType("Name");
+        ButtonType buttonTypeTwo = new ButtonType("LastName");
+        ButtonType buttonTypeThree = new ButtonType("Level");
+        ButtonType buttonTypeFour = new ButtonType("Password");
+        ButtonType buttonTypeFive = new ButtonType("Work");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree,buttonTypeFour,buttonTypeFive, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne){
+            // ... Edit Name
+            String Name = showNewInfos(employeeRow,"Name");
+            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" +  " WHERE "
+                    +Const.EMPLOYEE_USERNAME + "=?";
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
+
+                preparedStatement.setString(1,Name);
+                preparedStatement.setString(2,employeeRow.getString("Username"));
+
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else if (result.get() == buttonTypeTwo) {
+            // ... Edite LastName
+            String Name = showNewInfos(employeeRow,"LastName");
+            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" +  " WHERE "
+                    +Const.EMPLOYEE_USERNAME + "=?";
 
 
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
+
+                preparedStatement.setString(1,employeeRow.getString("LastName"));
+                preparedStatement.setString(2,employeeRow.getString("Username"));
+
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else if (result.get() == buttonTypeThree) {
+            // ... user chose "Three"
+            String Name = showNewInfos(employeeRow,"Level");
+            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" +  " WHERE "
+                    +Const.EMPLOYEE_USERNAME + "=?";
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
+
+                preparedStatement.setString(1,employeeRow.getString("Level"));
+                preparedStatement.setString(2,employeeRow.getString("Username"));
+
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else if (result.get() == buttonTypeFour) {
+            //
+            String Name = showNewInfos(employeeRow,"Password");
+            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_PASSWORD + "=?" +  " WHERE "
+                    +Const.EMPLOYEE_USERNAME + "=?";
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
+
+                preparedStatement.setString(1,employeeRow.getString("Password"));
+                preparedStatement.setString(2,employeeRow.getString("Username"));
+
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else if (result.get() == buttonTypeFive) {
+            String Name = showNewInfos(employeeRow,"Work");
+            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" +  " WHERE "
+                    +Const.EMPLOYEE_USERNAME + "=?";
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
+
+                preparedStatement.setString(1,employeeRow.getString("Work"));
+                preparedStatement.setString(2,employeeRow.getString("Username"));
+
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
 
 
+    }
+    public String showNewInfos(ResultSet employeeRow,String target) throws SQLException {
+        String currentname = employeeRow.getString(target);
+        JFrame frame = new JFrame();
+        Object result = JOptionPane.showInputDialog(frame, "Your current "+ currentname + " is : " + employeeRow.getString(target)+" Entere the new value");
+        return (String) result;
+    }
 
+
+    public void done(){
+        Frame parent = new JFrame();
+        JOptionPane.showMessageDialog(parent, "Done");
+    }
 
 
 

@@ -27,7 +27,7 @@
             <Image url="@../assets/edit.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="editback" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="19.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/reply.png" />
          </image>

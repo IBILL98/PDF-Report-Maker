@@ -7,9 +7,6 @@ public class Employee {
     private String Level;
     private String Password;
 
-    public Employee(String username) {
-        Username = username;
-    }
 
     private String work;
 

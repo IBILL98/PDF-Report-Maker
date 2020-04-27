@@ -73,7 +73,8 @@ public class DeleteEmplyeeController {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
         String Username = deleteEmployeeUsername.getText();
-        Employee employee = new Employee(Username);
+        Employee employee = new Employee();
+        employee.setUsername(Username);
         databaseHandler.deleteEmployee(employee);
 
     }
