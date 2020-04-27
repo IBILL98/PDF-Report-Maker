@@ -43,6 +43,7 @@ public class DatabaseHandler extends Configs {
     }
 
 
+    //Read Employee
     public ResultSet getEmployee(Employee employee){
         ResultSet resultSet = null;
 
@@ -67,11 +68,9 @@ public class DatabaseHandler extends Configs {
         }else{
             System.out.println("please entere your correct infos");
         }
-
-
-
         return resultSet;
     }
+
 
     public void addAdmin(Admin admin) {
 
@@ -97,16 +96,51 @@ public class DatabaseHandler extends Configs {
     }
 
 
-    //Read
+
 
 
     //Update
+    public ResultSet getEmployeeByUsername(Employee employee){
+        ResultSet resultSet = null;
+        if(!employee.getUsername().equals("")){
+            String query = "SELECT * FROM "+ Const.EMPLOYEE_TABLE + " WHERE "
+                    +Const.EMPLOYEE_USERNAME + "=?";
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1,employee.getUsername());
+                resultSet = preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+        System.out.println("please entere your correct infos");
+        }
+        return resultSet;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //Delete
-    //DELETE FROM `my_database`.`companies` WHERE (`Id` = '1');
-    //DELETE FROM `my_database`.`employee` WHERE (`id` = '11120') and (`Username` = 'Username1');
 
+    //DELETE FROM `my_database`.`companies` WHERE (`Username` = 'Username1');
     public void deleteEmployee(Employee employee){
         String delete = "DELETE FROM "+Const.EMPLOYEE_TABLE+" WHERE "+"(" +Const.EMPLOYEE_USERNAME +" =?"+ ")";
         try {

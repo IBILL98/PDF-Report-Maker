@@ -24,8 +24,6 @@ import java.util.ResourceBundle;
 
 public class DeleteEmplyeeController {
 
-
-
     @FXML
     private ResourceBundle resources;
 
@@ -88,11 +86,11 @@ public class DeleteEmplyeeController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // ... user chose OK
+            // ... user choose OK
             System.out.println("yes");
             return true;
         } else {
-            // ... user chose CANCEL or closed the dialog
+            // ... user choose CANCEL or closed the dialog
             System.out.println("cancle");
             return false;
         }

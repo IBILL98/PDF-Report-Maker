@@ -91,13 +91,10 @@ public class LoginController {
         });
     }
 
-
-
     private void showMainScreen(){
             loginButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
-
             try {
                 loader.load();
             } catch (IOException e) {
