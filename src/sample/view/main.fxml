@@ -23,6 +23,11 @@
                         <Image url="@../assets/FAVPNG_x-ray-computed-tomography-health-care-icon_1MWybFih.png" />
                      </image>
                   </ImageView>
+                  <JFXButton fx:id="mainSignupButton" layoutX="128.0" layoutY="408.0" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #2196f3;" text="SignUp" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
                </children></AnchorPane>
             <Label alignment="CENTER" layoutX="340.0" layoutY="14.0" prefHeight="61.0" prefWidth="120.0" style="-fx-background-color: #2196f3;" text="Home" textFill="WHITE">
                <font>

@@ -35,27 +35,11 @@ public class LoginController {
     @FXML
     private JFXButton loginButton;
 
-    @FXML
-    private JFXButton loginSignupButton;
-
     private DatabaseHandler databaseHandler;
     @FXML
     void initialize() {
         databaseHandler = new DatabaseHandler();
-        loginSignupButton.setOnAction(actionEvent -> {
-            loginSignupButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/signup.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        });
+
 
 
 

@@ -51,7 +51,7 @@ public class SignUpController {
         deleteBack.setOnMouseClicked((mouseEvent -> {
             deleteBack.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
+            loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
 
             try {
                 loader.load();

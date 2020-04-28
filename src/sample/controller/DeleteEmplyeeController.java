@@ -2,7 +2,7 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.Event;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,8 +15,6 @@ import sample.Animations.Shaker;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
-import javax.xml.crypto.Data;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
