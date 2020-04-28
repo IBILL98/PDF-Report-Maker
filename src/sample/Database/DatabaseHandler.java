@@ -59,7 +59,7 @@ public class DatabaseHandler extends Configs {
     public ResultSet getEmployee(Employee employee){
         ResultSet resultSet = null;
 
-        if(!employee.getUsername().equals("") || !employee.getPassword().equals("")){
+        if(!employee.getUsername().equals("") && !employee.getPassword().equals("")){
             String query = "SELECT * FROM "+ Const.EMPLOYEE_TABLE + " WHERE "
                     +Const.EMPLOYEE_USERNAME + "=?"+" AND "
                     +Const.EMPLOYEE_PASSWORD + "=?";
@@ -78,7 +78,8 @@ public class DatabaseHandler extends Configs {
             }
 
         }else{
-            System.out.println("please entere your correct infos");
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Please fill your correct Username and Password");
         }
         return resultSet;
     }
@@ -103,6 +104,8 @@ public class DatabaseHandler extends Configs {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "This Username is registered before");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
