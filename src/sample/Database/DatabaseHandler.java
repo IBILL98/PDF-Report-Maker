@@ -43,7 +43,7 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(5,employee.getPassword());
             preparedStatement.setString(6,employee.getWork());
 
-            preparedStatement.executeUpdate();
+            preparedStatement.executeQuery();
             done();
 
         } catch (SQLException e) {
@@ -143,7 +143,6 @@ public class DatabaseHandler extends Configs {
     //UPDATE `my_database`.`employee` SET `LastName` = 'sssss' WHERE  (`Username` = 'Username12');
     //Update
     public void editEmployeeWindow(ResultSet employeeRow) throws SQLException {
-        databaseHandler = new DatabaseHandler();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Select your Info");
@@ -278,14 +277,6 @@ public class DatabaseHandler extends Configs {
         Frame parent = new JFrame();
         JOptionPane.showMessageDialog(parent, "Done");
     }
-
-
-
-
-
-
-
-
 
 
 
