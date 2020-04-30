@@ -331,4 +331,20 @@ public class DatabaseHandler extends Configs {
             e.printStackTrace();
         }
     }
+
+
+
+    public void viewAllEmployee(){
+        String query = "SELECT * FROM "+ Const.EMPLOYEE_TABLE;
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = getDbConnection().prepareStatement(query);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
