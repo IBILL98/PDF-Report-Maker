@@ -27,6 +27,7 @@ public class DatabaseHandler extends Configs {
 
         return dbConnection;
     }
+
     //Add
     public void addEmployee(Employee employee){
         String insert = "INSERT INTO "+Const.EMPLOYEE_TABLE+"("+Const.EMPLOYEE_NAME+","+Const.EMPLOYEE_LASTNAME
