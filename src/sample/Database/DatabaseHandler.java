@@ -27,7 +27,6 @@ public class DatabaseHandler extends Configs {
 
         return dbConnection;
     }
-
     //Add
     public void addEmployee(Employee employee){
         String insert = "INSERT INTO "+Const.EMPLOYEE_TABLE+"("+Const.EMPLOYEE_NAME+","+Const.EMPLOYEE_LASTNAME
@@ -54,6 +53,7 @@ public class DatabaseHandler extends Configs {
         }
 
     }
+
 
 
     //Read Employee
@@ -84,6 +84,40 @@ public class DatabaseHandler extends Configs {
         }
         return resultSet;
     }
+
+
+
+    //Read Employee
+    public ResultSet getAdmin(Admin admin){
+        ResultSet resultSet = null;
+
+        if(!admin.getUsername().equals("") && !admin.getPassword().equals("")){
+            String query = "SELECT * FROM "+ Const.ADMINS_TABLE + " WHERE "
+                    +Const.ADMINS_USERNAME + "=?"+" AND "
+                    +Const.ADMINS_PASSWORD + "=?";
+
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1,admin.getUsername());
+                preparedStatement.setString(2,admin.getPassword());
+
+                resultSet = preparedStatement.executeQuery();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Please fill your correct Username and Password");
+        }
+        return resultSet;
+    }
+
+
+
 
 
 
@@ -205,8 +239,7 @@ public class DatabaseHandler extends Configs {
         } else if (result.get() == buttonTypeThree) {
             // ... user chose "Three"
             String Level = showNewInfos(employeeRow,"Level");
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" +  " WHERE "
-                    +Const.EMPLOYEE_USERNAME + "=?";
+            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" + " WHERE " + Const.EMPLOYEE_USERNAME + "=?";
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
 

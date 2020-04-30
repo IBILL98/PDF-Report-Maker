@@ -1,8 +1,11 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -58,8 +61,12 @@ public class AddEmployeeController {
     @FXML
     private ImageView deleteBack;
 
+
+
     @FXML
     void initialize() {
+
+
         addEmployeeButton.setOnAction(actionEvent -> {
             createEmployee();
         });

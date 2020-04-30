@@ -1,8 +1,11 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.Animations.Shaker;
 import sample.Database.DatabaseHandler;
+import sample.model.Admin;
 import sample.model.Employee;
 
 import java.io.IOException;
@@ -35,43 +39,78 @@ public class LoginController {
     @FXML
     private JFXButton loginButton;
 
-    private DatabaseHandler databaseHandler;
+    @FXML
+    public JFXComboBox<?> comboBox;
+
     @FXML
     void initialize() {
-        databaseHandler = new DatabaseHandler();
 
-
-
+        ObservableList userKind = FXCollections.observableArrayList("Admin","Employee");
+        comboBox.setItems(userKind);
+        comboBox.getSelectionModel().selectFirst();
+        DatabaseHandler databaseHandler = new DatabaseHandler();
 
 
         loginButton.setOnAction(actionEvent -> {
-            String loginText = loginUsername.getText();
-            String loginPwd = loginPassword.getText();
+            System.out.println();
+            if(comboBox.getValue() == "Employee"){
+                String loginText = loginUsername.getText();
+                String loginPwd = loginPassword.getText();
 
-            Employee employee = new Employee();
-            employee.setUsername(loginText);
-            employee.setPassword(loginPwd);
+                Employee employee = new Employee();
+                employee.setUsername(loginText);
+                employee.setPassword(loginPwd);
 
-            ResultSet employeeRow = databaseHandler.getEmployee(employee);
-            int counter = 0;
-            try {
-                while(employeeRow.next()) {
-                    counter++;
+                ResultSet employeeRow = databaseHandler.getEmployee(employee);
+                int counter = 0;
+                try {
+                    while(employeeRow.next()) {
+                        counter++;
+                    }
+                    if (counter == 1) {
+                        showMainScreen();
+                    }else{
+                        Shaker UsernameShaker = new Shaker(loginUsername);
+                        UsernameShaker.shake();
+                        Shaker PasswordShaker = new Shaker(loginPassword);
+                        PasswordShaker.shake();
+
+                    }
+
                 }
-                if (counter == 1) {
-                    showMainScreen();
-                }else{
-                    Shaker UsernameShaker = new Shaker(loginUsername);
-                    UsernameShaker.shake();
-                    Shaker PasswordShaker = new Shaker(loginPassword);
-                    PasswordShaker.shake();
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }else if(comboBox.getValue()== "Admin"){
+                String loginText = loginUsername.getText();
+                String loginPwd = loginPassword.getText();
+
+                Admin admin = new Admin();
+                admin.setUsername(loginText);
+                admin.setPassword(loginPwd);
+
+                ResultSet adminRow = databaseHandler.getAdmin(admin);
+                int counter = 0;
+                try {
+                    while(adminRow.next()) {
+                        counter++;
+                    }
+                    if (counter == 1) {
+                        showMainScreen();
+                    }else{
+                        Shaker UsernameShaker = new Shaker(loginUsername);
+                        UsernameShaker.shake();
+                        Shaker PasswordShaker = new Shaker(loginPassword);
+                        PasswordShaker.shake();
+
+                    }
 
                 }
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
 
-            }
-            catch(SQLException e){
-                e.printStackTrace();
-            }
         });
     }
 

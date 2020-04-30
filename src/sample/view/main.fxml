@@ -12,11 +12,11 @@
             <AnchorPane layoutY="86.0" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #ffffff;">
                <children>
                   <JFXButton fx:id="mainCreateReport" layoutX="89.0" layoutY="56.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Create a new report" textFill="WHITE" />
-                  <JFXButton fx:id="mainEditProfile" layoutX="89.0" layoutY="225.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Profile" textFill="WHITE" />
-                  <JFXButton fx:id="mainDeleteAccount" layoutX="89.0" layoutY="306.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Account" textFill="WHITE" />
-                  <JFXButton fx:id="mainAddEmployee" layoutX="89.0" layoutY="138.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new employee" textFill="WHITE" />
-                  <JFXButton fx:id="mainLogout" layoutX="27.0" layoutY="411.0" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="Logout" textFill="WHITE" />
-                  <JFXButton fx:id="mainSignupButton" layoutX="128.0" layoutY="408.0" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #2196f3;" text="SignUp" textFill="WHITE">
+                  <JFXButton fx:id="mainEditProfile" layoutX="89.0" layoutY="225.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Employee Profile" textFill="WHITE" />
+                  <JFXButton fx:id="mainDeleteAccount" layoutX="89.0" layoutY="306.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Employee" textFill="WHITE" />
+                  <JFXButton fx:id="mainAddEmployee" layoutX="89.0" layoutY="138.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new Employee" textFill="WHITE" />
+                  <JFXButton fx:id="mainLogout" layoutX="30.0" layoutY="406.0" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="Logout" textFill="WHITE" />
+                  <JFXButton fx:id="mainSignupButton" layoutX="131.0" layoutY="406.0" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="SignUp" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="14.0" />
                      </font>
