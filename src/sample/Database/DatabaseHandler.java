@@ -85,6 +85,7 @@ public class DatabaseHandler extends Configs {
     }
 
 
+
     public void addAdmin(Admin admin) {
 
         String insert = "INSERT INTO "+Const.ADMINS_TABLE+"("+Const.ADMINS_NAME+","+Const.ADMINS_LASTNAME
@@ -268,7 +269,7 @@ public class DatabaseHandler extends Configs {
     public String showNewInfos(ResultSet employeeRow,String target) throws SQLException {
         String currentname = employeeRow.getString(target);
         JFrame frame = new JFrame();
-        Object result = JOptionPane.showInputDialog(frame, "Your current "+ target + " is : " + employeeRow.getString(target)+" Entere the new value");
+        Object result = JOptionPane.showInputDialog(frame, "Your current '"+ target + "' is : " + employeeRow.getString(target)+" Entere the new value");
         return (String) result;
     }
 

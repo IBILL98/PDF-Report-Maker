@@ -20,7 +20,6 @@ public class Const {
 
     public static final String ADMINS_NAME = "Name";
     public static final String ADMINS_LASTNAME = "LastName";
-    public static final String ADMINS_LEVEL = "Level";
     public static final String ADMINS_ID= "id";
     public static final String ADMINS_PASSWORD = "Password";
     public static final String ADMINS_USERNAME = "Username";

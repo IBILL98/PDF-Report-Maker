@@ -2,8 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -18,11 +16,6 @@
                   <JFXButton fx:id="mainDeleteAccount" layoutX="89.0" layoutY="306.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Account" textFill="WHITE" />
                   <JFXButton fx:id="mainAddEmployee" layoutX="89.0" layoutY="138.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new employee" textFill="WHITE" />
                   <JFXButton fx:id="mainLogout" layoutX="27.0" layoutY="411.0" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="Logout" textFill="WHITE" />
-                  <ImageView fitHeight="350.0" fitWidth="351.0" layoutX="400.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/FAVPNG_x-ray-computed-tomography-health-care-icon_1MWybFih.png" />
-                     </image>
-                  </ImageView>
                   <JFXButton fx:id="mainSignupButton" layoutX="128.0" layoutY="408.0" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #2196f3;" text="SignUp" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="14.0" />
