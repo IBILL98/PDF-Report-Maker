@@ -1,11 +1,13 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.mysql.cj.log.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.model.Employee;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +42,13 @@ public class MainController {
 
     @FXML
     void initialize() {
-        mainSignupButton.setOnAction(actionEvent -> {
+        if(LoginController.getComboboxvalue()== "Employee"){
+            mainSignupButton.setVisible(false);
+            mainAddEmployee.setVisible(false);
+            mainEditProfile.setVisible(false);
+            mainDeleteAccount.setVisible(false);
+        }
+            mainSignupButton.setOnAction(actionEvent -> {
             mainSignupButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/signup.fxml"));

@@ -39,8 +39,13 @@ public class LoginController {
     @FXML
     private JFXButton loginButton;
 
+
     @FXML
-    public JFXComboBox<?> comboBox;
+    private JFXComboBox<?> comboBox;
+
+    private static String comboboxvalue;
+
+    DatabaseHandler databaseHandler = new DatabaseHandler();
 
     @FXML
     void initialize() {
@@ -48,7 +53,6 @@ public class LoginController {
         ObservableList userKind = FXCollections.observableArrayList("Admin","Employee");
         comboBox.setItems(userKind);
         comboBox.getSelectionModel().selectFirst();
-        DatabaseHandler databaseHandler = new DatabaseHandler();
 
 
         loginButton.setOnAction(actionEvent -> {
@@ -68,6 +72,7 @@ public class LoginController {
                         counter++;
                     }
                     if (counter == 1) {
+                        setComboboxvalue("Employee");
                         showMainScreen();
                     }else{
                         Shaker UsernameShaker = new Shaker(loginUsername);
@@ -96,6 +101,7 @@ public class LoginController {
                         counter++;
                     }
                     if (counter == 1) {
+                        setComboboxvalue("Admin");
                         showMainScreen();
                     }else{
                         Shaker UsernameShaker = new Shaker(loginUsername);
@@ -130,6 +136,14 @@ public class LoginController {
             stage.show();
     }
 
+
+    public static String getComboboxvalue() {
+        return comboboxvalue;
+    }
+
+    public static void setComboboxvalue(String comboboxvalue) {
+        LoginController.comboboxvalue = comboboxvalue;
+    }
 
 
 }

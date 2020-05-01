@@ -42,12 +42,12 @@
                                         <Font name="Roboto Medium" size="14.0" />
                                     </font>
                                 </JFXPasswordField>
+                                <JFXComboBox fx:id="comboBox" layoutX="77.0" layoutY="239.0" promptText="Admin or Employee" />
                                 <JFXButton fx:id="loginButton" layoutX="185.0" layoutY="286.0" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #2196f3;" text="Login" textFill="WHITE">
                                     <font>
                                         <Font name="Roboto Bold" size="14.0" />
                                     </font>
                                 </JFXButton>
-                        <JFXComboBox fx:id="comboBox" layoutX="77.0" layoutY="239.0" promptText="Admin or Employee" />
                             </children>
                         </AnchorPane>
                         <VBox layoutX="188.0" layoutY="24.0" />
