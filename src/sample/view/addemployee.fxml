@@ -12,11 +12,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddEmployeeController">
    <children>
-      <JFXTextField fx:id="addEmployeeName" layoutX="60.0" layoutY="204.0" prefHeight="31.0" prefWidth="270.0" text="Name" />
-      <JFXTextField fx:id="addEmployeeLastName" layoutX="60.0" layoutY="260.0" prefHeight="31.0" prefWidth="270.0" text="LastName" />
+      <JFXTextField fx:id="addEmployeeName" layoutX="114.0" layoutY="209.0" prefHeight="31.0" prefWidth="270.0" text="Name" />
+      <JFXTextField fx:id="addEmployeeLastName" layoutX="114.0" layoutY="265.0" prefHeight="31.0" prefWidth="270.0" text="LastName" />
       <AnchorPane prefHeight="127.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
-      <JFXTextField fx:id="addEmployeeUsername" layoutX="60.0" layoutY="320.0" prefHeight="31.0" prefWidth="270.0" text="Username" />
-      <JFXTextField fx:id="addEmployeeLevel" layoutX="60.0" layoutY="379.0" prefHeight="31.0" prefWidth="270.0" text="Level" />
+      <JFXTextField fx:id="addEmployeeUsername" layoutX="114.0" layoutY="325.0" prefHeight="31.0" prefWidth="270.0" text="Username" />
+      <JFXTextField fx:id="addEmployeeLevel" layoutX="114.0" layoutY="384.0" prefHeight="31.0" prefWidth="270.0" text="Level : 1 ,2 ,3 ,4" />
       <AnchorPane layoutY="127.0" prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #0069c0;">
          <children>
             <Label alignment="CENTER" layoutX="325.0" prefHeight="61.0" prefWidth="150.0" text="Add Employee" textFill="WHITE">
@@ -31,16 +31,16 @@
             <Image url="@../assets/unnamed.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="addEmployeePassword" layoutX="60.0" layoutY="447.0" prefHeight="31.0" prefWidth="270.0" text="Password" />
-      <JFXRadioButton fx:id="addOperator" layoutX="60.0" layoutY="508.0" selected="true" text="Operator">
+      <JFXTextField fx:id="addEmployeePassword" layoutX="114.0" layoutY="452.0" prefHeight="31.0" prefWidth="270.0" text="Password" />
+      <JFXRadioButton fx:id="addOperator" layoutX="114.0" layoutY="513.0" selected="true" text="Operator">
          <toggleGroup>
             <ToggleGroup fx:id="Group1" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="addRater" layoutX="158.0" layoutY="508.0" text="Rater" toggleGroup="$Group1" />
-      <JFXRadioButton fx:id="addApprover" layoutX="255.0" layoutY="508.0" text="Approver" toggleGroup="$Group1" />
+      <JFXRadioButton fx:id="addRater" layoutX="212.0" layoutY="513.0" text="Rater" toggleGroup="$Group1" />
+      <JFXRadioButton fx:id="addApprover" layoutX="309.0" layoutY="513.0" text="Approver" toggleGroup="$Group1" />
       <JFXButton fx:id="addEmployeeButton" layoutX="563.0" layoutY="385.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Employee" textFill="WHITE" />
-      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="737.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/reply.png" />
          </image>

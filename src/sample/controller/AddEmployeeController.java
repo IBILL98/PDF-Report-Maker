@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,25 +90,32 @@ public class AddEmployeeController {
     }
 
 
-    private void createEmployee(){
+    private void createEmployee() {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
         String Name = addEmployeeName.getText();
         String LastName = addEmployeeLastName.getText();
         String Username = addEmployeeUsername.getText();
-        String Level = addEmployeeLevel.getText();
+        int Level = 100000;
+        try {
+            Level = Integer.parseInt(String.valueOf(addEmployeeLevel.getText()));
+        } catch (java.lang.NumberFormatException e) {
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Please enter a number in the level field");
+        }
+
         String Password = addEmployeePassword.getText();
         String Work = "";
 
-        if(addApprover.isSelected()) {
+        if (addApprover.isSelected()) {
             Work = "Approver";
-        }else if(addOperator.isSelected()){
+        } else if (addOperator.isSelected()) {
             Work = "Operator";
-        }else{
+        } else {
             Work = "Rater";
         }
 
-        Employee employee = new Employee(Name,LastName,Username,Level,Password,Work);
+        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work);
         databaseHandler.addEmployee(employee);
     }
 }

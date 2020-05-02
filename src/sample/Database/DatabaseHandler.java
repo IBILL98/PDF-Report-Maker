@@ -39,19 +39,22 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(1,employee.getName());
             preparedStatement.setString(2,employee.getLastName());
             preparedStatement.setString(3,employee.getUsername());
-            preparedStatement.setString(4,employee.getLevel());
+            preparedStatement.setString(4,String.valueOf(employee.getLevel()));
             preparedStatement.setString(5,employee.getPassword());
             preparedStatement.setString(6,employee.getWork());
 
-            preparedStatement.executeQuery();
-            done();
+            preparedStatement.executeUpdate();
+            if(employee.getLevel()!=100000){
+                done();
+            }
+
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "this User Name is already used");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -335,11 +338,21 @@ public class DatabaseHandler extends Configs {
 
 
     public void viewAllEmployee(){
+        ResultSet resultSet = null;
         String query = "SELECT * FROM "+ Const.EMPLOYEE_TABLE;
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = getDbConnection().prepareStatement(query);
-            preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("Name"));
+                employee.setLastName(resultSet.getString("LastName"));
+                employee.setLevel(resultSet.getInt("Level"));
+                employee.setWork(resultSet.getString("Work"));
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -347,4 +360,16 @@ public class DatabaseHandler extends Configs {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -27,8 +27,6 @@ public class MainController {
     @FXML
     private JFXButton mainEditProfile;
 
-    @FXML
-    private JFXButton mainDeleteAccount;
 
     @FXML
     private JFXButton mainAddEmployee;
@@ -46,7 +44,6 @@ public class MainController {
             mainSignupButton.setVisible(false);
             mainAddEmployee.setVisible(false);
             mainEditProfile.setVisible(false);
-            mainDeleteAccount.setVisible(false);
         }
             mainSignupButton.setOnAction(actionEvent -> {
             mainSignupButton.getScene().getWindow().hide();
@@ -79,10 +76,6 @@ public class MainController {
             stage.show();
 
         });
-        mainDeleteAccount.setOnAction(actionEvent -> {
-            showDeleteScreen();
-
-        });
 
 
         mainEditProfile.setOnAction(actionEvent -> {
@@ -112,23 +105,7 @@ public class MainController {
     private void showEditScreen() {
         mainEditProfile.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/sample/view/editemployee.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    private void showDeleteScreen(){
-        mainDeleteAccount.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/sample/view/deleteemployee.fxml"));
+        loader.setLocation(getClass().getResource("/sample/view/employees.fxml"));
 
         try {
             loader.load();
