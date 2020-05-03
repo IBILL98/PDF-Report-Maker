@@ -22,8 +22,6 @@ import sample.model.Employee;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -31,7 +29,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Vector;
+
 
 public class EmployeeController {
     @FXML
@@ -59,9 +57,6 @@ public class EmployeeController {
     private TableColumn<Employee, String> employeesWorkColumn;
 
     @FXML
-    private JFXButton employeesAddButton;
-
-    @FXML
     private JFXButton employeesEditButton;
 
     @FXML
@@ -78,7 +73,6 @@ public class EmployeeController {
 
     @FXML
     void initialize() {
-        employeesApplyButton.setVisible(false);
         viewAllEmployee();
         employeesRemoveButton.setOnAction(actionEvent -> {
             deleteEmployees();
