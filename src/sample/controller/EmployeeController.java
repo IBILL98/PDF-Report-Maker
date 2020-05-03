@@ -2,15 +2,20 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
@@ -20,8 +25,6 @@ import sample.Database.Const;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -63,13 +66,17 @@ public class EmployeeController {
     private JFXButton employeesRemoveButton;
 
     @FXML
-    private JFXButton employeesApplyButton;
-
-    @FXML
     private ImageView deleteBack;
 
     private ObservableList<Employee> employees = FXCollections.observableArrayList();
     DatabaseHandler databaseHandler = new DatabaseHandler();
+
+    ObservableList<String> options = FXCollections.observableArrayList("Operator", "Rater", "Approver");
+    private final ComboBox<String> comboBox = new ComboBox<>(options);
+
+
+
+    //final ComboBox<String> combobox = new ComboBox<>(options);
 
     @FXML
     void initialize() {
@@ -121,7 +128,11 @@ public class EmployeeController {
         employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
-        employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
+        employeesWorkColumn.setCellValueFactory(i -> {
+            final String value = i.getValue().getWork();
+            // binding to constant value
+            return Bindings.createObjectBinding(() -> value);
+        });
         employeeTable.setItems(employees);
 
     }
@@ -204,8 +215,34 @@ public class EmployeeController {
                 e.printStackTrace();
             }
         });
-        employeesWorkColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        employeesWorkColumn.setOnEditCommit(employeeStringCellEditEvent -> {
+
+
+
+        employeesWorkColumn.setCellFactory(col -> {
+            TableCell<Employee, String> c = new TableCell<>();
+            final ComboBox<String> comboBox = new ComboBox<>(options);
+            c.itemProperty().addListener((observable, oldValue, newValue) -> {
+                if (oldValue != null) {
+                    comboBox.valueProperty().unbindBidirectional(new SimpleStringProperty (oldValue));
+                }
+                if (newValue != null) {
+                    comboBox.valueProperty().bindBidirectional(new SimpleStringProperty(newValue));
+                }
+            });
+            c.graphicProperty().bind(Bindings.when(c.emptyProperty()).then((Node) null).otherwise(comboBox));
+            return c;
+        });
+
+
+
+
+
+
+
+
+
+
+        /*employeesWorkColumn.setOnEditCommit(employeeStringCellEditEvent -> {
             employee.setWork(employeeStringCellEditEvent.getNewValue());
             if (employee.getWork().equals("Approver")||employee.getWork().equals("Rater")||employee.getWork().equals("Operator")){
                 String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" +  " WHERE " +Const.EMPLOYEE_ID + "=?";
@@ -223,6 +260,7 @@ public class EmployeeController {
                 Frame parent = new JFrame();
                 JOptionPane.showMessageDialog(parent, "Please Entere a valid Work(Approver),(Rater),(Operator)");
             }
-        });
+        });*/
+
     }
 }

@@ -23,6 +23,9 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String username) {
+    }
+
     public String getName() {
         return Name;
     }
