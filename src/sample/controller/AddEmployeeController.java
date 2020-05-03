@@ -98,7 +98,7 @@ public class AddEmployeeController {
         String Username = addEmployeeUsername.getText();
         int Level = 100000;
         try {
-            Level = Integer.parseInt(String.valueOf(addEmployeeLevel.getText()));
+            Level = Integer.parseInt(addEmployeeLevel.getText());
         } catch (java.lang.NumberFormatException e) {
             Frame parent = new JFrame();
             JOptionPane.showMessageDialog(parent, "Please enter a number in the level field");

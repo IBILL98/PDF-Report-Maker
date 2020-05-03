@@ -54,6 +54,7 @@ public class Employee {
     public void setLevel(int level) {
         Level = level;
     }
+
     public int getId() {
         return Id;
     }
@@ -76,6 +77,7 @@ public class Employee {
 
     public void setWork(String work) {
         this.work = work;
+
 
 
     }

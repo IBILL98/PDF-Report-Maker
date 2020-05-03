@@ -27,5 +27,6 @@
             <Image url="@../assets/reply.png" />
          </image>
       </ImageView>
+      <JFXButton fx:id="employeesApplyButton" layoutX="636.0" layoutY="172.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #2196f3;" text="Apply" textFill="WHITE" />
    </children>
 </AnchorPane>
