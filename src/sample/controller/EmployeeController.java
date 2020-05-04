@@ -10,10 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.*;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import sample.Database.Const;
 import sample.Database.DatabaseHandler;
@@ -62,11 +64,57 @@ public class EmployeeController {
     private JFXButton employeesRemoveButton;
 
     @FXML
+    private TextField employeesSearchText;
+
+    @FXML
     private ImageView deleteBack;
 
-    private ObservableList<Employee> employees = FXCollections.observableArrayList();
     DatabaseHandler databaseHandler = new DatabaseHandler();
     ObservableList<String> options = FXCollections.observableArrayList("Operator", "Rater", "Approver");
+    private ObservableList<Employee> employees = FXCollections.observableArrayList();
+
+    @FXML
+    void searhEmployee(KeyEvent event) {
+        if(!employeesSearchText.getText().equals("")){
+            employees.clear();
+            ResultSet resultSet = null;
+            PreparedStatement preparedStatement = null;
+            try{
+                String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE +" WHERE " + "(" + Const.EMPLOYEE_NAME + " LIKE ?" + ") OR ("
+                        +Const.EMPLOYEE_LASTNAME + " LIKE ?) OR (" + Const.EMPLOYEE_ID + " LIKE ?)";
+                preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1, employeesSearchText.getText());
+                preparedStatement.setString(2, employeesSearchText.getText());
+                preparedStatement.setString(3, employeesSearchText.getText());
+
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Employee employee = new Employee();
+                    employee.setId(resultSet.getInt("id"));
+                    employee.setName(resultSet.getString("Name"));
+                    employee.setLastName(resultSet.getString("LastName"));
+                    employee.setLevel(resultSet.getInt("Level"));
+                    employee.setWork(resultSet.getString("Work"));
+                    employees.add(employee);
+                }
+                employeesIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+                employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+                employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
+                employeesWorkColumn.setCellValueFactory(new PropertyValueFactory("Work"));
+                employeeTable.setItems(employees);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }else {
+            viewAllEmployee();
+        }
+
+    }
+
+
 
     @FXML
     void initialize() {
@@ -93,6 +141,7 @@ public class EmployeeController {
         }));
     }
     public void viewAllEmployee() {
+        employees.clear();
         ResultSet resultSet = null;
         String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE;
         PreparedStatement preparedStatement = null;
@@ -119,7 +168,6 @@ public class EmployeeController {
         employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
         employeesWorkColumn.setCellValueFactory(new PropertyValueFactory("Work"));
         employeeTable.setItems(employees);
-
     }
     public void deleteEmployees() {
         Employee employee = employeeTable.getSelectionModel().getSelectedItem();
