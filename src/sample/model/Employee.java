@@ -1,5 +1,8 @@
 package sample.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Employee {
     private String Name;
     private String LastName;
@@ -8,14 +11,24 @@ public class Employee {
     private String Password;
     private int Id;
     private String work;
+    private LocalDate CDate;
 
-    public Employee(String name, String lastName, String username, int level, String password, String work) {
+    public LocalDate getCDate() {
+        return CDate;
+    }
+
+    public void setCDate(LocalDate CDate) {
+        this.CDate = CDate;
+    }
+
+    public Employee(String name, String lastName, String username, int level, String password, String work, LocalDate CDate) {
         Name = name;
         LastName = lastName;
         Username = username;
         Level = level;
         Password = password;
         this.work = work;
+        this.CDate = CDate;
     }
 
     public Employee() {
@@ -78,8 +91,5 @@ public class Employee {
 
     public void setWork(String work) {
         this.work = work;
-
-
-
     }
 }

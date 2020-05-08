@@ -1,11 +1,9 @@
 package sample.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +18,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddEmployeeController {
@@ -63,6 +65,16 @@ public class AddEmployeeController {
     @FXML
     private ImageView deleteBack;
 
+    @FXML
+    private JFXDatePicker addEmployeeCDate;
+
+    LocalDate CDate;
+
+    @FXML
+    void selectDate(ActionEvent event) {
+        CDate = addEmployeeCDate.getValue();
+        System.out.println(CDate);
+    }
 
 
     @FXML
@@ -115,7 +127,7 @@ public class AddEmployeeController {
             Work = "Rater";
         }
 
-        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work);
+        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work,CDate);
         databaseHandler.addEmployee(employee);
     }
 }

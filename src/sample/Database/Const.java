@@ -17,6 +17,7 @@ public class Const {
     public static final String EMPLOYEE_PASSWORD = "Password";
     public static final String EMPLOYEE_USERNAME = "Username";
     public static final String EMPLOYEE_WORK = "Work";
+    public static final String EMPLOYEE_CDATE = "CertificateDate";
 
     public static final String ADMINS_NAME = "Name";
     public static final String ADMINS_LASTNAME = "LastName";
