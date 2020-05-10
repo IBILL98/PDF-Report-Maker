@@ -1,7 +1,6 @@
 package sample.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Employee {
     private String Name;
@@ -10,25 +9,17 @@ public class Employee {
     private int Level;
     private String Password;
     private int Id;
-    private String work;
-    private LocalDate CDate;
+    private String Work;
+    private LocalDate Cdate;
 
-    public LocalDate getCDate() {
-        return CDate;
-    }
 
-    public void setCDate(LocalDate CDate) {
-        this.CDate = CDate;
-    }
-
-    public Employee(String name, String lastName, String username, int level, String password, String work, LocalDate CDate) {
+    public Employee(String name, String lastName, String username, int level, String password, String work) {
         Name = name;
         LastName = lastName;
         Username = username;
         Level = level;
         Password = password;
-        this.work = work;
-        this.CDate = CDate;
+        Work = work;
     }
 
     public Employee() {
@@ -86,10 +77,12 @@ public class Employee {
     }
 
     public String getWork() {
-        return work;
+        return Work;
     }
 
     public void setWork(String work) {
-        this.work = work;
+        this.Work = work;
     }
+    
+
 }

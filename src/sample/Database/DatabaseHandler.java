@@ -31,7 +31,7 @@ public class DatabaseHandler extends Configs {
     public void addEmployee(Employee employee){
         String insert = "INSERT INTO "+Const.EMPLOYEE_TABLE+"("+Const.EMPLOYEE_NAME+","+Const.EMPLOYEE_LASTNAME
                 +","+Const.EMPLOYEE_USERNAME+","
-                +Const.EMPLOYEE_LEVEL+","+Const.EMPLOYEE_PASSWORD+","+Const.EMPLOYEE_WORK+","+Const.EMPLOYEE_CDATE+")"+"VALUES(?,?,?,?,?,?,?)";
+                +Const.EMPLOYEE_LEVEL+","+Const.EMPLOYEE_PASSWORD+","+Const.EMPLOYEE_WORK+","+Const.EMPLOYEE_CDATE+")"+"VALUES(?,?,?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
@@ -42,7 +42,6 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(4,String.valueOf(employee.getLevel()));
             preparedStatement.setString(5,employee.getPassword());
             preparedStatement.setString(6,employee.getWork());
-            preparedStatement.setDate(7, java.sql.Date.valueOf(employee.getCDate()));
 
             preparedStatement.executeUpdate();
             if(employee.getLevel()!=100000){

@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import sample.Database.Const;
 import sample.Database.DatabaseHandler;
@@ -29,10 +28,9 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 
 public class EmployeeController {
     @FXML
@@ -58,10 +56,6 @@ public class EmployeeController {
 
     @FXML
     private TableColumn<Employee, String> employeesWorkColumn;
-
-    @FXML
-    private TableColumn<Employee, Date> employeesCDateColumn;
-
 
     @FXML
     private JFXButton employeesEditButton;
@@ -101,15 +95,14 @@ public class EmployeeController {
                     employee.setLastName(resultSet.getString("LastName"));
                     employee.setLevel(resultSet.getInt("Level"));
                     employee.setWork(resultSet.getString("Work"));
-                    employee.setCDate(resultSet.getDate("CertificateDate").toLocalDate());
                     employees.add(employee);
                 }
                 employeesIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
                 employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
                 employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
                 employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
-                employeesWorkColumn.setCellValueFactory(new PropertyValueFactory("Work"));
-                employeesCDateColumn.setCellValueFactory(new PropertyValueFactory("Certificate Date"));
+                employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
+
                 employeeTable.setItems(employees);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -163,7 +156,6 @@ public class EmployeeController {
                 employee.setLastName(resultSet.getString("LastName"));
                 employee.setLevel(resultSet.getInt("Level"));
                 employee.setWork(resultSet.getString("Work"));
-                employee.setCDate(resultSet.getDate("CertificateDate").toLocalDate());
                 employees.add(employee);
             }
         } catch (SQLException e) {
@@ -175,8 +167,7 @@ public class EmployeeController {
         employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
-        employeesWorkColumn.setCellValueFactory(new PropertyValueFactory("Work"));
-        employeesCDateColumn.setCellValueFactory(new PropertyValueFactory("Certificate Date"));
+        employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
         employeeTable.setItems(employees);
     }
     public void deleteEmployees() {

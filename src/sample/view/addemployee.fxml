@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -46,6 +45,5 @@
             <Image url="@../assets/reply.png" />
          </image>
       </ImageView>
-      <JFXDatePicker fx:id="addEmployeeCDate" layoutX="114.0" layoutY="500.0" onAction="#selectDate" prefHeight="28.0" prefWidth="284.0" promptText="Certificate Date" />
    </children>
 </AnchorPane>

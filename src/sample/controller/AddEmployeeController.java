@@ -1,6 +1,7 @@
 package sample.controller;
 
 import com.jfoenix.controls.*;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,18 +67,6 @@ public class AddEmployeeController {
     private ImageView deleteBack;
 
     @FXML
-    private JFXDatePicker addEmployeeCDate;
-
-    LocalDate CDate;
-
-    @FXML
-    void selectDate(ActionEvent event) {
-        CDate = addEmployeeCDate.getValue();
-        System.out.println(CDate);
-    }
-
-
-    @FXML
     void initialize() {
 
 
@@ -127,7 +116,8 @@ public class AddEmployeeController {
             Work = "Rater";
         }
 
-        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work,CDate);
+
+        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work);
         databaseHandler.addEmployee(employee);
     }
 }
