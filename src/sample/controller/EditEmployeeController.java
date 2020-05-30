@@ -7,11 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.Animations.Shaker;
-import sample.Database.Const;
+
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 

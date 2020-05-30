@@ -1,10 +1,7 @@
 package sample.controller;
 
 import com.jfoenix.controls.*;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,10 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+
 import java.util.ResourceBundle;
 
 public class AddEmployeeController {
@@ -73,6 +67,7 @@ public class AddEmployeeController {
         addEmployeeButton.setOnAction(actionEvent -> {
             createEmployee();
         });
+
         deleteBack.setOnMouseClicked((mouseEvent -> {
             deleteBack.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
@@ -115,8 +110,6 @@ public class AddEmployeeController {
         } else {
             Work = "Rater";
         }
-
-
         Employee employee = new Employee(Name, LastName, Username, Level, Password, Work);
         databaseHandler.addEmployee(employee);
     }

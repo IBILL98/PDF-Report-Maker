@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import sample.model.Admin;
+import sample.model.Company;
 import sample.model.Employee;
 
 import javax.swing.*;
@@ -27,7 +28,8 @@ public class DatabaseHandler extends Configs {
 
         return dbConnection;
     }
-    //Add
+
+    //Adding employee into Database
     public void addEmployee(Employee employee){
         String insert = "INSERT INTO "+Const.EMPLOYEE_TABLE+"("+Const.EMPLOYEE_NAME+","+Const.EMPLOYEE_LASTNAME
                 +","+Const.EMPLOYEE_USERNAME+","
@@ -60,7 +62,7 @@ public class DatabaseHandler extends Configs {
 
 
 
-    //Read Employee
+    //Read Employee From the Database
     public ResultSet getEmployee(Employee employee){
         ResultSet resultSet = null;
 
@@ -91,7 +93,7 @@ public class DatabaseHandler extends Configs {
 
 
 
-    //Read Employee
+    //Read Admin From The Database
     public ResultSet getAdmin(Admin admin){
         ResultSet resultSet = null;
 
@@ -365,8 +367,23 @@ public class DatabaseHandler extends Configs {
 
 
 
+    //Adding Company into Database
+    public void addCompany(Company company){
+        String insert = "INSERT INTO "+Const.COMPANYS_TABLE+"("+Const.COMPANY_NAME+","+Const.COMPANY_PLACE +")"+"VALUES(?,?)";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
 
+            preparedStatement.setString(1,company.getName());
+            preparedStatement.setString(2,company.getPlace());
 
+            preparedStatement.executeUpdate();
+            done();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

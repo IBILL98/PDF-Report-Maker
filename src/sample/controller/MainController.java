@@ -1,13 +1,13 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.mysql.cj.log.Log;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.model.Employee;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +32,9 @@ public class MainController {
     private JFXButton mainAddEmployee;
 
     @FXML
+    private JFXButton mainAddCompany;
+
+    @FXML
     private JFXButton mainLogout;
 
     @FXML
@@ -44,7 +47,7 @@ public class MainController {
             mainSignupButton.setVisible(false);
             mainAddEmployee.setVisible(false);
             mainEditProfile.setVisible(false);
-        }
+            mainAddCompany.setVisible(false);        }
             mainSignupButton.setOnAction(actionEvent -> {
             mainSignupButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
@@ -82,6 +85,7 @@ public class MainController {
             showEditScreen();
 
         });
+
         mainLogout.setOnAction(actionEvent -> {
             mainLogout.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
@@ -98,7 +102,9 @@ public class MainController {
             stage.show();
         });
 
-
+        mainAddCompany.setOnAction(actionEvent -> {
+            showAddFrimaScreen();
+        });
 
     }
 
@@ -107,6 +113,21 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/sample/view/employees.fxml"));
 
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void showAddFrimaScreen() {
+        mainEditProfile.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/addcompany.fxml"));
         try {
             loader.load();
         } catch (IOException e) {
