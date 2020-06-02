@@ -43,12 +43,12 @@ public class Const {
     public static final String COMPANY_ID = "Id";
 
     //Columns Names of Job order No Table
-    public static final String JOBORDERNO_ID = "Id";
-    public static final String COMPANY_IDJ = "CompanyIdJ";
+    public static final String JOBORDERNO_NO = "Id";
+    public static final String COMPANY_NAMEJ = "CompanyIdJ";
 
     //Columns Names of Offer No Table
-    public static final String JOBOFFERNO_ID = "Id";
-    public static final String COMPANY_IDO = "CompanyIdO";
+    public static final String JOBOFFERNO_NO = "Id";
+    public static final String COMPANY_NAMEO = "CompanyIdO";
 
 
 

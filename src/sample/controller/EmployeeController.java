@@ -141,6 +141,7 @@ public class EmployeeController {
             stage.show();
         }));
     }
+
     public void viewAllEmployee() {
         employees.clear();
         ResultSet resultSet = null;
@@ -170,6 +171,7 @@ public class EmployeeController {
         employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
         employeeTable.setItems(employees);
     }
+
     public void deleteEmployees() {
         Employee employee = employeeTable.getSelectionModel().getSelectedItem();
         employeeTable.setEditable(true);

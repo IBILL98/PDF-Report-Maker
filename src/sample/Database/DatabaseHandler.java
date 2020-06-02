@@ -365,8 +365,6 @@ public class DatabaseHandler extends Configs {
     }
 
 
-
-
     //Adding Company into Database
     public void addCompany(Company company){
         String insert = "INSERT INTO "+Const.COMPANYS_TABLE+"("+Const.COMPANY_NAME+","+Const.COMPANY_PLACE +")"+"VALUES(?,?)";
@@ -375,6 +373,44 @@ public class DatabaseHandler extends Configs {
 
             preparedStatement.setString(1,company.getName());
             preparedStatement.setString(2,company.getPlace());
+
+            preparedStatement.executeUpdate();
+            done();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addJobOrderNo(Company company){
+        String insert = "INSERT INTO " + Const.JOBORDERS_TABLE + "(" + Const.COMPANY_NAMEJ +"," + Const.JOBORDERNO_NO +")" +
+                "VALUES ((SELECT " + Const.COMPANY_NAME  +" FROM "+
+                Const.COMPANYS_TABLE +" WHERE " + Const.COMPANY_NAME + " =?),?)";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+
+            preparedStatement.setString(1,company.getName());
+            preparedStatement.setString(2,company.getJobOrderNo());
+
+            preparedStatement.executeUpdate();
+            done();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addOfferNo(Company company){
+        String insert = "INSERT INTO " +Const.OFFERNO_TABLE + "(" + Const.COMPANY_NAMEO +"," + Const.JOBOFFERNO_NO +")" +
+                "VALUES ((SELECT " + Const.COMPANY_NAME  +" FROM "+
+                Const.COMPANYS_TABLE +" WHERE " + Const.COMPANY_NAME + " =?),?)";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+
+            preparedStatement.setString(1,company.getName());
+            preparedStatement.setString(2,company.getOfferNo());
 
             preparedStatement.executeUpdate();
             done();
