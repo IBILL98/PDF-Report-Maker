@@ -120,12 +120,13 @@ public class EmployeeController {
     @FXML
     void initialize() {
         viewAllEmployee();
-        employeesRemoveButton.setOnAction(actionEvent -> {
+        employeesRemoveButton.setOnAction(event -> {
             deleteEmployees();
         });
-        employeesEditButton.setOnAction(actionEvent -> {
+        employeesEditButton.setOnAction(event -> {
             editEmployees();
         });
+
         deleteBack.setOnMouseClicked((mouseEvent -> {
             deleteBack.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();

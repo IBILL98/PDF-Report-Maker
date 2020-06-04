@@ -20,10 +20,17 @@ public class Company {
         this.OfferNo = OfferNo;
         b = true;
     }
-
-    public Company(String name, String jobOrderNo) {
+    public Company(String name, String JobOrderNo, boolean b,boolean a) {
         Name = name;
-        JobOrderNo = jobOrderNo;
+        this.JobOrderNo = JobOrderNo;
+        b = true;
+        a = true;
+    }
+
+
+    public Company(String name, String Place) {
+        Name = name;
+        this.Place = Place;
     }
 
     public Company(String name) {

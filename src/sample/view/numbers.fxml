@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,51 +12,89 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NumberController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NumberController">
    <children>
-      <TabPane layoutY="83.0" prefHeight="399.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <tabs>
-            <Tab text="Job Order Numbers">
-               <content>
-                  <Pane>
-                     <children>
-                        <TableView layoutX="280.0" layoutY="-2.0" prefHeight="375.0" prefWidth="520.0">
-                          <columns>
-                            <TableColumn prefWidth="174.0" text="Name" />
-                            <TableColumn prefWidth="174.0" text="Place" />
-                              <TableColumn prefWidth="169.0" text="Job Order No" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </Pane>
-               </content>
-            </Tab>
-            <Tab text="Offer Numbers">
-               <content>
-                  <Pane>
-                     <children>
-                        <TableView fx:id="employeeTable" layoutX="280.0" layoutY="-2.0" prefHeight="375.0" prefWidth="520.0">
-                           <columns>
-                              <TableColumn fx:id="CompanyNameColumn" prefWidth="173.0" text="Name" />
-                              <TableColumn fx:id="CompanyPlaceColumn" prefWidth="173.0" text="Place" />
-                              <TableColumn fx:id="CompanyOfferNoColumn" prefWidth="169.0" text="Offer No" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </Pane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
-      <AnchorPane prefHeight="83.0" prefWidth="800.0" style="-fx-background-color: #2196f3;">
+      <AnchorPane fx:id="basicAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0">
          <children>
-            <TextField fx:id="employeesSearchText" layoutX="14.0" layoutY="44.0" onKeyReleased="#searhEmployee" promptText="search . . ." />
+            <TabPane layoutY="83.0" prefHeight="399.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <tabs>
+                  <Tab text="Job Order Numbers">
+                     <content>
+                        <Pane>
+                           <children>
+                              <TableView fx:id="JobOrderNumbersTable" prefHeight="375.0" prefWidth="520.0">
+                                <columns>
+                                  <TableColumn fx:id="jNameColumn" prefWidth="174.0" text="Name" />
+                                  <TableColumn fx:id="jPlaceColumn" prefWidth="174.0" text="Place" />
+                                    <TableColumn fx:id="jobOrderNumbersColumn" prefWidth="171.0" text="Job Order No" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="jSearchText" layoutX="561.0" layoutY="30.0" promptText="search . . ." />
+                              <JFXButton fx:id="jAddButton" layoutX="560.0" layoutY="88.0" onAction="#createJobOrderNo" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Job Order No" textFill="WHITE" />
+                              <JFXButton fx:id="jEditButton" layoutX="560.0" layoutY="162.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Job Order No" textFill="WHITE" />
+                              <JFXButton fx:id="jDeleteButton" layoutX="560.0" layoutY="229.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Job Order No" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+                  <Tab text="Offer Numbers">
+                     <content>
+                        <Pane>
+                           <children>
+                              <TableView fx:id="OfferNumbersTable" prefHeight="375.0" prefWidth="520.0">
+                                 <columns>
+                                    <TableColumn fx:id="oNameColumn" prefWidth="173.0" text="Name" />
+                                    <TableColumn fx:id="oPlaceColumn" prefWidth="173.0" text="Place" />
+                                    <TableColumn fx:id="OfferNoColumn" prefWidth="173.0" text="Offer No" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="oSearchText" layoutX="561.0" layoutY="30.0" promptText="search . . ." />
+                              <JFXButton fx:id="oAddButton" layoutX="560.0" layoutY="88.0" onAction="#createOfferNo" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Job Order No" textFill="WHITE" />
+                              <JFXButton fx:id="oEditButton" layoutX="560.0" layoutY="162.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Job Order No" textFill="WHITE" />
+                              <JFXButton fx:id="oDeleteButton" layoutX="560.0" layoutY="229.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Job Order No" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <AnchorPane prefHeight="83.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
+            <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/reply.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/reply.png" />
-         </image>
-      </ImageView>
+      <AnchorPane fx:id="jobOrderNumberAnchor" layoutX="197.0" layoutY="175.0" prefHeight="200.0" prefWidth="406.0" style="-fx-background-color: F2F1EF;" visible="false">
+         <children>
+            <Label layoutX="23.0" layoutY="61.0" prefHeight="43.0" prefWidth="135.0" text="Company Name :" />
+            <AnchorPane prefHeight="49.0" prefWidth="406.0" style="-fx-background-color: #2196f3;">
+               <children>
+                  <Label layoutX="141.0" layoutY="16.0" text="Add Job Order Number" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <TextField fx:id="jCName" layoutX="144.0" layoutY="70.0" />
+            <TextField fx:id="jNumber" layoutX="144.0" layoutY="124.0" />
+            <Label layoutX="23.0" layoutY="115.0" prefHeight="43.0" prefWidth="135.0" text="Job Order Number :" />
+            <JFXButton fx:id="jAdd" layoutX="184.0" layoutY="161.0" onAction="#jAddJobOrderNo" style="-fx-background-color: #009688;" text="Add" />
+            <JFXButton fx:id="cancel" layoutX="241.0" layoutY="161.0" onAction="#cancel" style="-fx-background-color: #009688;" text="Cancel" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="OfferNumberAnchor" layoutX="197.0" layoutY="175.0" prefHeight="200.0" prefWidth="406.0" style="-fx-background-color: F2F1EF;" visible="false">
+         <children>
+            <Label layoutX="23.0" layoutY="61.0" prefHeight="43.0" prefWidth="135.0" text="Company Name :" />
+            <AnchorPane prefHeight="49.0" prefWidth="406.0" style="-fx-background-color: #2196f3;">
+               <children>
+                  <Label layoutX="153.0" layoutY="16.0" text="Add Offer Number" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <TextField fx:id="oName" layoutX="144.0" layoutY="70.0" />
+            <TextField fx:id="oNumber" layoutX="144.0" layoutY="124.0" />
+            <Label layoutX="23.0" layoutY="115.0" prefHeight="43.0" prefWidth="135.0" text="Offer Number :" />
+            <JFXButton fx:id="oAdd" layoutX="184.0" layoutY="161.0" onAction="#oAddOfferNo" style="-fx-background-color: #009688;" text="Add" />
+            <JFXButton fx:id="cancel1" layoutX="241.0" layoutY="161.0" onAction="#cancel" style="-fx-background-color: #009688;" text="Cancel" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

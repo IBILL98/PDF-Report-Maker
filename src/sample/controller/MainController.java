@@ -2,6 +2,7 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,8 +39,26 @@ public class MainController {
     private JFXButton mainLogout;
 
     @FXML
+    private JFXButton mainNumbers;
+
+    @FXML
     private JFXButton mainSignupButton;
 
+    @FXML
+    void showEditCompanyScreen(ActionEvent event) {
+        mainSignupButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/numbers.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
     @FXML
     void initialize() {
@@ -47,8 +66,9 @@ public class MainController {
             mainSignupButton.setVisible(false);
             mainAddEmployee.setVisible(false);
             mainEditProfile.setVisible(false);
-            mainAddCompany.setVisible(false);        }
-            mainSignupButton.setOnAction(actionEvent -> {
+            mainAddCompany.setVisible(false);
+        }
+            mainSignupButton.setOnAction(event -> {
             mainSignupButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/signup.fxml"));
@@ -63,7 +83,7 @@ public class MainController {
             stage.show();
         });
 
-        mainAddEmployee.setOnAction(actionEvent -> {
+        mainAddEmployee.setOnAction(event -> {
             mainAddEmployee.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/addemployee.fxml"));
@@ -81,12 +101,12 @@ public class MainController {
         });
 
 
-        mainEditProfile.setOnAction(actionEvent -> {
+        mainEditProfile.setOnAction(event -> {
             showEditScreen();
 
         });
 
-        mainLogout.setOnAction(actionEvent -> {
+        mainLogout.setOnAction(event -> {
             mainLogout.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
@@ -102,7 +122,7 @@ public class MainController {
             stage.show();
         });
 
-        mainAddCompany.setOnAction(actionEvent -> {
+        mainAddCompany.setOnAction(event -> {
             showAddFrimaScreen();
         });
 

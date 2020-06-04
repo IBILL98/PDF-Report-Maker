@@ -44,7 +44,7 @@ public class EditEmployeeController {
 
     @FXML
     void initialize() {
-        viewEmployeeBottun.setOnAction(actionEvent -> {
+        viewEmployeeBottun.setOnAction(event -> {
             searchEmployee();
             });
         deleteBack.setOnMouseClicked((mouseEvent -> {

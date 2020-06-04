@@ -55,7 +55,7 @@ public class LoginController {
         comboBox.getSelectionModel().selectFirst();
 
 
-        loginButton.setOnAction(actionEvent -> {
+        loginButton.setOnAction(event -> {
             System.out.println();
             if(comboBox.getValue() == "Employee"){
                 String loginText = loginUsername.getText();
@@ -122,18 +122,18 @@ public class LoginController {
 
 
     private void showMainScreen(){
-            loginButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+        loginButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 

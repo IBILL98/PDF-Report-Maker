@@ -44,49 +44,16 @@ public class AddCompanyController {
     @FXML
     private ImageView deleteBack;
 
-    @FXML
-    private JFXButton AddJobOrderNo;
-
-    @FXML
-    private JFXButton AddOfferNo;
-
-    @FXML
-    void createJobOrderNo(ActionEvent event) {
-        String Name = addCompanyName.getText();
-        String JobOrderNo = addCompanyJobOrderNo.getText();
-        if (Name.equals("")){
-            Frame parent = new JFrame();
-            JOptionPane.showMessageDialog(parent, "Please Entre the Company Name");
-        }else {
-            Company company = new Company(Name,JobOrderNo);
-            databaseHandler.addJobOrderNo(company);
-
-        }
-    }
-
-    @FXML
-    void createOfferNo(ActionEvent event) {
-        String Name = addCompanyName.getText();
-        String OfferNo = addCompanyOfferNo.getText();
-        System.out.println(Name);
-        if (Name.equals("")){
-            Frame parent = new JFrame();
-            JOptionPane.showMessageDialog(parent, "Please Entre the Company Name");
-        }else {
-            Company company = new Company(Name,OfferNo,true);
-            databaseHandler.addOfferNo(company);
-        }
-    }
-
     DatabaseHandler databaseHandler = new DatabaseHandler();
 
+    @FXML
     void initialize() {
 
         addCompanyButton.setOnAction(actionEvent -> {
             createCompany();
         });
 
-        deleteBack.setOnMouseClicked((mouseEvent -> {
+        deleteBack.setOnMouseClicked(mouseEvent -> {
             deleteBack.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/main.fxml"));
@@ -100,8 +67,7 @@ public class AddCompanyController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-        }));
-
+        });
     }
 
 
