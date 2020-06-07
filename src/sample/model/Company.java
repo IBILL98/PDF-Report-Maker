@@ -15,6 +15,9 @@ public class Company {
         Id = id;
     }
 
+    public Company() {
+    }
+
     public Company(String name, String OfferNo, boolean b) {
         Name = name;
         this.OfferNo = OfferNo;
