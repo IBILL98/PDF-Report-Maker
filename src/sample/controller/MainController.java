@@ -67,6 +67,7 @@ public class MainController {
             mainAddEmployee.setVisible(false);
             mainEditProfile.setVisible(false);
             mainAddCompany.setVisible(false);
+            mainNumbers.setVisible(false);
         }
             mainSignupButton.setOnAction(event -> {
             mainSignupButton.getScene().getWindow().hide();
@@ -87,6 +88,21 @@ public class MainController {
             mainAddEmployee.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/addemployee.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        });
+
+        mainCreateReport.setOnAction(event -> {
+            mainCreateReport.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sample/view/createreport.fxml"));
 
             try {
                 loader.load();
@@ -97,7 +113,6 @@ public class MainController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-
         });
 
 
