@@ -8,23 +8,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.EmployeeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="550.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.EmployeeController">
    <children>
-      <TableView fx:id="employeeTable" layoutY="83.0" prefHeight="400.0" prefWidth="616.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="184.0">
+      <TableView fx:id="employeeTable" layoutY="83.0" minHeight="400.0" minWidth="616.0">
         <columns>
-          <TableColumn fx:id="employeesIdColumn" prefWidth="70.0" text="id" />
-          <TableColumn fx:id="employeesNameColumn" prefWidth="78.0" text="Name" />
-            <TableColumn fx:id="employeesLastNameColumn" prefWidth="143.0" text="Last Name" />
-            <TableColumn fx:id="employeesLevelColumn" prefWidth="105.0" text="Level" />
-            <TableColumn fx:id="employeesWorkColumn" prefWidth="115.0" text="Work" />
+          <TableColumn fx:id="employeesIdColumn" minWidth="123.0" prefWidth="-1.0" text="id" />
+          <TableColumn fx:id="employeesNameColumn" minWidth="123.0" prefWidth="-1.0" text="Name" />
+            <TableColumn fx:id="employeesLastNameColumn" minWidth="123.0" prefWidth="-1.0" text="Last Name" />
+            <TableColumn fx:id="employeesLevelColumn" minWidth="123.0" prefWidth="-1.0" text="Level" />
+            <TableColumn fx:id="employeesWorkColumn" minWidth="123.0" prefWidth="-1.0" text="Work" />
         </columns>
       </TableView>
-      <AnchorPane prefHeight="83.0" prefWidth="800.0" style="-fx-background-color: #2196f3;">
+      <AnchorPane minHeight="83.0" minWidth="801.0" style="-fx-background-color: #2196f3;">
          <children>
             <TextField fx:id="employeesSearchText" layoutX="14.0" layoutY="42.0" onKeyReleased="#searhEmployee" promptText="search . ." />
-         </children></AnchorPane>
-      <JFXButton fx:id="employeesEditButton" layoutX="636.0" layoutY="183.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit" textFill="WHITE" />
-      <JFXButton fx:id="employeesRemoveButton" layoutX="636.0" layoutY="251.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Remove" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="employeesEditButton" layoutX="636.0" layoutY="183.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Edit" textFill="WHITE" />
+      <JFXButton fx:id="employeesRemoveButton" layoutX="636.0" layoutY="251.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Remove" textFill="WHITE" />
       <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/reply.png" />

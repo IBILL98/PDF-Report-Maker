@@ -67,6 +67,22 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    public ResultSet getEmployeeById(Employee employee) {
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE "
+                + Const.EMPLOYEE_ID + "=?";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1, employee.getId());
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
 
     //Read Employee From the Database
     public ResultSet getEmployee(Employee employee) {
@@ -444,14 +460,16 @@ public class DatabaseHandler extends Configs {
     public Company getCompany(Company company) {
         ResultSet resultSet = null;
         if (!company.getName().equals("")) {
-            String query = "SELECT " + Const.COMPANY_CUSTOMER + " FROM " + Const.COMPANYS_TABLE + " WHERE "
+            String query = "SELECT * FROM " + Const.COMPANYS_TABLE + " WHERE "
                     + Const.COMPANY_NAME + "=?";
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1, company.getName());
                 resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
+                    company.setName(resultSet.getString("Name"));
                     company.setCustomer(resultSet.getString("Customer"));
+                    company.setPlace(resultSet.getString("Place"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -510,7 +528,6 @@ public class DatabaseHandler extends Configs {
         }
         return employees;
     }
-
 
 
 

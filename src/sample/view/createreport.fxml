@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
@@ -16,9 +17,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="Infinity" maxWidth="-Infinity" prefHeight="1591.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreatReportController">
+<ScrollPane fitToHeight="true" fitToWidth="true" minHeight="550.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreatReportController">
    <content>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1592.0" prefWidth="1128.0">
+      <AnchorPane>
          <children>
             <GridPane alignment="TOP_RIGHT" gridLinesVisible="true" layoutX="480.0" minHeight="83.0" minWidth="623.0" prefHeight="83.0" prefWidth="624.0" style="-fx-background-color: ffd1cd;">
               <columnConstraints>
@@ -66,7 +67,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField GridPane.columnIndex="1">
+                  <TextField fx:id="reportCustomer" editable="false" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
@@ -326,75 +327,75 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="reportProjectName" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="reportInspectionPlace" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField alignment="CENTER" text="TS EN ISO 17638" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="reportInspectionStandart" alignment="CENTER" text="TS EN ISO 17638" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField alignment="CENTER" text="TS EN ISO 23278 Class B" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="reportEvaluationStandart" alignment="CENTER" text="TS EN ISO 23278 Class B" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField alignment="CENTER" text="P-101-004" GridPane.columnIndex="3">
+                  <TextField fx:id="reportInspectionProcedure" alignment="CENTER" text="P-101-004" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField alignment="CENTER" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <TextField fx:id="reportDrawingNo" alignment="CENTER" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField alignment="CENTER" text="1" GridPane.columnIndex="5">
+                  <TextField fx:id="reportPage" alignment="CENTER" text="1" GridPane.columnIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <TextField fx:id="reportReportNo" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                  <TextField fx:id="reportReportDate" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
                   <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets left="74.0" />
+                        <Insets left="100.0" />
                      </GridPane.margin>
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <JFXComboBox GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <JFXComboBox fx:id="reportInspectionScope" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="12.0" right="7.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <TextField fx:id="reportSurfaceCondition" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <TextField fx:id="reportStageOfExamination" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox minWidth="169.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                  <ComboBox fx:id="reportOfferNo" minWidth="169.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
@@ -402,7 +403,7 @@
                         <Insets left="7.0" right="7.0" />
                      </padding>
                   </ComboBox>
-                  <ComboBox minHeight="25.0" minWidth="169.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <ComboBox fx:id="reportJobOrderNo" minHeight="25.0" minWidth="169.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <padding>
                         <Insets left="7.0" right="7.0" />
                      </padding>
@@ -414,7 +415,7 @@
             </GridPane>
             <Pane layoutY="286.0" prefHeight="40.0" prefWidth="1105.0" style="-fx-background-color: ffd1cd; -fx-border-color: #000000;" AnchorPane.leftAnchor="0.0">
                <children>
-                  <Label layoutX="307.0" layoutY="10.0" text="Ekipman Bilgileri/ Equipment Informations">
+                  <Label layoutX="411.0" layoutY="10.0" text="Ekipman Bilgileri/ Equipment Informations">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -656,62 +657,62 @@
                               </Label>
                            </children>
                         </Pane>
-                        <TextField GridPane.columnIndex="1">
+                        <TextField fx:id="reportPoleDistance" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="reportEquipment" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="reportMPCarrierMedium" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="reportMagTech" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="reportUVLightIntensity" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <TextField fx:id="reportDistanceofLight" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField alignment="CENTER" text="KAYNAK+HAZ" GridPane.columnIndex="3">
+                        <TextField fx:id="reportExaminationArea" alignment="CENTER" text="KAYNAK+HAZ" GridPane.columnIndex="3">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField alignment="CENTER" text="1200 Lux" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <TextField fx:id="reportLuxmeter" alignment="CENTER" text="1200 Lux" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <TextField fx:id="reportTestMedium" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <TextField fx:id="reportDemagnetization" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="3" GridPane.rowIndex="5">
+                        <TextField fx:id="reportHeatTreatment" GridPane.columnIndex="3" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <JFXComboBox prefHeight="25.0" prefWidth="165.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <JFXComboBox fx:id="reportCurrentType" prefHeight="25.0" prefWidth="165.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
@@ -819,27 +820,27 @@
                               </Label>
                            </children>
                         </Pane>
-                        <TextField editable="false" GridPane.columnIndex="1">
+                        <TextField fx:id="reportSurfaceTemperature" editable="false" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField alignment="CENTER" prefHeight="55.0" prefWidth="105.0" text="3.2 kA/m" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="reportGaussFieldStrength" alignment="CENTER" prefHeight="55.0" prefWidth="105.0" text="3.2 kA/m" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField text="TAŞLANMIŞ / GRINDING" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="reportSurfaceCondition1" text="TAŞLANMIŞ / GRINDING" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField alignment="CENTER" text="***" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="reportIdentificationofLightEquip" alignment="CENTER" text="***" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="reportLiftingTestDateNumber" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
@@ -983,12 +984,12 @@
                               <Image url="@../assets/right.png" />
                            </image>
                         </ImageView>
-                        <CheckBox mnemonicParsing="false">
+                        <CheckBox fx:id="reportButtWeld" mnemonicParsing="false">
                            <GridPane.margin>
                               <Insets bottom="15.0" right="20.0" />
                            </GridPane.margin>
                         </CheckBox>
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1">
+                        <CheckBox fx:id="reportFilletWeld" mnemonicParsing="false" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets bottom="15.0" right="15.0" />
                            </GridPane.margin>
@@ -1059,17 +1060,17 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TextField text="Standarttan sapma yoktur." GridPane.columnIndex="1">
+                  <TextField fx:id="reportStandardDeviations" text="Standarttan sapma yoktur." GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="100.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" text="01-01-2020" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="reportInspectionDates" editable="false" text="01-01-2020" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="100.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="reportDescriptionandAttachments" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" right="100.0" />
                      </GridPane.margin>
@@ -1078,7 +1079,7 @@
             </GridPane>
             <Pane layoutY="869.0" prefHeight="40.0" prefWidth="1105.0" style="-fx-background-color: ffd1cd; -fx-border-color: #000000;" AnchorPane.leftAnchor="0.0">
                <children>
-                  <Label layoutX="319.0" layoutY="10.0" text="Muayene Sonuçları / Inspection Results">
+                  <Label layoutX="423.0" layoutY="10.0" text="Muayene Sonuçları / Inspection Results">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -1267,366 +1268,366 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="reportWeld1" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <TextField fx:id="reportTestLenght1" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <TextField fx:id="reportWeldingProcess1" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <TextField fx:id="reportThickness1" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <TextField fx:id="reportDiameter1" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="1">
+                  <TextField fx:id="reportDefectType1" GridPane.columnIndex="6" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="1">
+                  <TextField fx:id="reportDefectLoc1" GridPane.columnIndex="7" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="1">
+                  <TextField fx:id="reportWeld2" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="reportTestLenght2" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <TextField fx:id="reportWeldingProcess2" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <TextField fx:id="reportThickness2" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <TextField fx:id="reportDiameter2" GridPane.columnIndex="5" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="2">
+                  <TextField fx:id="reportDefectType2" GridPane.columnIndex="6" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="2">
+                  <TextField fx:id="reportDefectLoc2" GridPane.columnIndex="7" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="2">
+                  <TextField fx:id="reportWeld3" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="2">
+                  <TextField fx:id="reportTestLenght3" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="reportWeldingProcess3" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <TextField fx:id="reportThickness3" GridPane.columnIndex="4" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <TextField fx:id="reportDiameter3" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="3">
+                  <TextField fx:id="reportDefectType3" GridPane.columnIndex="6" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <TextField fx:id="reportDefectLoc3" GridPane.columnIndex="7" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="3">
+                  <TextField fx:id="reportWeld4" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="3">
+                  <TextField fx:id="reportTestLenght4" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="3">
+                  <TextField fx:id="reportWeldingProcess4" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="reportThickness4" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <TextField fx:id="reportDiameter4" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <TextField fx:id="reportDefectType4" GridPane.columnIndex="6" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <TextField fx:id="reportDefectLoc4" GridPane.columnIndex="7" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="4">
+                  <TextField fx:id="reportWeld5" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="4">
+                  <TextField fx:id="reportTestLenght5" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="4">
+                  <TextField fx:id="reportWeldingProcess5" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="4">
+                  <TextField fx:id="reportThickness5" GridPane.columnIndex="4" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="reportDiameter5" GridPane.columnIndex="5" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <TextField fx:id="reportDefectType5" GridPane.columnIndex="6" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <TextField fx:id="reportDefectLoc5" GridPane.columnIndex="7" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="5">
+                  <TextField fx:id="reportWeld6" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  <TextField fx:id="reportTestLenght6" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="5">
+                  <TextField fx:id="reportWeldingProcess6" GridPane.columnIndex="3" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="5">
+                  <TextField fx:id="reportThickness6" GridPane.columnIndex="4" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="5">
+                  <TextField fx:id="reportDiameter6" GridPane.columnIndex="5" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <TextField fx:id="reportDefectType6" GridPane.columnIndex="6" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <TextField fx:id="reportDefectLoc6" GridPane.columnIndex="7" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="6">
+                  <TextField fx:id="reportWeld7" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="6">
+                  <TextField fx:id="reportTestLenght7" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="6">
+                  <TextField fx:id="reportWeldingProcess7" GridPane.columnIndex="3" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="6">
+                  <TextField fx:id="reportThickness7" GridPane.columnIndex="4" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="6">
+                  <TextField fx:id="reportDiameter7" GridPane.columnIndex="5" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="6">
+                  <TextField fx:id="reportDefectType7" GridPane.columnIndex="6" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <TextField fx:id="reportDefectLoc7" GridPane.columnIndex="7" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <TextField fx:id="reportWeld8" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="7">
+                  <TextField fx:id="reportTestLenght8" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="7">
+                  <TextField fx:id="reportWeldingProcess8" GridPane.columnIndex="3" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="7">
+                  <TextField fx:id="reportThickness8" GridPane.columnIndex="4" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="7">
+                  <TextField fx:id="reportDiameter8" GridPane.columnIndex="5" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="7">
+                  <TextField fx:id="reportDefectType8" GridPane.columnIndex="6" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="7">
+                  <TextField fx:id="reportDefectLoc8" GridPane.columnIndex="7" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="reportWeld9" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="8">
+                  <TextField fx:id="reportTestLenght9" GridPane.columnIndex="2" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="8">
+                  <TextField fx:id="reportWeldingProcess9" GridPane.columnIndex="3" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="8">
+                  <TextField fx:id="reportThickness9" GridPane.columnIndex="4" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="8">
+                  <TextField fx:id="reportDiameter9" GridPane.columnIndex="5" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="8">
+                  <TextField fx:id="reportDefectType9" GridPane.columnIndex="6" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="8">
+                  <TextField fx:id="reportDefectLoc9" GridPane.columnIndex="7" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="8">
+                  <ComboBox fx:id="reportResult1" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult2" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult3" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="3" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult4" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="4" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult5" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult6" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="6" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult7" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="7" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <TextField GridPane.columnIndex="8" GridPane.rowIndex="9">
+                  </ComboBox>
+                  <ComboBox fx:id="reportResult9" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
-                  </TextField>
+                  </ComboBox>
                </children>
             </GridPane>
             <GridPane gridLinesVisible="true" layoutY="1359.0" prefHeight="233.0" prefWidth="1105.0" AnchorPane.leftAnchor="0.0">
@@ -1825,62 +1826,62 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="reportOperatorName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="reportOperatorLevel" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="reportOperatorDate" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="reportOperatorSignature" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <TextField fx:id="reportRaterName" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <TextField fx:id="reportRaterLevel" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <TextField fx:id="reportRaterDate" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <TextField fx:id="reportRaterSignature" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <TextField fx:id="reportApproverName" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <TextField fx:id="reportApproverLevel" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <TextField fx:id="reportApproverDate" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <TextField fx:id="reportApproverSignature" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
@@ -1907,6 +1908,8 @@
                   </TextField>
                </children>
             </GridPane>
+            <JFXButton fx:id="reportExportExcelButton" layoutX="954.0" layoutY="1677.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Export to Excel" textFill="WHITE" />
+            <JFXButton fx:id="reportExportPDFButton" layoutX="792.0" layoutY="1677.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Export to PDF" textFill="WHITE" />
          </children>
       </AnchorPane>
    </content>

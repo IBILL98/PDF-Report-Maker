@@ -45,25 +45,25 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <ComboBox fx:id="pickerEquipment" layoutX="175.0" layoutY="276.0" prefWidth="150.0" promptText="Equipment" />
+      <ComboBox fx:id="pickerEquipment" layoutX="175.0" layoutY="276.0" onAction="#equipmentDefine" prefWidth="150.0" promptText="Equipment" />
       <Label layoutX="63.0" layoutY="275.0" text="Equipment :">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="pickerOperator" layoutX="175.0" layoutY="336.0" prefWidth="150.0" promptText="Operator" />
+      <ComboBox fx:id="pickerOperator" layoutX="175.0" layoutY="336.0" onAction="#operatorDefine" prefWidth="150.0" promptText="Operator" />
       <Label layoutX="63.0" layoutY="335.0" text="Operator :">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="pickerRater" layoutX="175.0" layoutY="391.0" prefWidth="150.0" promptText="Rater" />
+      <ComboBox fx:id="pickerRater" layoutX="175.0" layoutY="391.0" onAction="#raterDefine" prefWidth="150.0" promptText="Rater" />
       <Label layoutX="63.0" layoutY="390.0" text="Rater :">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="pickerApprover" layoutX="175.0" layoutY="439.0" prefWidth="150.0" promptText="Approver" />
+      <ComboBox fx:id="pickerApprover" layoutX="175.0" layoutY="439.0" onAction="#approverDefine" prefWidth="150.0" promptText="Approver" />
       <Label layoutX="63.0" layoutY="438.0" text="Approver :">
          <font>
             <Font size="18.0" />

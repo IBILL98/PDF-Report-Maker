@@ -99,11 +99,11 @@ public class MainController {
             stage.show();
         });
 
+
         mainCreateReport.setOnAction(event -> {
             mainCreateReport.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/createreport.fxml"));
-
+            loader.setLocation(getClass().getResource("/sample/view/picker.fxml"));
             try {
                 loader.load();
             } catch (IOException e) {
