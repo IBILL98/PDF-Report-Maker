@@ -6,6 +6,7 @@ public class Company {
     private String OfferNo;
     private String JobOrderNo;
     private int Id;
+    private String Customer;
 
     public int getId() {
         return Id;
@@ -19,32 +20,35 @@ public class Company {
     }
 
     public Company(String name, String OfferNo, boolean b) {
-        Name = name;
+        this.Name = name;
         this.OfferNo = OfferNo;
         b = true;
     }
     public Company(String name, String JobOrderNo, boolean b,boolean a) {
-        Name = name;
+        this.Name = name;
         this.JobOrderNo = JobOrderNo;
         b = true;
         a = true;
     }
 
 
-    public Company(String name, String Place) {
-        Name = name;
+    public Company(String name, String Place,String Customer) {
+        this.Name = name;
         this.Place = Place;
+        this.Customer = Customer;
     }
 
     public Company(String name) {
         Name = name;
     }
 
-    public Company(String name, String place, String offerNo, String jobOrderNo) {
+
+    public Company(String name, String place, String offerNo, String jobOrderNo, String Customer) {
         Name = name;
         Place = place;
         OfferNo = offerNo;
         JobOrderNo = jobOrderNo;
+        this.Customer = Customer;
     }
 
     public String getName() {
@@ -77,5 +81,13 @@ public class Company {
 
     public void setJobOrderNo(String jobOrderNo) {
         JobOrderNo = jobOrderNo;
+    }
+
+    public String getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(String customer) {
+        Customer = customer;
     }
 }

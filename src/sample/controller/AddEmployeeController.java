@@ -63,7 +63,6 @@ public class AddEmployeeController {
     @FXML
     void initialize() {
 
-
         addEmployeeButton.setOnAction(event -> {
             createEmployee();
         });

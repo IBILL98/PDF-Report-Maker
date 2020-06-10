@@ -3,7 +3,6 @@ package sample.controller;
 import com.jfoenix.controls.JFXButton;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -27,11 +26,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 import sample.Database.Const;
 import sample.Database.DatabaseHandler;
 import sample.model.Company;
-import sample.model.Employee;
 
 import javax.swing.*;
 
@@ -325,7 +322,6 @@ public class NumberController {
     }
 
 
-
     public void viewAllOffers() {
         offers.clear();
         ResultSet resultSet = null;
@@ -416,6 +412,7 @@ public class NumberController {
             e.printStackTrace();
         }
     }
+
     void editOfferNo(){
         OfferNumbersTable.setEditable(true);
         OfferNumbersTable.getSelectionModel().cellSelectionEnabledProperty().set(true);

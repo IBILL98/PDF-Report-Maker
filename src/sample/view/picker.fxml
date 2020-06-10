@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.PickerController">
+   <children>
+      <AnchorPane prefHeight="127.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
+      <AnchorPane layoutY="127.0" prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #0069c0;">
+         <children>
+            <Label alignment="CENTER" layoutX="288.0" minHeight="61.0" text="Pick infos for the Report" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/reply.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="pickerCompany" layoutX="175.0" layoutY="221.0" onAction="#ccustomerdefine" prefWidth="150.0" promptText="Company" />
+      <Label layoutX="63.0" layoutY="220.0" text="Company :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="220.0" text="The Costumer is :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="pickerCustomer" layoutX="537.0" layoutY="220.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <ComboBox fx:id="pickerEquipment" layoutX="175.0" layoutY="276.0" prefWidth="150.0" promptText="Equipment" />
+      <Label layoutX="63.0" layoutY="275.0" text="Equipment :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="pickerOperator" layoutX="175.0" layoutY="336.0" prefWidth="150.0" promptText="Operator" />
+      <Label layoutX="63.0" layoutY="335.0" text="Operator :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="pickerRater" layoutX="175.0" layoutY="391.0" prefWidth="150.0" promptText="Rater" />
+      <Label layoutX="63.0" layoutY="390.0" text="Rater :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="pickerApprover" layoutX="175.0" layoutY="439.0" prefWidth="150.0" promptText="Approver" />
+      <Label layoutX="63.0" layoutY="438.0" text="Approver :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="pickerNext" layoutX="609.0" layoutY="477.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" style="-fx-background-color: #009688;" text="Next" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

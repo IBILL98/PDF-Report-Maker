@@ -29,6 +29,7 @@ public class Const {
     public static final String ADMINS_PASSWORD = "Password";
     public static final String ADMINS_USERNAME = "Username";
 
+
     //Columns Names of Customers Table
     public static final String CUSTOMERS_NAME = "Name";
     public static final String CUSTOMERS_LASTNAME = "LastName";
@@ -41,6 +42,7 @@ public class Const {
     public static final String COMPANY_NAME = "Name";
     public static final String COMPANY_PLACE = "Place";
     public static final String COMPANY_ID = "Id";
+    public static final String COMPANY_CUSTOMER = "Customer";
 
     //Columns Names of Job order No Table
     public static final String JOBORDERNO_NO = "Id";
@@ -49,6 +51,30 @@ public class Const {
     //Columns Names of Offer No Table
     public static final String JOBOFFERNO_NO = "Id";
     public static final String COMPANY_NAMEO = "CompanyIdO";
+
+
+    //Columns Names of Customers Table
+    public static final String EQUIPMENTS_ID = "id";
+    public static final String EQUIPMENTS_POLEDISTANCE = "PoleDistance";
+    public static final String EQUIPMENTS_EQUIPMENT = "Equipment";
+    public static final String EQUIPMENTS_MPCARRIERMEDIUM = "MPCarrierMedium";
+    public static final String EQUIPMENTS_MAGTECH= "MagTech";
+    public static final String EQUIPMENTS_UVLIGHTINTENSITY = "UVLightIntensity";
+    public static final String EQUIPMENTS_DISTANCEOFLIGHT= "DistanceOfLight";
+    public static final String EQUIPMENTS_EXAMINATIONAREA= "ExaminationArea";
+    public static final String EQUIPMENTS_CURRENTTYPE= "CurrentType";
+    public static final String EQUIPMENTS_LUXMETER= "Luxmeter";
+    public static final String EQUIPMENTS_TESTMEDIUM= "TestMedium";
+    public static final String EQUIPMENTS_DEMAGNETIZATION= "Demagnetization";
+    public static final String EQUIPMENTS_HEATTREATMENT= "HeatTreatment";
+    public static final String EQUIPMENTS_GAUSSFIELDSTRENGTH= "GaussFieldStrength";
+    public static final String EQUIPMENTS_SURFACECONDITION= "SurfaceCondition";
+    public static final String EQUIPMENTS_IDENTIFICATIONOFLIGHTEQUIP= "IdentificationofLightEquip";
+    public static final String EQUIPMENTS_LIFTINGTESTDATENUMBER= "LiftingTestDateNumber";
+    public static final String EQUIPMENTS_STANDARDDEVIATIONS= "StandardDeviations";
+
+
+
 
 
 

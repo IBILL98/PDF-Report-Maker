@@ -101,7 +101,6 @@ public class EmployeeController {
                 employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
                 employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
                 employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
-
                 employeeTable.setItems(employees);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -109,7 +108,7 @@ public class EmployeeController {
                 e.printStackTrace();
             }
         }else {
-            viewAllEmployee();
+            viewElements();
         }
 
     }
@@ -118,7 +117,7 @@ public class EmployeeController {
 
     @FXML
     void initialize() {
-        viewAllEmployee();
+        viewElements();
         employeesRemoveButton.setOnAction(event -> {
             deleteEmployees();
         });
@@ -142,34 +141,13 @@ public class EmployeeController {
         }));
     }
 
-    public void viewAllEmployee() {
-        employees.clear();
-        ResultSet resultSet = null;
-        String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE;
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Employee employee = new Employee();
-                employee.setId(resultSet.getInt("id"));
-                employee.setName(resultSet.getString("Name"));
-                employee.setLastName(resultSet.getString("LastName"));
-                employee.setLevel(resultSet.getInt("Level"));
-                employee.setWork(resultSet.getString("Work"));
-                employees.add(employee);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void viewElements() {
         employeesIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
         employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
-        employeeTable.setItems(employees);
+        employeeTable.setItems(databaseHandler.viewAllEmployee());
     }
 
     public void deleteEmployees() {

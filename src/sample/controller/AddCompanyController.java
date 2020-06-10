@@ -33,6 +33,9 @@ public class AddCompanyController {
     private JFXTextField addCompanyPlace;
 
     @FXML
+    private JFXTextField addCompanyCustomer;
+
+    @FXML
     private JFXTextField addCompanyOfferNo;
 
     @FXML
@@ -74,7 +77,8 @@ public class AddCompanyController {
     private void createCompany(){
         String Name = addCompanyName.getText();
         String Place = addCompanyPlace.getText();
-        Company company = new Company(Name,Place);
+        String Customer = addCompanyCustomer.getText();
+        Company company = new Company(Name,Place,Customer);
         databaseHandler.addCompany(company);
     }
 }
