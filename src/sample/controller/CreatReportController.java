@@ -3,8 +3,9 @@ package sample.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
-import java.util.Calendar;
-import java.util.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -14,6 +15,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import sample.Database.Const;
+import sample.Database.DatabaseHandler;
 import sample.model.Company;
 import sample.model.Employee;
 import sample.model.Equipment;
@@ -66,10 +70,10 @@ public class CreatReportController {
     private TextField reportStageOfExamination;
 
     @FXML
-    private ComboBox<?> reportOfferNo;
+    private ComboBox<String> reportOfferNo;
 
     @FXML
-    private ComboBox<?> reportJobOrderNo;
+    private ComboBox<String> reportJobOrderNo;
 
     @FXML
     private TextField reportPoleDistance;
@@ -395,10 +399,12 @@ public class CreatReportController {
     @FXML
     private JFXButton reportExportPDFButton;
 
+    DatabaseHandler databaseHandler = new DatabaseHandler();
     ObservableList procent = FXCollections.observableArrayList();
     ObservableList acdc = FXCollections.observableArrayList("AC","DC");
     ObservableList result = FXCollections.observableArrayList("RED","OK");
-
+    private ObservableList<String> joborders = FXCollections.observableArrayList();
+    private ObservableList<String> offers = FXCollections.observableArrayList();
 
 
 
@@ -430,6 +436,8 @@ public class CreatReportController {
         reportResult8.setItems(result);
         reportResult9.setItems(result);
 
+        viewAllOffers();
+        viewAllJobOrders();
     }
 
     public void autoPicked(Company company ,Employee rater, Employee approver,Employee operator){
@@ -450,6 +458,47 @@ public class CreatReportController {
         reportApproverName.setText(approver.getName()+" "+approver.getLastName());
         reportApproverLevel.setText(String.valueOf(approver.getLevel()));
         reportApproverDate.setText((java.time.LocalDate.now().toString()));
+
+
+
+        offers.clear();
+        ResultSet resultSet = null;
+        String query = "SELECT offerno.Id FROM offerno WHERE "+ Const.COMPANY_NAMEO +"=?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+            preparedStatement.setString(1, company.getName());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                offers.add(resultSet.getString("Id"));
+            }
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        reportOfferNo.setItems(offers);
+
+
+
+        joborders.clear();
+        ResultSet resultSet1 = null;
+        String query1 = "SELECT  joborderno.Id FROM joborderno WHERE "+ Const.COMPANY_NAMEJ +"=?";
+        PreparedStatement preparedStatement1 = null;
+        try {
+            preparedStatement1 = databaseHandler.getDbConnection().prepareStatement(query1);
+            preparedStatement1.setString(1, company.getName());
+            resultSet1 = preparedStatement1.executeQuery();
+            while (resultSet1.next()) {
+                joborders.add(resultSet1.getString("Id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        reportJobOrderNo.setItems(joborders);
     }
 
 
@@ -463,6 +512,22 @@ public class CreatReportController {
         }
         reportReportNo.setText(reportnumber);
     }
+
+    public void viewAllOffers() {
+
+    }
+
+
+    public void viewAllJobOrders() {
+
+    }
+
+
+
+
+
+
+
 
 
 

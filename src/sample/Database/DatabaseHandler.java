@@ -379,7 +379,7 @@ public class DatabaseHandler extends Configs {
 
     //Adding Company into Database
     public void addCompany(Company company) {
-        String insert = "INSERT INTO " + Const.COMPANYS_TABLE + "(" + Const.COMPANY_NAME + "," + Const.COMPANY_PLACE + ")" + "VALUES(?,?,?)";
+        String insert = "INSERT INTO " + Const.COMPANYS_TABLE + "(" + Const.COMPANY_NAME + "," + Const.COMPANY_PLACE +"," +Const.COMPANY_CUSTOMER+ ")" + "VALUES(?,?,?)";
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
 
