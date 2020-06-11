@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Database.Const;
 import sample.Database.DatabaseHandler;
 import sample.model.Company;
@@ -64,16 +63,16 @@ public class CreatReportController {
     private JFXComboBox<?> reportInspectionScope;
 
     @FXML
-    private TextField reportSurfaceCondition;
-
-    @FXML
-    private TextField reportStageOfExamination;
-
-    @FXML
     private ComboBox<String> reportOfferNo;
 
     @FXML
     private ComboBox<String> reportJobOrderNo;
+
+    @FXML
+    private ComboBox<?> reportSurfaceCondition;
+
+    @FXML
+    private ComboBox<?> reportStageOfExamination;
 
     @FXML
     private TextField reportPoleDistance;
@@ -399,6 +398,7 @@ public class CreatReportController {
     @FXML
     private JFXButton reportExportPDFButton;
 
+
     DatabaseHandler databaseHandler = new DatabaseHandler();
     ObservableList procent = FXCollections.observableArrayList();
     ObservableList acdc = FXCollections.observableArrayList("AC","DC");
@@ -440,7 +440,7 @@ public class CreatReportController {
         viewAllJobOrders();
     }
 
-    public void autoPicked(Company company ,Employee rater, Employee approver,Employee operator){
+    public void autoPicked(Company company ,Employee rater, Employee approver,Employee operator,Equipment equipment){
 
         reportCustomer.setText(company.getCustomer());
         reportInspectionPlace.setText(company.getPlace());
@@ -499,6 +499,14 @@ public class CreatReportController {
             e.printStackTrace();
         }
         reportJobOrderNo.setItems(joborders);
+
+
+        reportPoleDistance.setText(equipment.getPrivatePoleDistance());
+        reportEquipment.setText(equipment.getName());
+        reportMPCarrierMedium.setText(equipment.getMPCarrierMedium());
+        reportMagTech.setText(equipment.getMagTech());
+        reportUVLightIntensity.setText(equipment.getUVLightIntensity());
+        reportDistanceofLight.setText(equipment.getDistanceOfLight());
     }
 
 
@@ -521,6 +529,7 @@ public class CreatReportController {
     public void viewAllJobOrders() {
 
     }
+
 
 
 

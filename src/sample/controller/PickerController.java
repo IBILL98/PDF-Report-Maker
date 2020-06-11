@@ -85,9 +85,21 @@ public class PickerController {
     }
 
 
+
+    Equipment pickedequipment = new Equipment();
     @FXML
-    void equipmentDefine(ActionEvent event) {
+    void equipmentDefine(ActionEvent event) throws SQLException {
         equipment.setName(pickerEquipment.getSelectionModel().getSelectedItem());
+        ResultSet resultset = databaseHandler.getEquipment(equipment);
+        while (resultset.next()){
+            pickedequipment.setName(resultset.getString("Equipment"));
+            pickedequipment.setId(Integer.parseInt(resultset.getString("Id")));
+            pickedequipment.setPrivatePoleDistance((resultset.getString("PoleDistance")));
+            pickedequipment.setMPCarrierMedium((resultset.getString("MPCarrierMedium")));
+            pickedequipment.setMagTech((resultset.getString("MagTech")));
+            pickedequipment.setUVLightIntensity((resultset.getString("UVLightIntensity")));
+            pickedequipment.setDistanceOfLight((resultset.getString("DistanceOfLight")));
+        }
     }
 
 
@@ -95,8 +107,8 @@ public class PickerController {
     @FXML
     void operatorDefine(ActionEvent event) throws SQLException {
         String selected = pickerOperator.getSelectionModel().getSelectedItem();
-        String id = selected.split(" ")[2];
-        operator.setId(Integer.parseInt(id));
+        String id = idFinder(selected);
+        operator.setId(Integer.parseInt(String.valueOf(id)));
         ResultSet resultset = databaseHandler.getEmployeeById(operator);
         while (resultset.next()){
             pickedoperator.setName(resultset.getString("Name"));
@@ -109,7 +121,7 @@ public class PickerController {
     @FXML
     void raterDefine(ActionEvent event) throws SQLException {
         String selected = pickerRater.getSelectionModel().getSelectedItem();
-        String id = selected.split(" ")[2];
+        String id = idFinder(selected);
         rater.setId(Integer.parseInt(id));
         ResultSet resultset = databaseHandler.getEmployeeById(rater);
         while (resultset.next()){
@@ -123,7 +135,7 @@ public class PickerController {
     @FXML
     void approverDefine(ActionEvent event) throws SQLException {
         String selected = pickerApprover.getSelectionModel().getSelectedItem();
-        String id = selected.split(" ")[2];
+        String id = idFinder(selected);
         approver.setId(Integer.parseInt(id));
         ResultSet resultset = databaseHandler.getEmployeeById(approver);
         while (resultset.next()){
@@ -131,6 +143,12 @@ public class PickerController {
             pickedapprover.setLastName(resultset.getString("LastName"));
             pickedapprover.setLevel(Integer.parseInt(resultset.getString("Level")));
         }
+    }
+    String idFinder(String selected){
+        selected = selected.trim();
+        String[] infos = selected.split(" ");
+        String id = infos[infos.length-1];
+        return id;
     }
 
 
@@ -174,7 +192,7 @@ public class PickerController {
                     e.printStackTrace();
                 }
                 CreatReportController controller = loader.getController();
-                controller.autoPicked(company,pickedrater,pickedapprover,pickedoperator);
+                controller.autoPicked(company,pickedrater,pickedapprover,pickedoperator,pickedequipment);
                 Parent root = loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));

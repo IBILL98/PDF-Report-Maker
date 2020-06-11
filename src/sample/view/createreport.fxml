@@ -385,17 +385,7 @@
                         <Insets left="12.0" right="7.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <TextField fx:id="reportSurfaceCondition" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="7.0" right="7.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="reportStageOfExamination" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="7.0" right="7.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <ComboBox fx:id="reportOfferNo" minWidth="169.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                  <ComboBox fx:id="reportOfferNo" minWidth="169.0" promptText="Offer No" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="7.0" right="7.0" />
                      </GridPane.margin>
@@ -403,7 +393,23 @@
                         <Insets left="7.0" right="7.0" />
                      </padding>
                   </ComboBox>
-                  <ComboBox fx:id="reportJobOrderNo" minHeight="25.0" minWidth="169.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <ComboBox fx:id="reportJobOrderNo" minHeight="25.0" minWidth="169.0" promptText="Job Order No" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="7.0" right="7.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="7.0" right="7.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="reportSurfaceCondition" minHeight="25.0" minWidth="169.0" promptText="After Welding" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="7.0" right="7.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="7.0" right="7.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="reportStageOfExamination" minWidth="169.0" promptText="Untreated" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <padding>
                         <Insets left="7.0" right="7.0" />
                      </padding>
@@ -820,10 +826,13 @@
                               </Label>
                            </children>
                         </Pane>
-                        <TextField fx:id="reportSurfaceTemperature" editable="false" GridPane.columnIndex="1">
+                        <TextField fx:id="reportSurfaceTemperature" alignment="CENTER" editable="false" text="15°" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="7.0" right="7.0" />
                            </GridPane.margin>
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font>
                         </TextField>
                         <TextField fx:id="reportGaussFieldStrength" alignment="CENTER" prefHeight="55.0" prefWidth="105.0" text="3.2 kA/m" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>

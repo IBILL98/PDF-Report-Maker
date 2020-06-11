@@ -482,6 +482,26 @@ public class DatabaseHandler extends Configs {
         return company;
     }
 
+    public ResultSet getEquipment(Equipment equipment){
+        ResultSet resultSet = null;
+        if (!equipment.getName().equals("")) {
+            String query = "SELECT * FROM " + Const.EQUIPMENTS_TABLE + " WHERE "
+                    + Const.EQUIPMENTS_EQUIPMENT + "=?";
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1, equipment.getName());
+                resultSet = preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("please entere your correct infos");
+        }
+        return resultSet;
+    }
+
     public ObservableList allEquipment() {
         Equipment equipment = new Equipment();
         ObservableList<String> equipments = FXCollections.observableArrayList();

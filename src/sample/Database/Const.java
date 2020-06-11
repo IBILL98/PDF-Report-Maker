@@ -61,21 +61,5 @@ public class Const {
     public static final String EQUIPMENTS_MAGTECH= "MagTech";
     public static final String EQUIPMENTS_UVLIGHTINTENSITY = "UVLightIntensity";
     public static final String EQUIPMENTS_DISTANCEOFLIGHT= "DistanceOfLight";
-    public static final String EQUIPMENTS_EXAMINATIONAREA= "ExaminationArea";
-    public static final String EQUIPMENTS_CURRENTTYPE= "CurrentType";
-    public static final String EQUIPMENTS_LUXMETER= "Luxmeter";
-    public static final String EQUIPMENTS_TESTMEDIUM= "TestMedium";
-    public static final String EQUIPMENTS_DEMAGNETIZATION= "Demagnetization";
-    public static final String EQUIPMENTS_HEATTREATMENT= "HeatTreatment";
-    public static final String EQUIPMENTS_GAUSSFIELDSTRENGTH= "GaussFieldStrength";
-    public static final String EQUIPMENTS_SURFACECONDITION= "SurfaceCondition";
-    public static final String EQUIPMENTS_IDENTIFICATIONOFLIGHTEQUIP= "IdentificationofLightEquip";
-    public static final String EQUIPMENTS_LIFTINGTESTDATENUMBER= "LiftingTestDateNumber";
-    public static final String EQUIPMENTS_STANDARDDEVIATIONS= "StandardDeviations";
-
-
-
-
-
 
 }
