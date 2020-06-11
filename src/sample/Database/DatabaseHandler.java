@@ -2,10 +2,6 @@ package sample.Database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.input.KeyEvent;
 import sample.model.Admin;
 import sample.model.Company;
 import sample.model.Employee;
@@ -14,10 +10,6 @@ import sample.model.Equipment;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 
 public class DatabaseHandler extends Configs {
 
@@ -67,6 +59,7 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    //return a resultset of an employee with a specific id
     public ResultSet getEmployeeById(Employee employee) {
         ResultSet resultSet = null;
         String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE "
@@ -84,7 +77,7 @@ public class DatabaseHandler extends Configs {
     }
 
 
-    //Read Employee From the Database
+    //Read Employee From the Database for login window
     public ResultSet getEmployee(Employee employee) {
         ResultSet resultSet = null;
 
@@ -114,7 +107,7 @@ public class DatabaseHandler extends Configs {
     }
 
 
-    //Read Admin From The Database
+    //Read Admin From The Database for login window
     public ResultSet getAdmin(Admin admin) {
         ResultSet resultSet = null;
 
@@ -144,6 +137,7 @@ public class DatabaseHandler extends Configs {
     }
 
 
+    ///adding a new Admin to the Database
     public void addAdmin(Admin admin) {
 
         String insert = "INSERT INTO " + Const.ADMINS_TABLE + "(" + Const.ADMINS_NAME + "," + Const.ADMINS_LASTNAME
@@ -170,163 +164,6 @@ public class DatabaseHandler extends Configs {
         }
     }
 
-
-    public ResultSet getEmployeeByUsername(Employee employee) {
-
-        ResultSet resultSet = null;
-
-        if (!employee.getUsername().equals("")) {
-            String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE "
-                    + Const.EMPLOYEE_USERNAME + "=?";
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
-                preparedStatement.setString(1, employee.getUsername());
-                resultSet = preparedStatement.executeQuery();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("please entere your correct infos");
-        }
-        return resultSet;
-    }
-
-
-    //UPDATE `my_database`.`employee` SET `LastName` = 'sssss' WHERE  (`Username` = 'Username12');
-    //Update
-    public void editEmployeeWindow(ResultSet employeeRow) throws SQLException {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Select your Info");
-        alert.setHeaderText("Which Information would you like to edit");
-        alert.setContentText("when you edit you cant have your old infos back");
-
-        ButtonType buttonTypeOne = new ButtonType("Name");
-        ButtonType buttonTypeTwo = new ButtonType("LastName");
-        ButtonType buttonTypeThree = new ButtonType("Level");
-        ButtonType buttonTypeFour = new ButtonType("Password");
-        ButtonType buttonTypeFive = new ButtonType("Work");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeFour, buttonTypeFive, buttonTypeCancel);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeOne) {
-            // ... Edit Name
-            String Name = showNewInfos(employeeRow, "Name");
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" + " WHERE "
-                    + Const.EMPLOYEE_USERNAME + "=?";
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
-
-                preparedStatement.setString(1, Name);
-                preparedStatement.setString(2, employeeRow.getString("Username"));
-
-                preparedStatement.executeUpdate();
-                done();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        } else if (result.get() == buttonTypeTwo) {
-            // ... Edite LastName
-            String LastName = showNewInfos(employeeRow, "LastName");
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" + " WHERE "
-                    + Const.EMPLOYEE_USERNAME + "=?";
-
-
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
-
-                preparedStatement.setString(1, LastName);
-                preparedStatement.setString(2, employeeRow.getString("Username"));
-
-                preparedStatement.executeUpdate();
-                done();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        } else if (result.get() == buttonTypeThree) {
-            // ... user chose "Three"
-            String Level = showNewInfos(employeeRow, "Level");
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" + " WHERE " + Const.EMPLOYEE_USERNAME + "=?";
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
-
-                preparedStatement.setString(1, Level);
-                preparedStatement.setString(2, employeeRow.getString("Username"));
-
-                preparedStatement.executeUpdate();
-                done();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        } else if (result.get() == buttonTypeFour) {
-            //
-            String Password = showNewInfos(employeeRow, "Password");
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_PASSWORD + "=?" + " WHERE "
-                    + Const.EMPLOYEE_USERNAME + "=?";
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
-
-                preparedStatement.setString(1, Password);
-                preparedStatement.setString(2, employeeRow.getString("Username"));
-
-                preparedStatement.executeUpdate();
-                done();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        } else if (result.get() == buttonTypeFive) {
-            String Work = showNewInfos(employeeRow, "Work");
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" + " WHERE "
-                    + Const.EMPLOYEE_USERNAME + "=?";
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
-
-                preparedStatement.setString(1, Work);
-                preparedStatement.setString(2, employeeRow.getString("Username"));
-
-                preparedStatement.executeUpdate();
-                done();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
-
-
-    }
-
-    public String showNewInfos(ResultSet employeeRow, String target) throws SQLException {
-        String currentname = employeeRow.getString(target);
-        JFrame frame = new JFrame();
-        Object result = JOptionPane.showInputDialog(frame, "Your current '" + target + "' is : " + employeeRow.getString(target) + " Entere the new value");
-        return (String) result;
-    }
-
-
     public void done() {
         Frame parent = new JFrame();
         JOptionPane.showMessageDialog(parent, "Done");
@@ -351,32 +188,6 @@ public class DatabaseHandler extends Configs {
         }
     }
 
-/*
-    public void viewAllEmployee() {
-        ResultSet resultSet = null;
-        String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE;
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = getDbConnection().prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Employee employee = new Employee();
-                employee.setId(resultSet.getInt("id"));
-                employee.setName(resultSet.getString("Name"));
-                employee.setLastName(resultSet.getString("LastName"));
-                employee.setLevel(resultSet.getInt("Level"));
-                employee.setWork(resultSet.getString("Work"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
-*/
-
     //Adding Company into Database
     public void addCompany(Company company) {
         String insert = "INSERT INTO " + Const.COMPANYS_TABLE + "(" + Const.COMPANY_NAME + "," + Const.COMPANY_PLACE +"," +Const.COMPANY_CUSTOMER+ ")" + "VALUES(?,?,?)";
@@ -397,6 +208,7 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    //adding Job order number for existing company
     public void addJobOrderNo(Company company) {
         String insert = "INSERT INTO " + Const.JOBORDERS_TABLE + "(" + Const.COMPANY_NAMEJ + "," + Const.JOBORDERNO_NO + ")" +
                 "VALUES ((SELECT " + Const.COMPANY_NAME + " FROM " +
@@ -416,6 +228,7 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    //adding offer number for existing company
     public void addOfferNo(Company company) {
         String insert = "INSERT INTO " + Const.OFFERNO_TABLE + "(" + Const.COMPANY_NAMEO + "," + Const.JOBOFFERNO_NO + ")" +
                 "VALUES ((SELECT " + Const.COMPANY_NAME + " FROM " +
@@ -435,6 +248,7 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+ //return a list full of companies Name to select from
     public ObservableList allCompaniesList() {
         ObservableList<String> companies = FXCollections.observableArrayList();
         ResultSet resultSet = null;
@@ -456,7 +270,7 @@ public class DatabaseHandler extends Configs {
         return companies;
     }
 
-
+    //return a company with this Name
     public Company getCompany(Company company) {
         ResultSet resultSet = null;
         if (!company.getName().equals("")) {
@@ -482,6 +296,7 @@ public class DatabaseHandler extends Configs {
         return company;
     }
 
+    //return an equipment with this Name
     public ResultSet getEquipment(Equipment equipment){
         ResultSet resultSet = null;
         if (!equipment.getName().equals("")) {
@@ -502,6 +317,9 @@ public class DatabaseHandler extends Configs {
         return resultSet;
     }
 
+
+
+    //return a list full of equipments Name to select from
     public ObservableList allEquipment() {
         Equipment equipment = new Equipment();
         ObservableList<String> equipments = FXCollections.observableArrayList();
@@ -523,6 +341,7 @@ public class DatabaseHandler extends Configs {
     }
 
 
+    //return a list with all employees name for the Table in employee window
     public ObservableList viewAllEmployee() {
         ObservableList<Employee> employees = FXCollections.observableArrayList();
         employees.clear();
@@ -548,7 +367,4 @@ public class DatabaseHandler extends Configs {
         }
         return employees;
     }
-
-
-
 }
