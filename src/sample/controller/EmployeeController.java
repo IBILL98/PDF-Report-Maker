@@ -26,7 +26,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -74,45 +73,18 @@ public class EmployeeController {
 
     @FXML
     void searhEmployee(KeyEvent event) {
-        if(!employeesSearchText.getText().equals("")){
-            employees.clear();
-            ResultSet resultSet = null;
-            PreparedStatement preparedStatement = null;
-            try{
-                String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE +" WHERE " + "(" + Const.EMPLOYEE_NAME + " LIKE ?" + ") OR ("
-                        +Const.EMPLOYEE_LASTNAME + " LIKE ?) OR (" + Const.EMPLOYEE_ID + " LIKE ?)";
-                preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
-                preparedStatement.setString(1, employeesSearchText.getText());
-                preparedStatement.setString(2, employeesSearchText.getText());
-                preparedStatement.setString(3, employeesSearchText.getText());
+        if (!employeesSearchText.getText().equals("")){
+            employeesIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+            employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
+            employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
+            employeeTable.setItems(databaseHandler.searchemployeeList(employeesSearchText.getText()));
 
-                resultSet = preparedStatement.executeQuery();
-                while (resultSet.next()) {
-                    Employee employee = new Employee();
-                    employee.setId(resultSet.getInt("id"));
-                    employee.setName(resultSet.getString("Name"));
-                    employee.setLastName(resultSet.getString("LastName"));
-                    employee.setLevel(resultSet.getInt("Level"));
-                    employee.setWork(resultSet.getString("Work"));
-                    employees.add(employee);
-                }
-                employeesIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-                employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-                employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-                employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
-                employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
-                employeeTable.setItems(employees);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
         }else {
             viewElements();
         }
-
     }
-
 
 
     @FXML
@@ -153,7 +125,6 @@ public class EmployeeController {
     public void deleteEmployees() {
         Employee employee = employeeTable.getSelectionModel().getSelectedItem();
         employeeTable.setEditable(true);
-        //System.out.println(employee.getId());
         String delete = "DELETE FROM " + Const.EMPLOYEE_TABLE + " WHERE " + "(" + Const.EMPLOYEE_ID + " =?" + ")";
         try {
             PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(delete);
@@ -268,23 +239,5 @@ public class EmployeeController {
             }
         });
 
-        /*employeesNameColumn.setCellFactory();
-        employeesNameColumn.setOnEditCommit(employeeStringCellEditEvent -> {
-            Employee employee = employeeTable.getSelectionModel().getSelectedItem();
-            employee.setName(employeeStringCellEditEvent.getNewValue());
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
-            try {
-                PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
-                preparedStatement.setString(1, employee.getName());
-                preparedStatement.setString(2, String.valueOf(employee.getId()));
-                preparedStatement.executeUpdate();
-                Frame parent = new JFrame();
-                JOptionPane.showMessageDialog(parent, "Done");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        });*/
     }
 }

@@ -13,9 +13,6 @@ import java.sql.*;
 
 public class DatabaseHandler extends Configs {
 
-    private DatabaseHandler databaseHandler;
-    private JPanel pane;
-
     Connection dbConnection;
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
@@ -338,6 +335,43 @@ public class DatabaseHandler extends Configs {
             e.printStackTrace();
         }
         return equipments;
+    }
+
+
+    //return a list for the search employee
+    public ObservableList searchemployeeList(String searchWord){
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        if(!searchWord.equals("")){
+            employees.clear();
+            ResultSet resultSet = null;
+            PreparedStatement preparedStatement = null;
+            try{
+                String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE +" WHERE " + "(" + Const.EMPLOYEE_NAME + " LIKE ?" + ") OR ("
+                        +Const.EMPLOYEE_LASTNAME + " LIKE ?) OR (" + Const.EMPLOYEE_ID + " LIKE ?)";
+                preparedStatement = getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1, searchWord);
+                preparedStatement.setString(2, searchWord);
+                preparedStatement.setString(3, searchWord);
+
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Employee employee = new Employee();
+                    employee.setId(resultSet.getInt("id"));
+                    employee.setName(resultSet.getString("Name"));
+                    employee.setLastName(resultSet.getString("LastName"));
+                    employee.setLevel(resultSet.getInt("Level"));
+                    employee.setWork(resultSet.getString("Work"));
+                    employees.add(employee);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }else {
+            viewAllEmployee();
+        }
+        return employees;
     }
 
 
