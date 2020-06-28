@@ -1,5 +1,12 @@
 package sample.controller;
 
+
+import javafx.print.*;
+
+import javafx.scene.layout.AnchorPane;
+
+import javafx.scene.layout.VBox;
+import javafx.scene.transform.Scale;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -8,10 +15,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.awt.*;
+import java.io.*;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +37,9 @@ import sample.model.Company;
 import sample.model.Employee;
 import sample.model.Equipment;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
 public class CreatReportController {
 
     @FXML
@@ -38,6 +47,10 @@ public class CreatReportController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private VBox vbox;
+
 
     @FXML
     private TextField reportCustomer;
@@ -465,7 +478,96 @@ public class CreatReportController {
         reportResult9.getSelectionModel().selectFirst();
 
         reportExportExcelButton.setOnAction(event -> {
-            toxl();
+
+            if (((!reportResult1.getValue().toString().equals("-")
+                    && (reportWeld1.getText().equals("")
+                    || reportTestLenght1.getText().equals("")
+                    || reportWeldingProcess1.getText().equals("")
+                    || reportDiameter1.getText().equals("")
+                    || reportThickness1.getText().equals("")))
+                    ||(reportResult1.getValue().equals("RED")&&(reportDefectType1.getText().equals("")
+                    ||reportDefectLoc1.getText().equals(""))))||
+                    ((!reportResult2.getValue().toString().equals("-")
+                            && (reportWeld2.getText().equals("")
+                            || reportTestLenght2.getText().equals("")
+                            || reportWeldingProcess2.getText().equals("")
+                            || reportDiameter2.getText().equals("")
+                            || reportThickness2.getText().equals("")))
+                            ||(reportResult2.getValue().equals("RED")&&(reportDefectType2.getText().equals("")
+                            ||reportDefectLoc2.getText().equals(""))))||
+                    ((!reportResult2.getValue().toString().equals("-")
+                            && (reportWeld2.getText().equals("")
+                            || reportTestLenght2.getText().equals("")
+                            || reportWeldingProcess2.getText().equals("")
+                            || reportDiameter2.getText().equals("")
+                            || reportThickness2.getText().equals("")))
+                            ||(reportResult2.getValue().equals("RED")&&(reportDefectType2.getText().equals("")
+                            ||reportDefectLoc2.getText().equals(""))))||
+                    ((!reportResult3.getValue().toString().equals("-")
+                            && (reportWeld3.getText().equals("")
+                            || reportTestLenght3.getText().equals("")
+                            || reportWeldingProcess3.getText().equals("")
+                            || reportDiameter3.getText().equals("")
+                            || reportThickness3.getText().equals("")))
+                            ||(reportResult3.getValue().equals("RED")&&(reportDefectType3.getText().equals("")
+                            ||reportDefectLoc3.getText().equals(""))))||
+                    ((!reportResult4.getValue().toString().equals("-")
+                            && (reportWeld4.getText().equals("")
+                            || reportTestLenght4.getText().equals("")
+                            || reportWeldingProcess4.getText().equals("")
+                            || reportDiameter4.getText().equals("")
+                            || reportThickness4.getText().equals("")))
+                            ||(reportResult4.getValue().equals("RED")&&(reportDefectType4.getText().equals("")
+                            ||reportDefectLoc4.getText().equals(""))))||
+                    ((!reportResult5.getValue().toString().equals("-")
+                            && (reportWeld5.getText().equals("")
+                            || reportTestLenght5.getText().equals("")
+                            || reportWeldingProcess5.getText().equals("")
+                            || reportDiameter5.getText().equals("")
+                            || reportThickness5.getText().equals("")))
+                            ||(reportResult5.getValue().equals("RED")&&(reportDefectType5.getText().equals("")
+                            ||reportDefectLoc5.getText().equals(""))))||
+                    ((!reportResult6.getValue().toString().equals("-")
+                            && (reportWeld6.getText().equals("")
+                            || reportTestLenght6.getText().equals("")
+                            || reportWeldingProcess6.getText().equals("")
+                            || reportDiameter6.getText().equals("")
+                            || reportThickness6.getText().equals("")))
+                            ||(reportResult6.getValue().equals("RED")&&(reportDefectType6.getText().equals("")
+                            ||reportDefectLoc6.getText().equals(""))))||
+                    ((!reportResult7.getValue().toString().equals("-")
+                            && (reportWeld7.getText().equals("")
+                            || reportTestLenght7.getText().equals("")
+                            || reportWeldingProcess7.getText().equals("")
+                            || reportDiameter7.getText().equals("")
+                            || reportThickness7.getText().equals("")))
+                            ||(reportResult7.getValue().equals("RED")&&(reportDefectType7.getText().equals("")
+                            ||reportDefectLoc7.getText().equals(""))))||
+                    ((!reportResult8.getValue().toString().equals("-")
+                            && (reportWeld8.getText().equals("")
+                            || reportTestLenght8.getText().equals("")
+                            || reportWeldingProcess8.getText().equals("")
+                            || reportDiameter8.getText().equals("")
+                            || reportThickness8.getText().equals("")))
+                            ||(reportResult8.getValue().equals("RED")&&(reportDefectType8.getText().equals("")
+                            ||reportDefectLoc8.getText().equals(""))))||
+                    ((!reportResult9.getValue().toString().equals("-")
+                            && (reportWeld9.getText().equals("")
+                            || reportTestLenght9.getText().equals("")
+                            || reportWeldingProcess9.getText().equals("")
+                            || reportDiameter9.getText().equals("")
+                            || reportThickness9.getText().equals("")))
+                            ||(reportResult9.getValue().equals("RED")&&(reportDefectType9.getText().equals("")
+                            ||reportDefectLoc9.getText().equals(""))))
+            ){
+                Frame parent = new JFrame();
+                JOptionPane.showMessageDialog(parent, "Please fill all ");
+            }else {
+                toxl();
+            }
+        });
+        reportExportPDFButton.setOnAction(event -> {
+            topdf(vbox);
         });
     }
 
@@ -551,19 +653,13 @@ public class CreatReportController {
     }
 
 
-
-
-
-
-
-
     public void toxl(){
 
         try {
             FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\MONSTER\\Desktop\\Bericht2_MitKommentaren.xlsx"));
-
             XSSFWorkbook workbook = null;
             workbook = new XSSFWorkbook(inputStream);
+
             //////the first Table
             XSSFSheet sheet = workbook.getSheetAt(0);
             XSSFRow row = sheet.getRow(2);
@@ -590,7 +686,6 @@ public class CreatReportController {
             XSSFCell cell8 = row2.getCell(26);
             cell8.setCellValue(reportReportDate.getText());
 
-
             XSSFRow row3 = sheet.getRow(5);
             XSSFCell cell9 = row3.getCell(3);
             cell9.setCellValue(reportInspectionStandart.getText());
@@ -599,7 +694,6 @@ public class CreatReportController {
             XSSFCell cell11 = row3.getCell(26);
             cell11.setCellValue(reportJobOrderNo.getValue());
 
-
             XSSFRow row4 = sheet.getRow(6);
             XSSFCell cell12 = row4.getCell(3);
             cell12.setCellValue(reportEvaluationStandart.getText());
@@ -607,6 +701,7 @@ public class CreatReportController {
             cell13.setCellValue(reportStageOfExamination.getValue().toString());
             XSSFCell cell14 = row4.getCell(26);
             cell14.setCellValue(reportOfferNo.getValue());
+
 
 
             //////the second Table
@@ -618,7 +713,6 @@ public class CreatReportController {
             XSSFCell cell17 = row5.getCell(25);
             cell17.setCellValue(reportSurfaceTemperature.getText());
 
-
             XSSFRow row6 = sheet.getRow(9);
             XSSFCell cell18 = row6.getCell(4);
             cell18.setCellValue(reportEquipment.getText());
@@ -627,15 +721,11 @@ public class CreatReportController {
             XSSFCell cell20 = row6.getCell(25);
             cell20.setCellValue(reportGaussFieldStrength.getText());
 
-
             XSSFRow row7 = sheet.getRow(10);
             XSSFCell cell21 = row7.getCell(4);
             cell21.setCellValue(reportMPCarrierMedium.getText());
             XSSFCell cell22 = row7.getCell(16);
             cell22.setCellValue(reportLuxmeter.getText());
-//            XSSFCell cell23 = row7.getCell(26);
-//            cell23.setCellValue("Done");
-
 
             XSSFRow row8 = sheet.getRow(11);
             XSSFCell cell24 = row8.getCell(4);
@@ -645,7 +735,6 @@ public class CreatReportController {
             XSSFCell cell26 = row8.getCell(25);
             cell26.setCellValue(reportSurfaceCondition1.getText());
 
-
             XSSFRow row9 = sheet.getRow(12);
             XSSFCell cell27 = row9.getCell(4);
             cell27.setCellValue(reportUVLightIntensity.getText());
@@ -653,7 +742,6 @@ public class CreatReportController {
             cell28.setCellValue(reportDemagnetization.getText());
             XSSFCell cell29 = row9.getCell(25);
             cell29.setCellValue(reportIdentificationofLightEquip.getText());
-
 
             XSSFRow row10 = sheet.getRow(13);
             XSSFCell cell30 = row10.getCell(4);
@@ -663,17 +751,29 @@ public class CreatReportController {
             XSSFCell cell32 = row10.getCell(25);
             cell32.setCellValue(reportLiftingTestDateNumber.getText());
 
-////////////////////////////////////////////////////////////////////////////////
-//
+            XSSFRow rowpic = sheet.getRow(14);
+            XSSFCell cellpic1 = rowpic.getCell(4);
+            XSSFCell cellpic2 = rowpic.getCell(7);
+
+            if (reportButtWeld.isSelected()){
+                cellpic1.setCellValue(true);
+            }
+            if (reportFilletWeld.isSelected()){
+                cellpic2.setCellValue(true);
+            }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
             XSSFRow row11 = sheet.getRow(19);
             XSSFCell cell33 = row11.getCell(7);
             cell33.setCellValue(reportStandardDeviations.getText());
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
             XSSFRow row12 = sheet.getRow(20);
             XSSFCell cell36 = row12.getCell(7);
             cell36.setCellValue(reportInspectionDates.getText());
-/////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
             XSSFRow row13 = sheet.getRow(21);
             XSSFCell cell39 = row13.getCell(7);
             cell39.setCellValue(reportDescriptionandAttachments.getText());
@@ -682,7 +782,7 @@ public class CreatReportController {
 
 
 
-//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
 
             XSSFRow row14 = sheet.getRow(24);
@@ -783,7 +883,6 @@ public class CreatReportController {
 
 
 
-
             XSSFRow row19 = sheet.getRow(29);
             XSSFCell cell82 = row19.getCell(1);
             cell82.setCellValue(reportWeld6.getText());
@@ -863,7 +962,6 @@ public class CreatReportController {
             cell113.setCellValue(reportResult9.getValue().toString());
 
 
-
             XSSFRow row23 = sheet.getRow(39);
             XSSFCell cell114 = row23.getCell(5);
             cell114.setCellValue(reportOperatorName.getText());
@@ -890,19 +988,30 @@ public class CreatReportController {
             XSSFCell cell122 = row25.getCell(20);
             cell122.setCellValue(reportApproverDate.getText());
 
+  // important to save the changes we made to the new file
 
-            // important to save the changes we made to the new file
-            workbook.write(new FileOutputStream("C:\\Users\\MONSTER\\Desktop\\excel.xlsx"));
+            workbook.write(new FileOutputStream("C:\\Users\\MONSTER\\Desktop\\"+ reportReportNo.getText()+".xlsx"));
             workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-
-
-
-
-
+    public void topdf(VBox vbox) {
+        Printer printer = Printer.getDefaultPrinter();
+        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
+        PrinterJob job = PrinterJob.createPrinterJob();
+        double scaleX = pageLayout.getPrintableWidth() / vbox.getBoundsInParent().getWidth();
+        double scaleY = pageLayout.getPrintableHeight() / vbox.getBoundsInParent().getHeight();
+        Scale scale = new Scale(scaleX, scaleY);
+        vbox.getTransforms().add(scale);
+        if (job != null) {
+            boolean success = job.printPage(pageLayout, vbox);
+            if (success) {
+                job.endJob();
+            }
+        }
+        vbox.getTransforms().remove(scale);
+    }
 }
+

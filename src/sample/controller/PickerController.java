@@ -188,6 +188,7 @@ public class PickerController {
                 loader.setLocation(getClass().getResource("/sample/view/createreport.fxml"));
                 try {
                     loader.load();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

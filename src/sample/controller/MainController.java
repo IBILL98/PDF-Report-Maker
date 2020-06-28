@@ -125,7 +125,6 @@ public class MainController {
             mainLogout.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
-
             try {
                 loader.load();
             } catch (IOException e) {
@@ -140,14 +139,12 @@ public class MainController {
         mainAddCompany.setOnAction(event -> {
             showAddFrimaScreen();
         });
-
     }
 
     private void showEditScreen() {
         mainEditProfile.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/sample/view/employees.fxml"));
-
         try {
             loader.load();
         } catch (IOException e) {

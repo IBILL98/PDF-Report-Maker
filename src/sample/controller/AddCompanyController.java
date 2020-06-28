@@ -35,11 +35,6 @@ public class AddCompanyController {
     @FXML
     private JFXTextField addCompanyCustomer;
 
-    @FXML
-    private JFXTextField addCompanyOfferNo;
-
-    @FXML
-    private JFXTextField addCompanyJobOrderNo;
 
     @FXML
     private JFXButton addCompanyButton;

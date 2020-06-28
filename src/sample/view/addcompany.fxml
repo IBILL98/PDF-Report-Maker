@@ -2,35 +2,56 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddCompanyController">
+<GridPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddCompanyController">
+  <columnConstraints>
+      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" percentWidth="30.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="38.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="32.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="22.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="11.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="16.75" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="16.75" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="16.75" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="16.75" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <JFXTextField fx:id="addCompanyName" layoutX="230.0" layoutY="215.0" prefHeight="31.0" prefWidth="316.0" promptText="Name" />
-      <JFXTextField fx:id="addCompanyPlace" layoutX="230.0" layoutY="292.0" prefHeight="31.0" prefWidth="316.0" promptText="Place" />
-      <AnchorPane prefHeight="127.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
-      <AnchorPane layoutY="127.0" prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #0069c0;">
-         <children>
-            <Label alignment="CENTER" layoutX="325.0" prefHeight="61.0" prefWidth="150.0" text="Add Company" textFill="WHITE">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <JFXButton fx:id="addCompanyButton" layoutX="313.0" layoutY="456.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Company" textFill="WHITE" />
-      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
          <image>
             <Image url="@../assets/reply.png" />
          </image>
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
       </ImageView>
-      <Separator layoutX="175.0" layoutY="188.0" orientation="VERTICAL" prefHeight="334.0" prefWidth="49.0" />
-      <Separator layoutX="546.0" layoutY="188.0" orientation="VERTICAL" prefHeight="334.0" prefWidth="49.0" />
-      <JFXTextField fx:id="addCompanyCustomer" layoutX="230.0" layoutY="367.0" prefHeight="31.0" prefWidth="316.0" promptText="Customer" />
+      <JFXTextField fx:id="addCompanyName" prefHeight="31.0" prefWidth="316.0" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <JFXTextField fx:id="addCompanyPlace" prefHeight="31.0" prefWidth="316.0" promptText="Place" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <JFXTextField fx:id="addCompanyCustomer" prefHeight="31.0" prefWidth="316.0" promptText="Customer" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <JFXButton fx:id="addCompanyButton" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Company" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="40.0" />
+         </GridPane.margin></JFXButton>
+      <Pane nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #0069c0;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Pane nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #0069c0;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Pane nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #0069c0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="106.0" prefWidth="313.0" text="Add Company" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" />
    </children>
-</AnchorPane>
+</GridPane>

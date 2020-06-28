@@ -3,47 +3,132 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddEmployeeController">
+<GridPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddEmployeeController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="15.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" percentWidth="45.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="22.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="77.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <JFXTextField fx:id="addEmployeeName" layoutX="114.0" layoutY="210.0" prefHeight="31.0" prefWidth="270.0" promptText="Name" />
-      <JFXTextField fx:id="addEmployeeLastName" layoutX="114.0" layoutY="260.0" prefHeight="31.0" prefWidth="270.0" promptText="LastName" />
-      <AnchorPane prefHeight="127.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
-      <JFXTextField fx:id="addEmployeeUsername" layoutX="114.0" layoutY="326.0" prefHeight="31.0" prefWidth="270.0" promptText="Username" />
-      <JFXTextField fx:id="addEmployeeLevel" layoutX="114.0" layoutY="385.0" prefHeight="31.0" prefWidth="270.0" promptText="Level : 1 ,2 ,3 ,4" />
-      <AnchorPane layoutY="127.0" prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #0069c0;">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Label alignment="CENTER" layoutX="325.0" prefHeight="61.0" prefWidth="150.0" text="Add Employee" textFill="WHITE">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
+            <JFXTextField fx:id="addEmployeeName" prefHeight="31.0" prefWidth="270.0" promptText="Name">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="addEmployeeLastName" prefHeight="31.0" prefWidth="270.0" promptText="LastName">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="addEmployeeUsername" prefHeight="31.0" prefWidth="270.0" promptText="Username">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="addEmployeeLevel" prefHeight="31.0" prefWidth="270.0" promptText="Level : 1 ,2 ,3 ,4">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="addEmployeePassword" prefHeight="31.0" prefWidth="270.0" promptText="Password">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
          </children>
-      </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="563.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/unnamed.png" />
-         </image>
-      </ImageView>
-      <JFXTextField fx:id="addEmployeePassword" layoutX="114.0" layoutY="445.0" prefHeight="31.0" prefWidth="270.0" promptText="Password" />
-      <JFXRadioButton fx:id="addOperator" layoutX="450.0" layoutY="210.0" prefHeight="31.0" prefWidth="150.0" selected="true" text="Operator">
-         <toggleGroup>
-            <ToggleGroup fx:id="Group1" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="addRater" layoutX="450.0" layoutY="260.0" prefHeight="31.0" prefWidth="150.0" text="Rater" toggleGroup="$Group1" />
-      <JFXRadioButton fx:id="addApprover" layoutX="450.0" layoutY="310.0" prefHeight="31.0" prefWidth="150.0" text="Approver" toggleGroup="$Group1" />
-      <JFXButton fx:id="addEmployeeButton" layoutX="563.0" layoutY="453.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Employee" textFill="WHITE" />
-      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+         <GridPane.margin>
+            <Insets top="50.0" />
+         </GridPane.margin>
+      </VBox>
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
          <image>
             <Image url="@../assets/reply.png" />
          </image>
+         <GridPane.margin>
+            <Insets bottom="30.0" />
+         </GridPane.margin>
       </ImageView>
+      <JFXButton fx:id="addEmployeeButton" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Employee" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="100.0" />
+         </GridPane.margin></JFXButton>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <image>
+            <Image url="@../assets/unnamed.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="150.0" />
+         </GridPane.margin>
+      </ImageView>
+      <VBox alignment="TOP_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <JFXRadioButton fx:id="addOperator" prefHeight="31.0" prefWidth="150.0" selected="true" text="Operator">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Group1" />
+               </toggleGroup>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="addRater" prefHeight="31.0" prefWidth="150.0" text="Rater" toggleGroup="$Group1">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="addApprover" prefHeight="31.0" prefWidth="150.0" text="Approver" toggleGroup="$Group1">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXRadioButton>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="20.0" top="100.0" />
+         </GridPane.margin>
+      </VBox>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="Add Employee" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="50.0" />
+         </GridPane.margin>
+      </Label>
    </children>
-</AnchorPane>
+</GridPane>
