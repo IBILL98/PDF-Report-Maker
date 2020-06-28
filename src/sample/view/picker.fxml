@@ -6,73 +6,98 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.PickerController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.PickerController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" percentWidth="20.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="22.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.16" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.16" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.16" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.16" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.16" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.16" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <AnchorPane prefHeight="127.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
-      <AnchorPane layoutY="127.0" prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #0069c0;">
-         <children>
-            <Label alignment="CENTER" layoutX="288.0" minHeight="61.0" text="Pick infos for the Report" textFill="WHITE">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+      <Pane style="-fx-background-color: #0069c0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Pane style="-fx-background-color: #0069c0;" GridPane.rowIndex="1" />
+      <Pane style="-fx-background-color: #0069c0;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Pane style="-fx-background-color: #0069c0;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Pane style="-fx-background-color: #0069c0;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="4" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <Label text="Company :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label text="Equipment :" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label text="Operator :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label text="Rater :" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label text="Approver :" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="pickerCompany" onAction="#ccustomerdefine" prefWidth="150.0" promptText="Company" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <ComboBox fx:id="pickerEquipment" onAction="#equipmentDefine" prefWidth="150.0" promptText="Equipment" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox fx:id="pickerOperator" onAction="#operatorDefine" prefWidth="150.0" promptText="Operator" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <ComboBox fx:id="pickerRater" onAction="#raterDefine" prefWidth="150.0" promptText="Rater" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <ComboBox fx:id="pickerApprover" onAction="#approverDefine" prefWidth="150.0" promptText="Approver" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
          <image>
             <Image url="@../assets/reply.png" />
          </image>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="20.0" />
+         </GridPane.margin>
       </ImageView>
-      <ComboBox fx:id="pickerCompany" layoutX="175.0" layoutY="221.0" onAction="#ccustomerdefine" prefWidth="150.0" promptText="Company" />
-      <Label layoutX="63.0" layoutY="220.0" text="Company :">
+      <Label text="The Costumer is :" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="400.0" layoutY="220.0" text="The Costumer is :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="pickerCustomer" layoutX="537.0" layoutY="220.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </Label>
-      <ComboBox fx:id="pickerEquipment" layoutX="175.0" layoutY="276.0" onAction="#equipmentDefine" prefWidth="150.0" promptText="Equipment" />
-      <Label layoutX="63.0" layoutY="275.0" text="Equipment :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="pickerOperator" layoutX="175.0" layoutY="336.0" onAction="#operatorDefine" prefWidth="150.0" promptText="Operator" />
-      <Label layoutX="63.0" layoutY="335.0" text="Operator :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="pickerRater" layoutX="175.0" layoutY="391.0" onAction="#raterDefine" prefWidth="150.0" promptText="Rater" />
-      <Label layoutX="63.0" layoutY="390.0" text="Rater :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="pickerApprover" layoutX="175.0" layoutY="439.0" onAction="#approverDefine" prefWidth="150.0" promptText="Approver" />
-      <Label layoutX="63.0" layoutY="438.0" text="Approver :">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="pickerNext" layoutX="609.0" layoutY="477.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" style="-fx-background-color: #009688;" text="Next" textFill="WHITE">
+      <Button fx:id="pickerNext" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" style="-fx-background-color: #009688;" text="Next" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="7">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Button>
+      <Label alignment="CENTER" minHeight="61.0" text="Pick infos for the Report" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="pickerCustomer" GridPane.columnIndex="4" GridPane.rowIndex="2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
-</AnchorPane>
+</GridPane>

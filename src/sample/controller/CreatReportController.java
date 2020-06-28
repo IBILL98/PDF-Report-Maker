@@ -3,8 +3,6 @@ package sample.controller;
 
 import javafx.print.*;
 
-import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Scale;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -37,7 +35,6 @@ import sample.model.Company;
 import sample.model.Employee;
 import sample.model.Equipment;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class CreatReportController {

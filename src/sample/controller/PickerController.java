@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -78,7 +75,7 @@ public class PickerController {
 
 
     @FXML
-    void ccustomerdefine(ActionEvent event) {
+    void ccustomerdefine(ActionEvent event){
         company.setName(pickerCompany.getSelectionModel().getSelectedItem());
         company.setCustomer(databaseHandler.getCompany(company).getCustomer());
         pickerCustomer.setText(company.getCustomer());

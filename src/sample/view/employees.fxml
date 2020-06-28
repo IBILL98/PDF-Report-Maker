@@ -1,35 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="550.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.EmployeeController">
+<GridPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.EmployeeController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="20.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="17.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="71.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="12.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <TableView fx:id="employeeTable" layoutY="83.0" minHeight="400.0" minWidth="616.0">
-        <columns>
-          <TableColumn fx:id="employeesIdColumn" minWidth="123.0" prefWidth="-1.0" text="id" />
-          <TableColumn fx:id="employeesNameColumn" minWidth="123.0" prefWidth="-1.0" text="Name" />
-            <TableColumn fx:id="employeesLastNameColumn" minWidth="123.0" prefWidth="-1.0" text="Last Name" />
-            <TableColumn fx:id="employeesLevelColumn" minWidth="123.0" prefWidth="-1.0" text="Level" />
-            <TableColumn fx:id="employeesWorkColumn" minWidth="123.0" prefWidth="-1.0" text="Work" />
-        </columns>
-      </TableView>
-      <AnchorPane minHeight="83.0" minWidth="801.0" style="-fx-background-color: #2196f3;">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField fx:id="employeesSearchText" layoutX="14.0" layoutY="42.0" onKeyReleased="#searhEmployee" promptText="search . ." />
+            <JFXButton fx:id="employeesEditButton" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Edit" textFill="WHITE" />
+            <JFXButton fx:id="employeesRemoveButton" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Remove" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </JFXButton>
          </children>
-      </AnchorPane>
-      <JFXButton fx:id="employeesEditButton" layoutX="636.0" layoutY="183.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Edit" textFill="WHITE" />
-      <JFXButton fx:id="employeesRemoveButton" layoutX="636.0" layoutY="251.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Remove" textFill="WHITE" />
-      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
+         <GridPane.margin>
+            <Insets left="10.0" right="5.0" top="75.0" />
+         </GridPane.margin>
+      </VBox>
+      <TableView fx:id="employeeTable" GridPane.rowIndex="1">
+         <columns>
+            <TableColumn fx:id="employeesIdColumn" maxWidth="1.7976931348623157E308" minWidth="133.0" prefWidth="-1.0" text="id" />
+            <TableColumn fx:id="employeesNameColumn" maxWidth="1.7976931348623157E308" minWidth="133.0" prefWidth="-1.0" text="Name" />
+            <TableColumn fx:id="employeesLastNameColumn" maxWidth="1.7976931348623157E308" minWidth="133.0" prefWidth="-1.0" text="Last Name" />
+            <TableColumn fx:id="employeesLevelColumn" maxWidth="1.7976931348623157E308" minWidth="133.0" prefWidth="-1.0" text="Level" />
+            <TableColumn fx:id="employeesWorkColumn" maxWidth="1.7976931348623157E308" minWidth="133.0" prefWidth="-1.0" text="Work" />
+         </columns>
+      </TableView>
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
          <image>
             <Image url="@../assets/reply.png" />
          </image>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" />
+         </GridPane.margin>
       </ImageView>
+      <TextField fx:id="employeesSearchText" onKeyReleased="#searhEmployee" promptText="search . .">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <GridPane.margin>
+            <Insets left="20.0" right="400.0" />
+         </GridPane.margin></TextField>
    </children>
-</AnchorPane>
+</GridPane>
