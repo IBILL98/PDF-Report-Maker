@@ -1,34 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="550.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="20.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="20.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="22.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="55.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="20.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="3.0" valignment="CENTER" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <AnchorPane minHeight="550.0" minWidth="799.0" prefHeight="550.0" prefWidth="799.0" style="-fx-background-color: #2196f3;">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="4" />
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <AnchorPane layoutY="86.0" minHeight="450.0" minWidth="800.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <JFXButton fx:id="mainCreateReport" layoutX="325.0" layoutY="78.0" minHeight="49.0" minWidth="150.0" ripplerFill="#009688" style="-fx-background-color: #009688;" text="Create a new report" textAlignment="CENTER" textFill="WHITE" />
-                  <JFXButton fx:id="mainEditProfile" layoutX="133.0" layoutY="244.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Edit Employee Profile" textFill="WHITE" />
-                  <JFXButton fx:id="mainAddEmployee" layoutX="133.0" layoutY="163.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Add new Employee" textFill="WHITE" />
-                  <JFXButton fx:id="mainAddCompany" layoutX="325.0" layoutY="163.0" minHeight="49.0" minWidth="150.0" style="-fx-background-color: #009688;" text="Add a new Company" textFill="WHITE" />
-                  <JFXButton fx:id="mainNumbers" layoutX="325.0" layoutY="244.0" minHeight="49.0" minWidth="150.0" onAction="#showEditCompanyScreen" style="-fx-background-color: #009688;" text="(Job OrderNo/OfferNo)" textFill="WHITE" />
-               </children></AnchorPane>
-            <Label alignment="CENTER" layoutX="340.0" layoutY="14.0" minHeight="60.0" minWidth="120.0" style="-fx-background-color: #2196f3;" text="Home" textFill="WHITE">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="mainLogout" layoutX="11.0" layoutY="30.0" minHeight="30.0" minWidth="88.0" style="-fx-background-color: #000000;" text="Logout" textFill="WHITE" />
-            <JFXButton fx:id="mainSignupButton" layoutX="106.0" layoutY="30.0" minHeight="30.0" minWidth="88.0" style="-fx-background-color: #000000;" text="SignUp" textFill="WHITE">
+            <JFXButton fx:id="mainCreateReport" prefHeight="49.0" prefWidth="150.0" ripplerFill="#009688" style="-fx-background-color: #009688;" text="Create a new report" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="mainAddCompany" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add a new Company" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="mainNumbers" onAction="#showEditCompanyScreen" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="(Job OrderNo/OfferNo)" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <JFXButton fx:id="mainEditProfile" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Employee Profile" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="85.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="mainAddEmployee" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new Employee" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <JFXButton fx:id="mainLogout" minHeight="30.0" minWidth="88.0" style="-fx-background-color: #000000;" text="Logout" textFill="WHITE">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="15.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="mainSignupButton" minHeight="30.0" minWidth="88.0" style="-fx-background-color: #000000;" text="SignUp" textFill="WHITE">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
+               <HBox.margin>
+                  <Insets bottom="15.0" left="15.0" />
+               </HBox.margin>
             </JFXButton>
          </children>
-      </AnchorPane>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Label alignment="CENTER" minHeight="60.0" minWidth="120.0" text="Home" textFill="WHITE" GridPane.columnIndex="2">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
    </children>
-</AnchorPane>
+</GridPane>

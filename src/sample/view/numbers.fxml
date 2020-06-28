@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -10,91 +11,101 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NumberController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NumberController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="70.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="13.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <AnchorPane fx:id="basicAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0">
-         <children>
-            <TabPane layoutY="83.0" prefHeight="399.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <tabs>
-                  <Tab closable="false" text="Job Order Numbers">
-                     <content>
-                        <Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <TabPane prefHeight="133.0" prefWidth="243.0" GridPane.rowIndex="1">
+         <tabs>
+            <Tab closable="false" text="Job Order Numbers">
+               <content>
+                  <Pane prefHeight="329.0" prefWidth="499.0">
+                     <children>
+                        <TableView fx:id="JobOrderNumbersTable" prefHeight="330.0" prefWidth="520.0">
+                           <columns>
+                              <TableColumn fx:id="jNameColumn" prefWidth="174.0" text="Name" />
+                              <TableColumn fx:id="jPlaceColumn" prefWidth="174.0" text="Place" />
+                              <TableColumn fx:id="jobOrderNumbersColumn" prefWidth="171.0" text="Job Order No" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="jSearchText" layoutX="561.0" layoutY="30.0" onKeyReleased="#jSearch" promptText="search . . ." />
+                        <JFXButton fx:id="jAddButton" layoutX="560.0" layoutY="88.0" onAction="#createJobOrderNo" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Job Order No" textFill="WHITE" />
+                        <JFXButton fx:id="jEditButton" layoutX="560.0" layoutY="162.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Job Order No" textFill="WHITE" />
+                        <JFXButton fx:id="jDeleteButton" layoutX="560.0" layoutY="229.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Job Order No" textFill="WHITE" />
+                        <AnchorPane fx:id="jobOrderNumberAnchor" layoutX="196.0" layoutY="50.0" prefHeight="228.0" prefWidth="405.0" style="-fx-background-color: F2F1EF;" visible="false">
                            <children>
-                              <TableView fx:id="JobOrderNumbersTable" prefHeight="375.0" prefWidth="520.0">
-                                <columns>
-                                  <TableColumn fx:id="jNameColumn" prefWidth="174.0" text="Name" />
-                                  <TableColumn fx:id="jPlaceColumn" prefWidth="174.0" text="Place" />
-                                    <TableColumn fx:id="jobOrderNumbersColumn" prefWidth="171.0" text="Job Order No" />
-                                </columns>
-                              </TableView>
-                              <TextField fx:id="jSearchText" layoutX="561.0" layoutY="30.0" onKeyReleased="#jSearch" promptText="search . . ." />
-                              <JFXButton fx:id="jAddButton" layoutX="560.0" layoutY="88.0" onAction="#createJobOrderNo" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Job Order No" textFill="WHITE" />
-                              <JFXButton fx:id="jEditButton" layoutX="560.0" layoutY="162.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Job Order No" textFill="WHITE" />
-                              <JFXButton fx:id="jDeleteButton" layoutX="560.0" layoutY="229.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Job Order No" textFill="WHITE" />
+                              <Label layoutX="23.0" layoutY="61.0" prefHeight="43.0" prefWidth="135.0" text="Company Name :" />
+                              <AnchorPane prefHeight="49.0" prefWidth="406.0" style="-fx-background-color: #2196f3;">
+                                 <children>
+                                    <Label layoutX="141.0" layoutY="16.0" text="Add Job Order Number" textFill="WHITE" />
+                                 </children>
+                              </AnchorPane>
+                              <TextField fx:id="jCName" layoutX="144.0" layoutY="70.0" />
+                              <TextField fx:id="jNumber" layoutX="144.0" layoutY="124.0" />
+                              <Label layoutX="23.0" layoutY="115.0" prefHeight="43.0" prefWidth="135.0" text="Job Order Number :" />
+                              <JFXButton fx:id="jAdd" layoutX="184.0" layoutY="161.0" onAction="#jAddJobOrderNo" style="-fx-background-color: #009688;" text="Add" />
+                              <JFXButton fx:id="cancel" layoutX="241.0" layoutY="161.0" onAction="#cancel" style="-fx-background-color: #009688;" text="Cancel" />
                            </children>
-                        </Pane>
-                     </content>
-                  </Tab>
-                  <Tab closable="false" text="Offer Numbers">
-                     <content>
-                        <Pane>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Offer Numbers">
+               <content>
+                  <Pane>
+                     <children>
+                        <TableView fx:id="OfferNumbersTable" prefHeight="375.0" prefWidth="520.0">
+                           <columns>
+                              <TableColumn fx:id="oNameColumn" prefWidth="173.0" text="Name" />
+                              <TableColumn fx:id="oPlaceColumn" prefWidth="173.0" text="Place" />
+                              <TableColumn fx:id="OfferNoColumn" prefWidth="173.0" text="Offer No" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="oSearchText" layoutX="561.0" layoutY="30.0" onKeyReleased="#oSearch" promptText="search . . ." />
+                        <JFXButton fx:id="oAddButton" layoutX="560.0" layoutY="88.0" onAction="#createOfferNo" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Offer No" textFill="WHITE" />
+                        <JFXButton fx:id="oEditButton" layoutX="560.0" layoutY="162.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Offer No" textFill="WHITE" />
+                        <JFXButton fx:id="oDeleteButton" layoutX="560.0" layoutY="229.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Offer No" textFill="WHITE" />
+                        <AnchorPane fx:id="OfferNumberAnchor" layoutX="221.0" layoutY="56.0" prefHeight="228.0" prefWidth="406.0" style="-fx-background-color: F2F1EF;" visible="false">
                            <children>
-                              <TableView fx:id="OfferNumbersTable" prefHeight="375.0" prefWidth="520.0">
-                                 <columns>
-                                    <TableColumn fx:id="oNameColumn" prefWidth="173.0" text="Name" />
-                                    <TableColumn fx:id="oPlaceColumn" prefWidth="173.0" text="Place" />
-                                    <TableColumn fx:id="OfferNoColumn" prefWidth="173.0" text="Offer No" />
-                                 </columns>
-                              </TableView>
-                              <TextField fx:id="oSearchText" layoutX="561.0" layoutY="30.0" onKeyReleased="#oSearch" promptText="search . . ." />
-                              <JFXButton fx:id="oAddButton" layoutX="560.0" layoutY="88.0" onAction="#createOfferNo" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Offer No" textFill="WHITE" />
-                              <JFXButton fx:id="oEditButton" layoutX="560.0" layoutY="162.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Offer No" textFill="WHITE" />
-                              <JFXButton fx:id="oDeleteButton" layoutX="560.0" layoutY="229.0" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Delete Offer No" textFill="WHITE" />
+                              <Label layoutX="23.0" layoutY="61.0" prefHeight="43.0" prefWidth="135.0" text="Company Name :" />
+                              <AnchorPane prefHeight="49.0" prefWidth="406.0" style="-fx-background-color: #2196f3;">
+                                 <children>
+                                    <Label layoutX="153.0" layoutY="16.0" text="Add Offer Number" textFill="WHITE" />
+                                 </children>
+                              </AnchorPane>
+                              <TextField fx:id="oName" layoutX="144.0" layoutY="70.0" />
+                              <TextField fx:id="oNumber" layoutX="144.0" layoutY="124.0" />
+                              <Label layoutX="23.0" layoutY="115.0" prefHeight="43.0" prefWidth="135.0" text="Offer Number :" />
+                              <JFXButton fx:id="oAdd" layoutX="184.0" layoutY="161.0" onAction="#oAddOfferNo" style="-fx-background-color: #009688;" text="Add" />
+                              <JFXButton fx:id="cancel1" layoutX="241.0" layoutY="161.0" onAction="#cancel" style="-fx-background-color: #009688;" text="Cancel" />
                            </children>
-                        </Pane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
-            <AnchorPane prefHeight="83.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
-            <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" layoutX="14.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/reply.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="jobOrderNumberAnchor" layoutX="197.0" layoutY="175.0" prefHeight="200.0" prefWidth="406.0" style="-fx-background-color: F2F1EF;" visible="false">
-         <children>
-            <Label layoutX="23.0" layoutY="61.0" prefHeight="43.0" prefWidth="135.0" text="Company Name :" />
-            <AnchorPane prefHeight="49.0" prefWidth="406.0" style="-fx-background-color: #2196f3;">
-               <children>
-                  <Label layoutX="141.0" layoutY="16.0" text="Add Job Order Number" textFill="WHITE" />
-               </children>
-            </AnchorPane>
-            <TextField fx:id="jCName" layoutX="144.0" layoutY="70.0" />
-            <TextField fx:id="jNumber" layoutX="144.0" layoutY="124.0" />
-            <Label layoutX="23.0" layoutY="115.0" prefHeight="43.0" prefWidth="135.0" text="Job Order Number :" />
-            <JFXButton fx:id="jAdd" layoutX="184.0" layoutY="161.0" onAction="#jAddJobOrderNo" style="-fx-background-color: #009688;" text="Add" />
-            <JFXButton fx:id="cancel" layoutX="241.0" layoutY="161.0" onAction="#cancel" style="-fx-background-color: #009688;" text="Cancel" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="OfferNumberAnchor" layoutX="197.0" layoutY="175.0" prefHeight="200.0" prefWidth="406.0" style="-fx-background-color: F2F1EF;" visible="false">
-         <children>
-            <Label layoutX="23.0" layoutY="61.0" prefHeight="43.0" prefWidth="135.0" text="Company Name :" />
-            <AnchorPane prefHeight="49.0" prefWidth="406.0" style="-fx-background-color: #2196f3;">
-               <children>
-                  <Label layoutX="153.0" layoutY="16.0" text="Add Offer Number" textFill="WHITE" />
-               </children>
-            </AnchorPane>
-            <TextField fx:id="oName" layoutX="144.0" layoutY="70.0" />
-            <TextField fx:id="oNumber" layoutX="144.0" layoutY="124.0" />
-            <Label layoutX="23.0" layoutY="115.0" prefHeight="43.0" prefWidth="135.0" text="Offer Number :" />
-            <JFXButton fx:id="oAdd" layoutX="184.0" layoutY="161.0" onAction="#oAddOfferNo" style="-fx-background-color: #009688;" text="Add" />
-            <JFXButton fx:id="cancel1" layoutX="241.0" layoutY="161.0" onAction="#cancel" style="-fx-background-color: #009688;" text="Cancel" />
-         </children>
-      </AnchorPane>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+         <image>
+            <Image url="@../assets/reply.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
-</AnchorPane>
+</GridPane>
