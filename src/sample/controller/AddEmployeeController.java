@@ -12,18 +12,14 @@ import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.util.Base64;
+
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AddEmployeeController {
@@ -68,10 +64,12 @@ public class AddEmployeeController {
     private ImageView deleteBack;
 
     @FXML
+    private JFXDatePicker addCdate;
+
+    @FXML
     void initialize() {
         addEmployeeButton.setOnAction(event -> {
-           // createEmployee();
-
+           createEmployee();
         });
 
         deleteBack.setOnMouseClicked((mouseEvent -> {
@@ -93,7 +91,7 @@ public class AddEmployeeController {
 
 
     private void createEmployee() {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+
 
         String Name = addEmployeeName.getText();
         String LastName = addEmployeeLastName.getText();
@@ -117,8 +115,11 @@ public class AddEmployeeController {
             Work = "Rater";
         }
 
-        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work);
-        databaseHandler.addEmployee(employee);
+        LocalDate Cdate = addCdate.getValue();
+
+        Employee employee = new Employee(Name, LastName, Username, Level, Password, Work,Cdate);
+
+        DatabaseHandler.addEmployee(employee);
     }
 
 

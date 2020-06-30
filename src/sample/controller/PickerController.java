@@ -58,13 +58,12 @@ public class PickerController {
     @FXML
     private Button pickerNext;
 
-    DatabaseHandler databaseHandler = new DatabaseHandler();
 
 
     ObservableList operators = FXCollections.observableArrayList();
     ObservableList approvers = FXCollections.observableArrayList();
     ObservableList raters = FXCollections.observableArrayList();
-    ObservableList allemployees = databaseHandler.viewAllEmployee();
+    ObservableList allemployees = DatabaseHandler.viewAllEmployee();
 
     Company company = new Company();
     Equipment equipment = new Equipment();
@@ -77,7 +76,7 @@ public class PickerController {
     @FXML
     void ccustomerdefine(ActionEvent event){
         company.setName(pickerCompany.getSelectionModel().getSelectedItem());
-        company.setCustomer(databaseHandler.getCompany(company).getCustomer());
+        company.setCustomer(DatabaseHandler.getCompany(company).getCustomer());
         pickerCustomer.setText(company.getCustomer());
     }
 
@@ -87,7 +86,7 @@ public class PickerController {
     @FXML
     void equipmentDefine(ActionEvent event) throws SQLException {
         equipment.setName(pickerEquipment.getSelectionModel().getSelectedItem());
-        ResultSet resultset = databaseHandler.getEquipment(equipment);
+        ResultSet resultset = DatabaseHandler.getEquipment(equipment);
         while (resultset.next()){
             pickedequipment.setName(resultset.getString("Equipment"));
             pickedequipment.setId(Integer.parseInt(resultset.getString("Id")));
@@ -106,7 +105,7 @@ public class PickerController {
         String selected = pickerOperator.getSelectionModel().getSelectedItem();
         String id = idFinder(selected);
         operator.setId(Integer.parseInt(String.valueOf(id)));
-        ResultSet resultset = databaseHandler.getEmployeeById(operator);
+        ResultSet resultset = DatabaseHandler.getEmployeeById(operator);
         while (resultset.next()){
             pickedoperator.setName(resultset.getString("Name"));
             pickedoperator.setLastName(resultset.getString("LastName"));
@@ -120,7 +119,7 @@ public class PickerController {
         String selected = pickerRater.getSelectionModel().getSelectedItem();
         String id = idFinder(selected);
         rater.setId(Integer.parseInt(id));
-        ResultSet resultset = databaseHandler.getEmployeeById(rater);
+        ResultSet resultset = DatabaseHandler.getEmployeeById(rater);
         while (resultset.next()){
             pickedrater.setName(resultset.getString("Name"));
             pickedrater.setLastName(resultset.getString("LastName"));
@@ -134,7 +133,7 @@ public class PickerController {
         String selected = pickerApprover.getSelectionModel().getSelectedItem();
         String id = idFinder(selected);
         approver.setId(Integer.parseInt(id));
-        ResultSet resultset = databaseHandler.getEmployeeById(approver);
+        ResultSet resultset = DatabaseHandler.getEmployeeById(approver);
         while (resultset.next()){
             pickedapprover.setName(resultset.getString("Name"));
             pickedapprover.setLastName(resultset.getString("LastName"));
@@ -151,8 +150,8 @@ public class PickerController {
 
     @FXML
     void initialize() {
-        pickerCompany.setItems(databaseHandler.allCompaniesList());
-        pickerEquipment.setItems(databaseHandler.allEquipment());
+        pickerCompany.setItems(DatabaseHandler.allCompaniesList());
+        pickerEquipment.setItems(DatabaseHandler.allEquipment());
 
         for (int i=0;i<allemployees.size();i++){
             Employee employee = (Employee) allemployees.get(i);

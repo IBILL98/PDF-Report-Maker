@@ -45,7 +45,6 @@ public class LoginController {
 
     private static String comboboxvalue;
 
-    DatabaseHandler databaseHandler = new DatabaseHandler();
 
     @FXML
     void initialize() {
@@ -65,7 +64,7 @@ public class LoginController {
                 employee.setUsername(loginText);
                 employee.setPassword(loginPwd);
 
-                ResultSet employeeRow = databaseHandler.getEmployee(employee);
+                ResultSet employeeRow = DatabaseHandler.getEmployee(employee);
                 int counter = 0;
                 try {
                     while(employeeRow.next()) {
@@ -94,7 +93,7 @@ public class LoginController {
                 admin.setUsername(loginText);
                 admin.setPassword(loginPwd);
 
-                ResultSet adminRow = databaseHandler.getAdmin(admin);
+                ResultSet adminRow = DatabaseHandler.getAdmin(admin);
                 int counter = 0;
                 try {
                     while(adminRow.next()) {

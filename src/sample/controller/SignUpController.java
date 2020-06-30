@@ -66,7 +66,6 @@ public class SignUpController {
     }
 
     private void createAdmin(){
-        DatabaseHandler databaseHandler = new DatabaseHandler();
 
         String Name = signUpName.getText();
         String LastName = signUpLastName.getText();
@@ -74,6 +73,6 @@ public class SignUpController {
         String Password = signUpPassword.getText();
 
         Admin admin = new Admin(Name,LastName,Username,Password);
-        databaseHandler.addAdmin(admin);
+        DatabaseHandler.addAdmin(admin);
     }
 }

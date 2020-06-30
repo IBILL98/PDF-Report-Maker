@@ -27,8 +27,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+
 
 public class EmployeeController {
     @FXML
@@ -56,6 +59,9 @@ public class EmployeeController {
     private TableColumn<Employee, String> employeesWorkColumn;
 
     @FXML
+    private TableColumn<DatePicker, String> employeesDateColumn;
+
+    @FXML
     private JFXButton employeesEditButton;
 
     @FXML
@@ -65,9 +71,11 @@ public class EmployeeController {
     private TextField employeesSearchText;
 
     @FXML
+    private JFXButton employeesDone;
+
+    @FXML
     private ImageView deleteBack;
 
-    DatabaseHandler databaseHandler = new DatabaseHandler();
     ObservableList<String> options = FXCollections.observableArrayList("Operator", "Rater", "Approver");
     private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
@@ -79,7 +87,8 @@ public class EmployeeController {
             employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
             employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
             employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
-            employeeTable.setItems(databaseHandler.searchemployeeList(employeesSearchText.getText()));
+            employeesDateColumn.setCellValueFactory(new PropertyValueFactory<DatePicker, String>("Cdate"));
+            employeeTable.setItems(DatabaseHandler.searchemployeeList(employeesSearchText.getText()));
 
         }else {
             viewElements();
@@ -91,10 +100,20 @@ public class EmployeeController {
     void initialize() {
         viewElements();
         employeesRemoveButton.setOnAction(event -> {
-            deleteEmployees();
+            if (employeesDone.isVisible()){
+                Frame parent = new JFrame();
+                JOptionPane.showMessageDialog(parent, "Finish your editing first please");
+            }else {
+                deleteEmployees();
+            }
         });
         employeesEditButton.setOnAction(event -> {
             editEmployees();
+        });
+
+        employeesDone.setOnAction(event -> {
+            employeeTable.getSelectionModel().cellSelectionEnabledProperty().set(false);
+            employeesDone.setVisible(false);
         });
 
         deleteBack.setOnMouseClicked((mouseEvent -> {
@@ -119,7 +138,8 @@ public class EmployeeController {
         employeesLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         employeesLevelColumn.setCellValueFactory(new PropertyValueFactory<>("Level"));
         employeesWorkColumn.setCellValueFactory(new PropertyValueFactory<>("Work"));
-        employeeTable.setItems(databaseHandler.viewAllEmployee());
+        employeesDateColumn.setCellValueFactory(new PropertyValueFactory<DatePicker, String>("Cdate"));
+        employeeTable.setItems(DatabaseHandler.viewAllEmployee());
     }
 
     public void deleteEmployees() {
@@ -127,7 +147,7 @@ public class EmployeeController {
         employeeTable.setEditable(true);
         String delete = "DELETE FROM " + Const.EMPLOYEE_TABLE + " WHERE " + "(" + Const.EMPLOYEE_ID + " =?" + ")";
         try {
-            PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(delete);
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(delete);
             preparedStatement.setString(1, String.valueOf(employee.getId()));
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -147,11 +167,10 @@ public class EmployeeController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
     public void editEmployees() {
+        employeesDone.setVisible(true);
         employeeTable.setEditable(true);
         employeeTable.getSelectionModel().cellSelectionEnabledProperty().set(true);
 
@@ -161,15 +180,13 @@ public class EmployeeController {
             employee.setName(employeeStringCellEditEvent.getNewValue());
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
             try {
-                PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
+                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
                 preparedStatement.setString(1, employee.getName());
                 preparedStatement.setString(2, String.valueOf(employee.getId()));
                 preparedStatement.executeUpdate();
                 Frame parent = new JFrame();
                 JOptionPane.showMessageDialog(parent, "Done");
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -179,15 +196,13 @@ public class EmployeeController {
             employee.setLastName(employeeStringCellEditEvent.getNewValue());
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
             try {
-                PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
+                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
                 preparedStatement.setString(1, employee.getLastName());
                 preparedStatement.setString(2, String.valueOf(employee.getId()));
                 preparedStatement.executeUpdate();
                 Frame parent = new JFrame();
                 JOptionPane.showMessageDialog(parent, "Done");
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -197,15 +212,13 @@ public class EmployeeController {
             employee.setLevel(employeeStringCellEditEvent.getNewValue());
             String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
             try {
-                PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
+                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
                 preparedStatement.setString(1, String.valueOf(employee.getLevel()));
                 preparedStatement.setString(2, String.valueOf(employee.getId()));
                 preparedStatement.executeUpdate();
                 Frame parent = new JFrame();
                 JOptionPane.showMessageDialog(parent, "Done");
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -225,7 +238,7 @@ public class EmployeeController {
 
                 String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
                 try {
-                    PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
+                    PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
                     preparedStatement.setString(1, employee.getWork());
                     preparedStatement.setString(2, String.valueOf(employee.getId()));
                     preparedStatement.executeUpdate();
@@ -233,11 +246,12 @@ public class EmployeeController {
                     JOptionPane.showMessageDialog(parent, "Done");
                 } catch (SQLException e) {
                     e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
                 }
             }
         });
+
+
+
 
     }
 }

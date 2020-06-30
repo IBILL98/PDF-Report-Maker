@@ -419,7 +419,6 @@ public class CreatReportController {
     private JFXButton reportExportPDFButton;
 
 
-    DatabaseHandler databaseHandler = new DatabaseHandler();
     ObservableList procent = FXCollections.observableArrayList();
     ObservableList acdc = FXCollections.observableArrayList("AC","DC");
     ObservableList result = FXCollections.observableArrayList("-","RED","OK");
@@ -594,7 +593,7 @@ public class CreatReportController {
         String query = "SELECT offerno.Id FROM offerno WHERE "+ Const.COMPANY_NAMEO +"=?";
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+            preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
             preparedStatement.setString(1, company.getName());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -602,8 +601,6 @@ public class CreatReportController {
             }
         } catch (
                 SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         reportOfferNo.setItems(offers);
@@ -615,15 +612,13 @@ public class CreatReportController {
         String query1 = "SELECT  joborderno.Id FROM joborderno WHERE "+ Const.COMPANY_NAMEJ +"=?";
         PreparedStatement preparedStatement1 = null;
         try {
-            preparedStatement1 = databaseHandler.getDbConnection().prepareStatement(query1);
+            preparedStatement1 = DatabaseHandler.getDbConnection().prepareStatement(query1);
             preparedStatement1.setString(1, company.getName());
             resultSet1 = preparedStatement1.executeQuery();
             while (resultSet1.next()) {
                 joborders.add(resultSet1.getString("Id"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         reportJobOrderNo.setItems(joborders);

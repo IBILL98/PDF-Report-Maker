@@ -124,7 +124,6 @@ public class NumberController {
     @FXML
     private JFXButton cancel1;
 
-    DatabaseHandler databaseHandler = new DatabaseHandler();
 
     @FXML
     void cancel(ActionEvent event) {
@@ -150,7 +149,7 @@ public class NumberController {
             JOptionPane.showMessageDialog(parent, "Please Entre the Company Name");
         }else {
             Company company = new Company(Name,JobOrderNo,true,true);
-            databaseHandler.addJobOrderNo(company);
+            DatabaseHandler.addJobOrderNo(company);
         }
         jCName.clear();
         jNumber.clear();
@@ -172,7 +171,7 @@ public class NumberController {
             JOptionPane.showMessageDialog(parent, "Please Entre the Company Name");
         }else {
             Company company = new Company(Name,OfferNo,true);
-            databaseHandler.addOfferNo(company);
+            DatabaseHandler.addOfferNo(company);
         }
         oName.clear();
         oNumber.clear();
@@ -188,7 +187,7 @@ public class NumberController {
 
             PreparedStatement preparedStatement = null;
             try {
-                preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+                preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1, oSearchText.getText());
 
                 resultSet = preparedStatement.executeQuery();
@@ -200,8 +199,6 @@ public class NumberController {
                     offers.add(company);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
             oNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -222,7 +219,7 @@ public class NumberController {
 
             PreparedStatement preparedStatement = null;
             try {
-                preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+                preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1, jSearchText.getText());
 
                 resultSet = preparedStatement.executeQuery();
@@ -234,8 +231,6 @@ public class NumberController {
                     joborders.add(company);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
             oNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -301,7 +296,7 @@ public class NumberController {
 
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+            preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Company company = new Company();
@@ -311,8 +306,6 @@ public class NumberController {
                 joborders.add(company);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         jNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -329,7 +322,7 @@ public class NumberController {
 
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = databaseHandler.getDbConnection().prepareStatement(query);
+            preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Company company = new Company();
@@ -339,8 +332,6 @@ public class NumberController {
                 offers.add(company);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         oNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -356,7 +347,7 @@ public class NumberController {
         //System.out.println(employee.getId());
         String delete = "DELETE FROM " + Const.JOBORDERS_TABLE + " WHERE " + "(" + Const.JOBORDERNO_NO + " =?" + ")";
         try {
-            PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(delete);
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(delete);
             preparedStatement.setString(1, String.valueOf(company.getJobOrderNo()));
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -376,8 +367,6 @@ public class NumberController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -388,7 +377,7 @@ public class NumberController {
         //System.out.println(employee.getId());
         String delete = "DELETE FROM " + Const.OFFERNO_TABLE + " WHERE " + "(" + Const.JOBOFFERNO_NO + " =?" + ")";
         try {
-            PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(delete);
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(delete);
             preparedStatement.setString(1, String.valueOf(company.getOfferNo()));
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -408,8 +397,6 @@ public class NumberController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -424,15 +411,13 @@ public class NumberController {
             company.setOfferNo(employeeStringCellEditEvent.getNewValue());
             String update = "UPDATE " + Const.OFFERNO_TABLE + " SET " + Const.JOBOFFERNO_NO + "=?" + " WHERE " + Const.JOBOFFERNO_NO + "=?";
             try {
-                PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
+                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
                 preparedStatement.setString(1, company.getOfferNo());
                 preparedStatement.setString(2, old);
                 preparedStatement.executeUpdate();
                 Frame parent = new JFrame();
                 JOptionPane.showMessageDialog(parent, "Done");
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -449,15 +434,13 @@ public class NumberController {
             company.setJobOrderNo(employeeStringCellEditEvent.getNewValue());
             String update = "UPDATE " + Const.JOBORDERS_TABLE + " SET " + Const.JOBORDERNO_NO + "=?" + " WHERE " + Const.JOBORDERNO_NO + "=?";
             try {
-                PreparedStatement preparedStatement = databaseHandler.getDbConnection().prepareStatement(update);
+                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
                 preparedStatement.setString(1, company.getJobOrderNo());
                 preparedStatement.setString(2, old);
                 preparedStatement.executeUpdate();
                 Frame parent = new JFrame();
                 JOptionPane.showMessageDialog(parent, "Done");
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });

@@ -1,5 +1,6 @@
 package sample.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Employee {
@@ -13,13 +14,22 @@ public class Employee {
     private LocalDate Cdate;
 
 
-    public Employee(String name, String lastName, String username, int level, String password, String work) {
+    public LocalDate getCdate() {
+        return Cdate;
+    }
+
+    public void setCdate(LocalDate cdate) {
+        Cdate = cdate;
+    }
+
+    public Employee(String name, String lastName, String username, int level, String password, String work, LocalDate cdate) {
         Name = name;
         LastName = lastName;
         Username = username;
         Level = level;
         Password = password;
         Work = work;
+        Cdate = cdate;
     }
 
     public Employee() {

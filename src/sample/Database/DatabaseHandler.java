@@ -13,23 +13,25 @@ import java.sql.*;
 
 public class DatabaseHandler extends Configs {
 
-    Connection dbConnection;
+    private static Connection dbConnection;
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    public static void connect() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?useSSL=false";
         Class.forName("com.mysql.cj.jdbc.Driver");
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
+    }
+    public static Connection getDbConnection(){
         return dbConnection;
     }
 
     //Adding employee into Database
-    public void addEmployee(Employee employee) {
+    public static void addEmployee(Employee employee) {
         String insert = "INSERT INTO " + Const.EMPLOYEE_TABLE + "(" + Const.EMPLOYEE_NAME + "," + Const.EMPLOYEE_LASTNAME
                 + "," + Const.EMPLOYEE_USERNAME + ","
-                + Const.EMPLOYEE_LEVEL + "," + Const.EMPLOYEE_PASSWORD + "," + Const.EMPLOYEE_WORK + "," + Const.EMPLOYEE_CDATE + ")" + "VALUES(?,?,?,?,?,?)";
+                + Const.EMPLOYEE_LEVEL + "," + Const.EMPLOYEE_PASSWORD + "," + Const.EMPLOYEE_WORK + "," + Const.EMPLOYEE_CDATE + ")" + "VALUES(?,?,?,?,?,?,?)";
 
         try {
-            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(insert);
 
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getLastName());
@@ -37,24 +39,23 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(4, String.valueOf(employee.getLevel()));
             preparedStatement.setString(5, employee.getPassword());
             preparedStatement.setString(6, employee.getWork());
+            preparedStatement.setDate(7, Date.valueOf(employee.getCdate()));
 
             preparedStatement.executeUpdate();
+
             if (employee.getLevel() != 100000) {
                 done();
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
             Frame parent = new JFrame();
             JOptionPane.showMessageDialog(parent, "this User Name is already used");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
     //return a resultset of an employee with a specific id
-    public ResultSet getEmployeeById(Employee employee) {
+    public static ResultSet getEmployeeById(Employee employee) {
         ResultSet resultSet = null;
         String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE "
                 + Const.EMPLOYEE_ID + "=?";
@@ -64,15 +65,13 @@ public class DatabaseHandler extends Configs {
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return resultSet;
     }
 
 
     //Read Employee From the Database for login window
-    public ResultSet getEmployee(Employee employee) {
+    public static ResultSet getEmployee(Employee employee) {
         ResultSet resultSet = null;
 
         if (!employee.getUsername().equals("") && !employee.getPassword().equals("")) {
@@ -89,8 +88,6 @@ public class DatabaseHandler extends Configs {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
 
         } else {
@@ -102,7 +99,7 @@ public class DatabaseHandler extends Configs {
 
 
     //Read Admin From The Database for login window
-    public ResultSet getAdmin(Admin admin) {
+    public static ResultSet getAdmin(Admin admin) {
         ResultSet resultSet = null;
 
         if (!admin.getUsername().equals("") && !admin.getPassword().equals("")) {
@@ -119,8 +116,6 @@ public class DatabaseHandler extends Configs {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
 
         } else {
@@ -132,7 +127,7 @@ public class DatabaseHandler extends Configs {
 
 
     ///adding a new Admin to the Database
-    public void addAdmin(Admin admin) {
+    public static void addAdmin(Admin admin) {
 
         String insert = "INSERT INTO " + Const.ADMINS_TABLE + "(" + Const.ADMINS_NAME + "," + Const.ADMINS_LASTNAME
                 + "," + Const.ADMINS_USERNAME + ","
@@ -153,12 +148,10 @@ public class DatabaseHandler extends Configs {
             e.printStackTrace();
             Frame parent = new JFrame();
             JOptionPane.showMessageDialog(parent, "This Username is registered before");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
-    public void done() {
+    public static void done() {
         Frame parent = new JFrame();
         JOptionPane.showMessageDialog(parent, "Done");
     }
@@ -176,8 +169,6 @@ public class DatabaseHandler extends Configs {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -197,13 +188,11 @@ public class DatabaseHandler extends Configs {
             done();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
     //adding Job order number for existing company
-    public void addJobOrderNo(Company company) {
+    public static void addJobOrderNo(Company company) {
         String insert = "INSERT INTO " + Const.JOBORDERS_TABLE + "(" + Const.COMPANY_NAMEJ + "," + Const.JOBORDERNO_NO + ")" +
                 "VALUES ((SELECT " + Const.COMPANY_NAME + " FROM " +
                 Const.COMPANYS_TABLE + " WHERE " + Const.COMPANY_NAME + " =?),?)";
@@ -217,13 +206,11 @@ public class DatabaseHandler extends Configs {
             done();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
     //adding offer number for existing company
-    public void addOfferNo(Company company) {
+    public static void addOfferNo(Company company) {
         String insert = "INSERT INTO " + Const.OFFERNO_TABLE + "(" + Const.COMPANY_NAMEO + "," + Const.JOBOFFERNO_NO + ")" +
                 "VALUES ((SELECT " + Const.COMPANY_NAME + " FROM " +
                 Const.COMPANYS_TABLE + " WHERE " + Const.COMPANY_NAME + " =?),?)";
@@ -237,13 +224,11 @@ public class DatabaseHandler extends Configs {
             done();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
  //return a list full of companies Name to select from
-    public ObservableList allCompaniesList() {
+    public static ObservableList allCompaniesList() {
         ObservableList<String> companies = FXCollections.observableArrayList();
         ResultSet resultSet = null;
         String query = "SELECT " + Const.COMPANY_NAME + " FROM " + Const.COMPANYS_TABLE;
@@ -258,14 +243,12 @@ public class DatabaseHandler extends Configs {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return companies;
     }
 
     //return a company with this Name
-    public Company getCompany(Company company) {
+    public static Company getCompany(Company company) {
         ResultSet resultSet = null;
         if (!company.getName().equals("")) {
             String query = "SELECT * FROM " + Const.COMPANYS_TABLE + " WHERE "
@@ -281,8 +264,6 @@ public class DatabaseHandler extends Configs {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         } else {
             System.out.println("please entere your correct infos");
@@ -291,7 +272,7 @@ public class DatabaseHandler extends Configs {
     }
 
     //return an equipment with this Name
-    public ResultSet getEquipment(Equipment equipment){
+    public static ResultSet getEquipment(Equipment equipment){
         ResultSet resultSet = null;
         if (!equipment.getName().equals("")) {
             String query = "SELECT * FROM " + Const.EQUIPMENTS_TABLE + " WHERE "
@@ -301,8 +282,6 @@ public class DatabaseHandler extends Configs {
                 preparedStatement.setString(1, equipment.getName());
                 resultSet = preparedStatement.executeQuery();
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
@@ -314,7 +293,7 @@ public class DatabaseHandler extends Configs {
 
 
     //return a list full of equipments Name to select from
-    public ObservableList allEquipment() {
+    public static ObservableList allEquipment() {
         Equipment equipment = new Equipment();
         ObservableList<String> equipments = FXCollections.observableArrayList();
         ResultSet resultSet = null;
@@ -328,15 +307,13 @@ public class DatabaseHandler extends Configs {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return equipments;
     }
 
 
     //return a list for the search employee
-    public ObservableList searchemployeeList(String searchWord){
+    public static ObservableList searchemployeeList(String searchWord){
         ObservableList<Employee> employees = FXCollections.observableArrayList();
         if(!searchWord.equals("")){
             employees.clear();
@@ -358,11 +335,10 @@ public class DatabaseHandler extends Configs {
                     employee.setLastName(resultSet.getString("LastName"));
                     employee.setLevel(resultSet.getInt("Level"));
                     employee.setWork(resultSet.getString("Work"));
+                    employee.setCdate(resultSet.getDate("Cdate").toLocalDate());
                     employees.add(employee);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }else {
@@ -373,7 +349,7 @@ public class DatabaseHandler extends Configs {
 
 
     //return a list with all employees name for the Table in employee window
-    public ObservableList viewAllEmployee() {
+    public static ObservableList viewAllEmployee() {
         ObservableList<Employee> employees = FXCollections.observableArrayList();
         employees.clear();
         ResultSet resultSet = null;
@@ -389,11 +365,10 @@ public class DatabaseHandler extends Configs {
                 employee.setLastName(resultSet.getString("LastName"));
                 employee.setLevel(resultSet.getInt("Level"));
                 employee.setWork(resultSet.getString("Work"));
+                employee.setCdate(resultSet.getDate("CertificateDate").toLocalDate());
                 employees.add(employee);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return employees;

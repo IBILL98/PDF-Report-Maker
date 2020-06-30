@@ -14,7 +14,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="My Application" options="--add-exports javafx.graphics/com.sun.javafx.print=ALL-UNNAMED" />
+      <module name="My Application" options="--add-exports javafx.graphics/com.sun.javafx.print=ALL-UNNAMED --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED" />
     </option>
   </component>
 </project>

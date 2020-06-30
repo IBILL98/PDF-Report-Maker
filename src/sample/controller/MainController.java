@@ -8,10 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Database.DatabaseHandler;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainController {
@@ -62,6 +64,15 @@ public class MainController {
 
     @FXML
     void initialize() {
+
+        try {
+            DatabaseHandler.connect();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         if(LoginController.getComboboxvalue()== "Employee"){
             mainSignupButton.setVisible(false);
             mainAddEmployee.setVisible(false);
