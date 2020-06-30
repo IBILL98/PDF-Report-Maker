@@ -10,6 +10,7 @@ import sample.model.Equipment;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
+import java.time.LocalDate;
 
 public class DatabaseHandler extends Configs {
 
@@ -20,7 +21,8 @@ public class DatabaseHandler extends Configs {
         Class.forName("com.mysql.cj.jdbc.Driver");
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
     }
-    public static Connection getDbConnection(){
+
+    public static Connection getDbConnection() {
         return dbConnection;
     }
 
@@ -73,12 +75,10 @@ public class DatabaseHandler extends Configs {
     //Read Employee From the Database for login window
     public static ResultSet getEmployee(Employee employee) {
         ResultSet resultSet = null;
-
         if (!employee.getUsername().equals("") && !employee.getPassword().equals("")) {
             String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE "
                     + Const.EMPLOYEE_USERNAME + "=?" + " AND "
                     + Const.EMPLOYEE_PASSWORD + "=?";
-
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1, employee.getUsername());
@@ -89,14 +89,12 @@ public class DatabaseHandler extends Configs {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         } else {
             Frame parent = new JFrame();
             JOptionPane.showMessageDialog(parent, "Please fill your correct Username and Password");
         }
         return resultSet;
     }
-
 
     //Read Admin From The Database for login window
     public static ResultSet getAdmin(Admin admin) {
@@ -159,23 +157,10 @@ public class DatabaseHandler extends Configs {
 
     //Delete
 
-    //DELETE FROM `my_database`.`companies` WHERE (`Username` = 'Username1');
-    public void deleteEmployee(Employee employee) {
-        String delete = "DELETE FROM " + Const.EMPLOYEE_TABLE + " WHERE " + "(" + Const.EMPLOYEE_USERNAME + " =?" + ")";
-        try {
-            PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
-            preparedStatement.setString(1, employee.getUsername());
-
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     //Adding Company into Database
     public void addCompany(Company company) {
-        String insert = "INSERT INTO " + Const.COMPANYS_TABLE + "(" + Const.COMPANY_NAME + "," + Const.COMPANY_PLACE +"," +Const.COMPANY_CUSTOMER+ ")" + "VALUES(?,?,?)";
+        String insert = "INSERT INTO " + Const.COMPANYS_TABLE + "(" + Const.COMPANY_NAME + "," + Const.COMPANY_PLACE + "," + Const.COMPANY_CUSTOMER + ")" + "VALUES(?,?,?)";
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
 
@@ -227,7 +212,7 @@ public class DatabaseHandler extends Configs {
         }
     }
 
- //return a list full of companies Name to select from
+    //return a list full of companies Name to select from
     public static ObservableList allCompaniesList() {
         ObservableList<String> companies = FXCollections.observableArrayList();
         ResultSet resultSet = null;
@@ -272,7 +257,7 @@ public class DatabaseHandler extends Configs {
     }
 
     //return an equipment with this Name
-    public static ResultSet getEquipment(Equipment equipment){
+    public static ResultSet getEquipment(Equipment equipment) {
         ResultSet resultSet = null;
         if (!equipment.getName().equals("")) {
             String query = "SELECT * FROM " + Const.EQUIPMENTS_TABLE + " WHERE "
@@ -289,7 +274,6 @@ public class DatabaseHandler extends Configs {
         }
         return resultSet;
     }
-
 
 
     //return a list full of equipments Name to select from
@@ -313,15 +297,15 @@ public class DatabaseHandler extends Configs {
 
 
     //return a list for the search employee
-    public static ObservableList searchemployeeList(String searchWord){
+    public static ObservableList searchemployeeList(String searchWord) {
         ObservableList<Employee> employees = FXCollections.observableArrayList();
-        if(!searchWord.equals("")){
+        if (!searchWord.equals("")) {
             employees.clear();
             ResultSet resultSet = null;
             PreparedStatement preparedStatement = null;
-            try{
-                String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE +" WHERE " + "(" + Const.EMPLOYEE_NAME + " LIKE ?" + ") OR ("
-                        +Const.EMPLOYEE_LASTNAME + " LIKE ?) OR (" + Const.EMPLOYEE_ID + " LIKE ?)";
+            try {
+                String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE " + "(" + Const.EMPLOYEE_NAME + " LIKE ?" + ") OR ("
+                        + Const.EMPLOYEE_LASTNAME + " LIKE ?) OR (" + Const.EMPLOYEE_ID + " LIKE ?)";
                 preparedStatement = getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1, searchWord);
                 preparedStatement.setString(2, searchWord);
@@ -341,16 +325,16 @@ public class DatabaseHandler extends Configs {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             viewAllEmployee();
         }
         return employees;
     }
 
+    private static ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     //return a list with all employees name for the Table in employee window
     public static ObservableList viewAllEmployee() {
-        ObservableList<Employee> employees = FXCollections.observableArrayList();
         employees.clear();
         ResultSet resultSet = null;
         String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE;
@@ -373,4 +357,95 @@ public class DatabaseHandler extends Configs {
         }
         return employees;
     }
+
+
+    public static void renewCD(Employee employee) {
+        LocalDate localDate = employee.getCdate().plusYears(1);
+        String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_CDATE + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setDate(1, Date.valueOf(localDate));
+            preparedStatement.setString(2, String.valueOf(employee.getId()));
+            preparedStatement.executeUpdate();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Done");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getindex(Employee employee) {
+        int index = employees.indexOf(employee);
+        return index;
+    }
+
+    public static void deleteEmployee(Employee employee) {
+        String delete = "DELETE FROM " + Const.EMPLOYEE_TABLE + " WHERE " + "(" + Const.EMPLOYEE_ID + " =?" + ")";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
+            preparedStatement.setInt(1, employee.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editWork(Employee employee) {
+
+        String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setString(1, employee.getWork());
+            preparedStatement.setString(2, String.valueOf(employee.getId()));
+            preparedStatement.executeUpdate();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Done");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editLevel(Employee employee) {
+        String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setString(1, String.valueOf(employee.getLevel()));
+            preparedStatement.setString(2, String.valueOf(employee.getId()));
+            preparedStatement.executeUpdate();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Done");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void editLastName(Employee employee){
+        String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setString(1, employee.getLastName());
+            preparedStatement.setString(2, String.valueOf(employee.getId()));
+            preparedStatement.executeUpdate();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Done");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void editName(Employee employee){
+        String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setString(2, String.valueOf(employee.getId()));
+            preparedStatement.executeUpdate();
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Done");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

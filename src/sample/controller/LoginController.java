@@ -16,10 +16,15 @@ import sample.Database.DatabaseHandler;
 import sample.model.Admin;
 import sample.model.Employee;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class LoginController {
@@ -70,17 +75,20 @@ public class LoginController {
                     while(employeeRow.next()) {
                         counter++;
                     }
-                    if (counter == 1) {
-                        setComboboxvalue("Employee");
-                        showMainScreen();
+                    if (counter == 1 ) {
+                        if (employee.getCdate().compareTo(LocalDate.now()) != -1){
+                            setComboboxvalue("Employee");
+                            showMainScreen();
+                        }else{
+                            Frame parent = new JFrame();
+                            JOptionPane.showMessageDialog(parent, "Your Certificate date has been expired");
+                        }
                     }else{
                         Shaker UsernameShaker = new Shaker(loginUsername);
                         UsernameShaker.shake();
                         Shaker PasswordShaker = new Shaker(loginPassword);
                         PasswordShaker.shake();
-
                     }
-
                 }
                 catch(SQLException e){
                     e.printStackTrace();

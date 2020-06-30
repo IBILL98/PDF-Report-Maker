@@ -74,10 +74,13 @@ public class EmployeeController {
     private JFXButton employeesDone;
 
     @FXML
+    private JFXButton employeesRenewCD;
+
+
+    @FXML
     private ImageView deleteBack;
 
     ObservableList<String> options = FXCollections.observableArrayList("Operator", "Rater", "Approver");
-    private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     @FXML
     void searhEmployee(KeyEvent event) {
@@ -116,6 +119,11 @@ public class EmployeeController {
             employeesDone.setVisible(false);
         });
 
+        employeesRenewCD.setOnAction(event -> {
+            Employee employee = employeeTable.getSelectionModel().getSelectedItem();
+            DatabaseHandler.renewCD(employee);
+        });
+
         deleteBack.setOnMouseClicked((mouseEvent -> {
             deleteBack.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
@@ -132,6 +140,7 @@ public class EmployeeController {
         }));
     }
 
+
     public void viewElements() {
         employeesIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         employeesNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -145,30 +154,20 @@ public class EmployeeController {
     public void deleteEmployees() {
         Employee employee = employeeTable.getSelectionModel().getSelectedItem();
         employeeTable.setEditable(true);
-        String delete = "DELETE FROM " + Const.EMPLOYEE_TABLE + " WHERE " + "(" + Const.EMPLOYEE_ID + " =?" + ")";
-        try {
-            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(delete);
-            preparedStatement.setString(1, String.valueOf(employee.getId()));
-
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Are you sure you ?");
-            alert.setContentText("You will delete " + employee.getName() + " " + employee.getLastName() + " From your employee list");
+            alert.setHeaderText("You will delete " + employee.getName() + " " + employee.getLastName() + " From your employee list");
+            alert.setContentText("Are you sure you ?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                // ... user choose OK
                 System.out.println("yes");
-                preparedStatement.executeUpdate();
-                int index = employees.indexOf(employee);
-                employeeTable.getItems().remove(index);
+                DatabaseHandler.deleteEmployee(employee);
+                employeeTable.getItems().remove(DatabaseHandler.getindex(employee));
             } else {
-                // ... user choose CANCEL or closed the dialog
                 System.out.println("cancle");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
+
     public void editEmployees() {
         employeesDone.setVisible(true);
         employeeTable.setEditable(true);
@@ -178,50 +177,21 @@ public class EmployeeController {
         employeesNameColumn.setOnEditCommit(employeeStringCellEditEvent -> {
             Employee employee = employeeTable.getSelectionModel().getSelectedItem();
             employee.setName(employeeStringCellEditEvent.getNewValue());
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
-            try {
-                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
-                preparedStatement.setString(1, employee.getName());
-                preparedStatement.setString(2, String.valueOf(employee.getId()));
-                preparedStatement.executeUpdate();
-                Frame parent = new JFrame();
-                JOptionPane.showMessageDialog(parent, "Done");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DatabaseHandler.editName(employee);
         });
         employeesLastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         employeesLastNameColumn.setOnEditCommit(employeeStringCellEditEvent -> {
             Employee employee = employeeTable.getSelectionModel().getSelectedItem();
             employee.setLastName(employeeStringCellEditEvent.getNewValue());
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
-            try {
-                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
-                preparedStatement.setString(1, employee.getLastName());
-                preparedStatement.setString(2, String.valueOf(employee.getId()));
-                preparedStatement.executeUpdate();
-                Frame parent = new JFrame();
-                JOptionPane.showMessageDialog(parent, "Done");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DatabaseHandler.editLastName(employee);
         });
         employeesLevelColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         employeesLevelColumn.setOnEditCommit(employeeStringCellEditEvent -> {
             Employee employee = employeeTable.getSelectionModel().getSelectedItem();
             employee.setLevel(employeeStringCellEditEvent.getNewValue());
-            String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LEVEL + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
-            try {
-                PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
-                preparedStatement.setString(1, String.valueOf(employee.getLevel()));
-                preparedStatement.setString(2, String.valueOf(employee.getId()));
-                preparedStatement.executeUpdate();
-                Frame parent = new JFrame();
-                JOptionPane.showMessageDialog(parent, "Done");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DatabaseHandler.editLevel(employee);
         });
+
         employeesWorkColumn.setCellFactory(ComboBoxTableCell.forTableColumn(options));
         employeesWorkColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
             @Override
@@ -235,18 +205,7 @@ public class EmployeeController {
                 }else if(s.equals("Operator")){
                     employee.setWork("Operator");
                 }
-
-                String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_WORK + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
-                try {
-                    PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
-                    preparedStatement.setString(1, employee.getWork());
-                    preparedStatement.setString(2, String.valueOf(employee.getId()));
-                    preparedStatement.executeUpdate();
-                    Frame parent = new JFrame();
-                    JOptionPane.showMessageDialog(parent, "Done");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                DatabaseHandler.editWork(employee);
             }
         });
 

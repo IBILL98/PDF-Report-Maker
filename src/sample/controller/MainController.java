@@ -129,7 +129,6 @@ public class MainController {
 
         mainEditProfile.setOnAction(event -> {
             showEditScreen();
-
         });
 
         mainLogout.setOnAction(event -> {
