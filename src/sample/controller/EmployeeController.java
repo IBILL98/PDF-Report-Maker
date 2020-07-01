@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-import sample.Database.Const;
 import sample.Database.DatabaseHandler;
 import sample.model.Employee;
 
@@ -25,9 +24,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.time.LocalDate;
+
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -117,6 +114,9 @@ public class EmployeeController {
         employeesDone.setOnAction(event -> {
             employeeTable.getSelectionModel().cellSelectionEnabledProperty().set(false);
             employeesDone.setVisible(false);
+            employeeTable.setEditable(false);
+            Frame parent = new JFrame();
+            JOptionPane.showMessageDialog(parent, "Done");
         });
 
         employeesRenewCD.setOnAction(event -> {
@@ -162,7 +162,7 @@ public class EmployeeController {
             if (result.get() == ButtonType.OK) {
                 System.out.println("yes");
                 DatabaseHandler.deleteEmployee(employee);
-                employeeTable.getItems().remove(DatabaseHandler.getindex(employee));
+                employeeTable.getItems().remove(DatabaseHandler.getEmployeeindex(employee));
             } else {
                 System.out.println("cancle");
             }
@@ -208,9 +208,5 @@ public class EmployeeController {
                 DatabaseHandler.editWork(employee);
             }
         });
-
-
-
-
     }
 }

@@ -298,7 +298,6 @@ public class DatabaseHandler extends Configs {
 
     //return a list for the search employee
     public static ObservableList searchemployeeList(String searchWord) {
-        ObservableList<Employee> employees = FXCollections.observableArrayList();
         if (!searchWord.equals("")) {
             employees.clear();
             ResultSet resultSet = null;
@@ -319,7 +318,7 @@ public class DatabaseHandler extends Configs {
                     employee.setLastName(resultSet.getString("LastName"));
                     employee.setLevel(resultSet.getInt("Level"));
                     employee.setWork(resultSet.getString("Work"));
-                    employee.setCdate(resultSet.getDate("Cdate").toLocalDate());
+                    employee.setCdate(resultSet.getDate("CertificateDate").toLocalDate());
                     employees.add(employee);
                 }
             } catch (SQLException e) {
@@ -374,7 +373,7 @@ public class DatabaseHandler extends Configs {
         }
     }
 
-    public static int getindex(Employee employee) {
+    public static int getEmployeeindex(Employee employee) {
         int index = employees.indexOf(employee);
         return index;
     }
@@ -385,7 +384,6 @@ public class DatabaseHandler extends Configs {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
             preparedStatement.setInt(1, employee.getId());
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -399,8 +397,6 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(1, employee.getWork());
             preparedStatement.setString(2, String.valueOf(employee.getId()));
             preparedStatement.executeUpdate();
-            Frame parent = new JFrame();
-            JOptionPane.showMessageDialog(parent, "Done");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -413,31 +409,169 @@ public class DatabaseHandler extends Configs {
             preparedStatement.setString(1, String.valueOf(employee.getLevel()));
             preparedStatement.setString(2, String.valueOf(employee.getId()));
             preparedStatement.executeUpdate();
-            Frame parent = new JFrame();
-            JOptionPane.showMessageDialog(parent, "Done");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public static void editLastName(Employee employee){
+
+    public static void editLastName(Employee employee) {
         String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_LASTNAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
         try {
             PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
             preparedStatement.setString(1, employee.getLastName());
             preparedStatement.setString(2, String.valueOf(employee.getId()));
             preparedStatement.executeUpdate();
-            Frame parent = new JFrame();
-            JOptionPane.showMessageDialog(parent, "Done");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public static void editName(Employee employee){
+
+    public static void editName(Employee employee) {
         String update = "UPDATE " + Const.EMPLOYEE_TABLE + " SET " + Const.EMPLOYEE_NAME + "=?" + " WHERE " + Const.EMPLOYEE_ID + "=?";
         try {
             PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, String.valueOf(employee.getId()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static ObservableList<Company> offers = FXCollections.observableArrayList();
+
+    public static ObservableList viewAllOffers() {
+        offers.clear();
+        ResultSet resultSet = null;
+        String query = "SELECT companies.Name,companies.Place,offerno.Id FROM companies,offerno where companies.name = offerno.CompanyIdO";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Company company = new Company();
+                company.setName(resultSet.getString("Name"));
+                company.setPlace(resultSet.getString("Place"));
+                company.setOfferNo(resultSet.getString("Id"));
+                offers.add(company);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return offers;
+    }
+
+
+    private static ObservableList<Company> joborders = FXCollections.observableArrayList();
+
+    public static ObservableList viewAllJobOrders() {
+        joborders.clear();
+        ResultSet resultSet = null;
+        String query = "SELECT  companies.Name,companies.Place,joborderno.Id FROM companies,joborderno WHERE companies.name = joborderno.CompanyIdJ";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Company company = new Company();
+                company.setName(resultSet.getString("Name"));
+                company.setPlace(resultSet.getString("Place"));
+                company.setJobOrderNo(resultSet.getString("Id"));
+                joborders.add(company);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return joborders;
+    }
+
+    public static ObservableList searchoffersList(String searchWord) {
+        if (!searchWord.equals("")) {
+            offers.clear();
+            ResultSet resultSet = null;
+            String query = "SELECT companies.Name,companies.Place,offerno.Id FROM companies,offerno WHERE (companies.name = offerno.CompanyIdO) AND companies.name = ?";
+
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1, searchWord);
+
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Company company = new Company();
+                    company.setName(resultSet.getString("Name"));
+                    company.setPlace(resultSet.getString("Place"));
+                    company.setOfferNo(resultSet.getString("Id"));
+                    offers.add(company);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            viewAllOffers();
+        }
+        return offers;
+    }
+
+    public static ObservableList searchJobsList(String searchWord) {
+        if (!searchWord.equals("")) {
+            joborders.clear();
+            ResultSet resultSet = null;
+            String query = "SELECT  companies.Name,companies.Place,joborderno.Id FROM companies,joborderno WHERE (companies.Name = joborderno.CompanyIdJ) AND (companies.Name = ?)";
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1, searchWord);
+
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Company company = new Company();
+                    company.setName(resultSet.getString("Name"));
+                    company.setPlace(resultSet.getString("Place"));
+                    company.setJobOrderNo(resultSet.getString("Id"));
+                    joborders.add(company);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            viewAllJobOrders();
+        }
+        return joborders;
+    }
+
+    public static void deleteOfferNo(Company company) {
+        String delete = "DELETE FROM " + Const.OFFERNO_TABLE + " WHERE " + "(" + Const.JOBOFFERNO_NO + " =?" + ")";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(delete);
+            preparedStatement.setString(1, String.valueOf(company.getOfferNo()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static int getOfferIndex(Company company) {
+        int index = offers.indexOf(company);
+        return index;
+    }
+
+
+    public static int getJobIndex(Company company) {
+        int index = joborders.indexOf(company);
+        return index;
+    }
+
+    public static void editOffer(Company company,String old){
+        String update = "UPDATE " + Const.OFFERNO_TABLE + " SET " + Const.JOBOFFERNO_NO + "=?" + " WHERE " + Const.JOBOFFERNO_NO + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setString(1, company.getOfferNo());
+            preparedStatement.setString(2, old);
             preparedStatement.executeUpdate();
             Frame parent = new JFrame();
             JOptionPane.showMessageDialog(parent, "Done");
@@ -446,6 +580,27 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    public static void deleteJobNo(Company company) {
+        String delete = "DELETE FROM " + Const.JOBORDERS_TABLE + " WHERE " + "(" + Const.JOBORDERNO_NO + " =?" + ")";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(delete);
+            preparedStatement.setString(1, String.valueOf(company.getJobOrderNo()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static void editJob(Company company,String old){
+        String update = "UPDATE " + Const.JOBORDERS_TABLE + " SET " + Const.JOBORDERNO_NO + "=?" + " WHERE " + Const.JOBORDERNO_NO + "=?";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(update);
+            preparedStatement.setString(1, company.getJobOrderNo());
+            preparedStatement.setString(2, old);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

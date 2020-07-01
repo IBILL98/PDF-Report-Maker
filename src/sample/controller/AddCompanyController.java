@@ -2,7 +2,6 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +11,6 @@ import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.Company;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

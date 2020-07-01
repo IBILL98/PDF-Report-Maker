@@ -23,8 +23,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class LoginController {
