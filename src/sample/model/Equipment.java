@@ -4,14 +4,22 @@ public class Equipment {
     public Equipment() {
     }
 
-    private String Name ;
-
     public Equipment(String name) {
         Name = name;
     }
 
+    public Equipment(String name, int poleDistance, String MPCarrierMedium, String magTech, String UVLightIntensity, String distanceOfLight) {
+        Name = name;
+        PoleDistance = poleDistance;
+        this.MPCarrierMedium = MPCarrierMedium;
+        MagTech = magTech;
+        this.UVLightIntensity = UVLightIntensity;
+        DistanceOfLight = distanceOfLight;
+    }
+
+    private String Name ;
     private int Id ;
-    private String privatePoleDistance;
+    private int PoleDistance;
 
     private String MPCarrierMedium ;
     private String MagTech;
@@ -34,12 +42,12 @@ public class Equipment {
         Id = id;
     }
 
-    public String getPrivatePoleDistance() {
-        return privatePoleDistance;
+    public int getPoleDistance() {
+        return PoleDistance;
     }
 
-    public void setPrivatePoleDistance(String privatePoleDistance) {
-        this.privatePoleDistance = privatePoleDistance;
+    public void setPrivatePoleDistance(int PoleDistance) {
+        this.PoleDistance = PoleDistance;
     }
 
     public String getMPCarrierMedium() {

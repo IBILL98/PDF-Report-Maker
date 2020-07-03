@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.Company;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,9 +45,13 @@ public class AddCompanyController {
 
     @FXML
     void initialize() {
-
         addCompanyButton.setOnAction(actionEvent -> {
-            createCompany();
+            if (addCompanyName.equals("")||addCompanyPlace.equals("")||addCompanyCustomer.equals("")){
+                Frame parent = new JFrame();
+                JOptionPane.showMessageDialog(parent, "Please fill all the fields");
+            }else {
+                createCompany();
+            }
         });
 
         deleteBack.setOnMouseClicked(mouseEvent -> {

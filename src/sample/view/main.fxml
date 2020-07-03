@@ -52,12 +52,12 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <JFXButton fx:id="mainEditProfile" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Employee Profile" textFill="WHITE">
+            <JFXButton fx:id="mainAddEmployee" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new Employee" textFill="WHITE">
                <VBox.margin>
                   <Insets top="85.0" />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="mainAddEmployee" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new Employee" textFill="WHITE">
+            <JFXButton fx:id="mainEditProfile" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Employee Profile" textFill="WHITE">
                <VBox.margin>
                   <Insets top="35.0" />
                </VBox.margin>
@@ -81,7 +81,19 @@
             </JFXButton>
          </children>
       </HBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <children>
+            <JFXButton fx:id="mainAddEquipment" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add new Equipment" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="85.0" />
+               </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="mainEdtEquipment" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Edit Equipment" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children></VBox>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.rowIndex="3" />
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" GridPane.rowIndex="3" />

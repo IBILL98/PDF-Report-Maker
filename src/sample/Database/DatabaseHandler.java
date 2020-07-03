@@ -154,8 +154,26 @@ public class DatabaseHandler extends Configs {
         JOptionPane.showMessageDialog(parent, "Done");
     }
 
+    public static void addEquipment(Equipment equipment) {
+        String insert = "INSERT INTO " + Const.EQUIPMENTS_TABLE + "(" + Const.EQUIPMENTS_EQUIPMENT + "," + Const.EQUIPMENTS_POLEDISTANCE
+                + "," + Const.EQUIPMENTS_MPCARRIERMEDIUM + ","
+                + Const.EQUIPMENTS_MAGTECH + "," + Const.EQUIPMENTS_UVLIGHTINTENSITY + "," + Const.EQUIPMENTS_DISTANCEOFLIGHT + ")" + "VALUES(?,?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = DatabaseHandler.getDbConnection().prepareStatement(insert);
 
-    //Delete
+            preparedStatement.setString(1, equipment.getName());
+            preparedStatement.setInt(2, equipment.getPoleDistance());
+            preparedStatement.setString(3, equipment.getMPCarrierMedium());
+            preparedStatement.setString(4, equipment.getMagTech());
+            preparedStatement.setString(5, equipment.getUVLightIntensity());
+            preparedStatement.setString(6, equipment.getDistanceOfLight());
+
+            preparedStatement.executeUpdate();
+            done();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     //Adding Company into Database

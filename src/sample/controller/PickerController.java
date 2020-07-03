@@ -90,7 +90,7 @@ public class PickerController {
         while (resultset.next()){
             pickedequipment.setName(resultset.getString("Equipment"));
             pickedequipment.setId(Integer.parseInt(resultset.getString("Id")));
-            pickedequipment.setPrivatePoleDistance((resultset.getString("PoleDistance")));
+            pickedequipment.setPrivatePoleDistance((resultset.getInt("PoleDistance")));
             pickedequipment.setMPCarrierMedium((resultset.getString("MPCarrierMedium")));
             pickedequipment.setMagTech((resultset.getString("MagTech")));
             pickedequipment.setUVLightIntensity((resultset.getString("UVLightIntensity")));

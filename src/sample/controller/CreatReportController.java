@@ -624,7 +624,7 @@ public class CreatReportController {
         reportJobOrderNo.setItems(joborders);
 
 
-        reportPoleDistance.setText(equipment.getPrivatePoleDistance());
+        reportPoleDistance.setText(String.valueOf(equipment.getPoleDistance()));
         reportEquipment.setText(equipment.getName());
         reportMPCarrierMedium.setText(equipment.getMPCarrierMedium());
         reportMagTech.setText(equipment.getMagTech());

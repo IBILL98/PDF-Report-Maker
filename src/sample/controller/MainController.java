@@ -47,6 +47,12 @@ public class MainController {
     private JFXButton mainSignupButton;
 
     @FXML
+    private JFXButton mainEdtEquipment;
+
+    @FXML
+    private JFXButton mainAddEquipment;
+
+    @FXML
     void showEditCompanyScreen(ActionEvent event) {
         mainSignupButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
@@ -112,18 +118,7 @@ public class MainController {
 
 
         mainCreateReport.setOnAction(event -> {
-            mainCreateReport.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/picker.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            showPickerScreen();
         });
 
 
@@ -132,23 +127,63 @@ public class MainController {
         });
 
         mainLogout.setOnAction(event -> {
-            mainLogout.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            showLoginScreen();
         });
 
         mainAddCompany.setOnAction(event -> {
             showAddFrimaScreen();
         });
+
+
+
+        mainAddEquipment.setOnAction(event -> {
+            showAddEquipmentScreen();
+        });
+    }
+
+    private void showLoginScreen() {
+        mainLogout.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void showAddEquipmentScreen() {
+        mainCreateReport.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/addequipment.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void showPickerScreen() {
+        mainCreateReport.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/view/picker.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void showEditScreen() {
@@ -180,4 +215,5 @@ public class MainController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
 }

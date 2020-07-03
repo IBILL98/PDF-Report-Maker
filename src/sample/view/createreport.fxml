@@ -240,7 +240,7 @@
                                     <Insets left="10.0" top="4.0" />
                                  </padding>
                               </Label>
-                              <Label layoutY="19.0" text="Stage Of Examination">
+                              <Label layoutY="19.0" text="Stage of Examination">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>

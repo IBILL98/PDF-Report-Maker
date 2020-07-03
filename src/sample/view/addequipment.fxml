@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddEquipmentController">
+   <columnConstraints>
+      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" percentWidth="10.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" percentWidth="40.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="22.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="11.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="77.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" GridPane.columnIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+         </GridPane.margin>
+         <children>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="195.0" text="Equipment :">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="31.0" text="Pole Distance  :">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="31.0" text="Pole Distance :">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <JFXTextField fx:id="addEquipmentEquipment" prefHeight="31.0" prefWidth="270.0" promptText="Equipment">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="addEquipmentPole" prefHeight="31.0" prefWidth="270.0" promptText="Pole Distance">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="addEquipmentMp" prefHeight="31.0" prefWidth="270.0" promptText="MP Carrier Medium">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ImageView fx:id="deleteBack" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+         <image>
+            <Image url="@../assets/reply.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" />
+         </GridPane.margin>
+      </ImageView>
+      <HBox GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+         </GridPane.margin>
+         <children>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="195.0" text="Mag.Tech :">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="31.0" text="UV Light Intensity :">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="31.0" text="Distance of light :">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <JFXTextField fx:id="addEquipmentMag" prefHeight="31.0" prefWidth="195.0" promptText="Mag.Tech">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="addEquipmentUv" prefHeight="31.0" prefWidth="142.0" promptText="UV Light Intensity">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="addEquipmentDistance" prefHeight="31.0" prefWidth="270.0" promptText="Distance of light">
+                     <VBox.margin>
+                        <Insets bottom="20.0" right="5.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXButton fx:id="addEquipmentAdd" prefHeight="49.0" prefWidth="150.0" style="-fx-background-color: #009688;" text="Add Equipment" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="40.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="Add" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </GridPane.margin></Separator>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0069c0;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="Equipment" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+</GridPane>
