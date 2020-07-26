@@ -68,13 +68,6 @@ public class MainController {
     @FXML
     void initialize() {
 
-        try {
-            DatabaseHandler.connect();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         if(LoginController.getComboboxvalue()== "Employee"){
             mainSignupButton.setVisible(false);

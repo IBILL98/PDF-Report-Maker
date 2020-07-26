@@ -23,6 +23,7 @@ public class DatabaseHandler extends Configs {
     }
 
     public static Connection getDbConnection() {
+
         return dbConnection;
     }
 
@@ -72,13 +73,15 @@ public class DatabaseHandler extends Configs {
     }
 
 
+
+
     //Read Employee From the Database for login window
     public static ResultSet getEmployee(Employee employee) {
         ResultSet resultSet = null;
         if (!employee.getUsername().equals("") && !employee.getPassword().equals("")) {
             String query = "SELECT * FROM " + Const.EMPLOYEE_TABLE + " WHERE "
-                    + Const.EMPLOYEE_USERNAME + "=?" + " AND "
-                    + Const.EMPLOYEE_PASSWORD + "=?";
+                    + Const.EMPLOYEE_USERNAME + "= ? AND "
+                    + Const.EMPLOYEE_PASSWORD + "= ?";
             try {
                 PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
                 preparedStatement.setString(1, employee.getUsername());

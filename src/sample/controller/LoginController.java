@@ -52,13 +52,21 @@ public class LoginController {
     @FXML
     void initialize() {
 
+        try {
+            DatabaseHandler.connect();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         ObservableList userKind = FXCollections.observableArrayList("Admin","Employee");
         comboBox.setItems(userKind);
         comboBox.getSelectionModel().selectFirst();
 
 
         loginButton.setOnAction(event -> {
-            System.out.println();
             if(comboBox.getValue() == "Employee"){
                 String loginText = loginUsername.getText();
                 String loginPwd = loginPassword.getText();
@@ -72,6 +80,8 @@ public class LoginController {
                 try {
                     while(employeeRow.next()) {
                         counter++;
+                        employee.setCdate(employeeRow.getDate("CertificateDate").toLocalDate());
+
                     }
                     if (counter == 1 ) {
                         if (employee.getCdate().compareTo(LocalDate.now()) != -1){
