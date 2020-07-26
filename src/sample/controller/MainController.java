@@ -47,9 +47,6 @@ public class MainController {
     private JFXButton mainSignupButton;
 
     @FXML
-    private JFXButton mainEdtEquipment;
-
-    @FXML
     private JFXButton mainAddEquipment;
 
     @FXML
