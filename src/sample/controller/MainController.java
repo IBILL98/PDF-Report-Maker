@@ -75,6 +75,7 @@ public class MainController {
             mainEditProfile.setVisible(false);
             mainAddCompany.setVisible(false);
             mainNumbers.setVisible(false);
+            mainAddEquipment.setVisible(false);
         }
             mainSignupButton.setOnAction(event -> {
             mainSignupButton.getScene().getWindow().hide();

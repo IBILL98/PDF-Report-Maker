@@ -648,7 +648,7 @@ public class CreatReportController {
     public void toxl(){
 
         try {
-            FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\MONSTER\\Desktop\\Bericht2_MitKommentaren.xlsx"));
+            FileInputStream inputStream = new FileInputStream(new File("src/sample/assets/Bericht2_MitKommentaren.xlsx"));
             XSSFWorkbook workbook = null;
             workbook = new XSSFWorkbook(inputStream);
 
